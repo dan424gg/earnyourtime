@@ -50,7 +50,7 @@ class DeviceActivityModel {
     /**
      Start monitoring for device activity.
      */
-    func startMonitoring(badAppTime: Int, checkpointTime: Int) throws {
+    func startMonitoring() throws {
         print("bad \(self.badSelections.applications.count) applications")
         print("bad \(self.badSelections.webDomains.count) web domains")
         
@@ -60,8 +60,8 @@ class DeviceActivityModel {
         print("\(checkpointTime) minute checkpoint time")
         print("\(badAppTime) minute bad app time")
         
-        self.checkpointTime = checkpointTime
-        self.badAppTime = badAppTime
+//        self.checkpointTime = checkpointTime
+//        self.badAppTime = badAppTime
         
         self.events = [
             .checkpoint: DeviceActivityEvent(

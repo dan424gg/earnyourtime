@@ -24,7 +24,7 @@ struct SettingsMain: View {
         var id: Self { self }
     }
     
-    @State private var selectedDestination: SettingsDestination?
+    @State private var selectedDestination: SettingsDestination? = .badApps
 
     var body: some View {
         NavigationView {
@@ -90,7 +90,7 @@ struct SettingsMain: View {
                 case .goodApps:
                     GoodAppsView()
                 case .badApps:
-                    BadAppsView()
+                    BadAppsSelectorView()
                 case .checkpointTime:
                     CheckpointTimeEditorView()
                      .presentationDetents([.fraction(0.6)])
@@ -119,5 +119,6 @@ struct SettingsMain: View {
     ZStack {
         AppBackground()
         SettingsMain()
+            .environment(DeviceActivityModel())
     }
 }

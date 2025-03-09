@@ -1,5 +1,5 @@
 //
-//  GoodAppsView.swift
+//  BadAppsView.swift
 //  EarnYourTime
 //
 //  Created by Daniel Wells on 3/9/25.
@@ -8,19 +8,19 @@
 import SwiftUI
 import FamilyControls
 
-struct GoodAppsView: View {
+struct BadAppsSelectorView: View {
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
     @AppStorage("familySelections") private var familySelectionsData: Data = Data()
     @Environment(\.dismiss) var dismiss
         
     private func loadBadSelections() {
         if let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: familySelectionsData) {
-            deviceActivityModel.goodSelections = decoded
+            deviceActivityModel.badSelections = decoded
         }
     }
     
     private func saveBadSelections() {
-        if let encoded = try? JSONEncoder().encode(deviceActivityModel.goodSelections) {
+        if let encoded = try? JSONEncoder().encode(deviceActivityModel.badSelections) {
             familySelectionsData = encoded
         }
     }
@@ -29,14 +29,14 @@ struct GoodAppsView: View {
         @Bindable var bindable_model = deviceActivityModel
 
         NavigationView {
-            FamilyActivityPicker(selection: $bindable_model.goodSelections)
+            FamilyActivityPicker(selection: $bindable_model.badSelections)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Image(systemName: "hand.thumbsup")
+                        Image(systemName: "hand.thumbsdown")
                             .fontWeight(.bold)
-                        Text("Good Apps")
-                            .foregroundStyle(Color.good)
+                        Text("Bad Apps")
+                            .foregroundStyle(Color.bad)
                             .font(.title.bold())
                     }
                     .padding(.top, 50)
@@ -56,5 +56,5 @@ struct GoodAppsView: View {
 }
 
 #Preview {
-    GoodAppsView()
+    BadAppsSelectorView()
 }
