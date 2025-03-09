@@ -57,4 +57,5 @@ struct GoodAppsView: View {
 
 #Preview {
     GoodAppsView()
+        .environment(DeviceActivityModel())
 }
