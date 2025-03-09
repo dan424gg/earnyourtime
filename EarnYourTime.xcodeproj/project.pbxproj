@@ -9,12 +9,33 @@
 /* Begin PBXBuildFile section */
 		1E1479DB2D7CD31B009D66B2 /* EarnYourTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1479DA2D7CD31B009D66B2 /* EarnYourTimeApp.swift */; };
 		1E1479DD2D7CD31B009D66B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1479DC2D7CD31B009D66B2 /* ContentView.swift */; };
-		1E1479DF2D7CD31B009D66B2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1479DE2D7CD31B009D66B2 /* Item.swift */; };
 		1E1479E12D7CD31C009D66B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1479E02D7CD31C009D66B2 /* Assets.xcassets */; };
 		1E1479E42D7CD31C009D66B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1479E32D7CD31C009D66B2 /* Preview Assets.xcassets */; };
 		1E1479EE2D7CD31C009D66B2 /* EarnYourTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1479ED2D7CD31C009D66B2 /* EarnYourTimeTests.swift */; };
 		1E1479F82D7CD31C009D66B2 /* EarnYourTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1479F72D7CD31C009D66B2 /* EarnYourTimeUITests.swift */; };
 		1E1479FA2D7CD31C009D66B2 /* EarnYourTimeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1479F92D7CD31C009D66B2 /* EarnYourTimeUITestsLaunchTests.swift */; };
+		1E147A082D7CD37F009D66B2 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A072D7CD37F009D66B2 /* Home.swift */; };
+		1E147A0B2D7CD3D8009D66B2 /* DeviceActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A0A2D7CD3D8009D66B2 /* DeviceActivityModel.swift */; };
+		1E147A0D2D7CD40A009D66B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A0C2D7CD40A009D66B2 /* Utils.swift */; };
+		1E147A172D7CD50A009D66B2 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E147A102D7CD4B7009D66B2 /* DeviceActivity.framework */; };
+		1E147A1A2D7CD50A009D66B2 /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A192D7CD50A009D66B2 /* DeviceActivityMonitorExtension.swift */; };
+		1E147A1F2D7CD50A009D66B2 /* DeviceActivityMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1E147A162D7CD509009D66B2 /* DeviceActivityMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1E147A3F2D7CD535009D66B2 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E147A3E2D7CD535009D66B2 /* ManagedSettings.framework */; };
+		1E147A412D7CD535009D66B2 /* ManagedSettingsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E147A402D7CD535009D66B2 /* ManagedSettingsUI.framework */; };
+		1E147A442D7CD535009D66B2 /* ShieldConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A432D7CD535009D66B2 /* ShieldConfigurationExtension.swift */; };
+		1E147A492D7CD535009D66B2 /* DeviceActivityShieldConfiguration.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1E147A3D2D7CD535009D66B2 /* DeviceActivityShieldConfiguration.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1E147A542D7CD627009D66B2 /* DeviceActivityReportCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A532D7CD627009D66B2 /* DeviceActivityReportCustom.swift */; };
+		1E147A5D2D7CD627009D66B2 /* DeviceActivityReportCustom.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 1E147A512D7CD627009D66B2 /* DeviceActivityReportCustom.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1E147A622D7CD662009D66B2 /* BadActivityTotalTimeReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A612D7CD662009D66B2 /* BadActivityTotalTimeReport.swift */; };
+		1E147A642D7CD6A5009D66B2 /* BadActivityTotalTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A632D7CD6A5009D66B2 /* BadActivityTotalTimeView.swift */; };
+		1E147A682D7CD6E2009D66B2 /* GoodActivityTotalTimeReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A672D7CD6E2009D66B2 /* GoodActivityTotalTimeReport.swift */; };
+		1E147A6A2D7CD6EF009D66B2 /* GoodActivityTotalTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A692D7CD6EF009D66B2 /* GoodActivityTotalTimeView.swift */; };
+		1E147A6C2D7CD73C009D66B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A6B2D7CD73C009D66B2 /* Utils.swift */; };
+		1E147A6F2D7CD888009D66B2 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A6E2D7CD888009D66B2 /* NotificationsManager.swift */; };
+		1E147A712D7CD898009D66B2 /* NotificationsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A702D7CD898009D66B2 /* NotificationsUtils.swift */; };
+		1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A722D7CDAC7009D66B2 /* Design.swift */; };
+		1E147A762D7CDFB6009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A752D7CDFB6009D66B2 /* Design.swift */; };
+		1E147A782D7CE05E009D66B2 /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A772D7CE05E009D66B2 /* testing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,13 +53,59 @@
 			remoteGlobalIDString = 1E1479D62D7CD31B009D66B2;
 			remoteInfo = EarnYourTime;
 		};
+		1E147A1D2D7CD50A009D66B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E1479CF2D7CD31B009D66B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E147A152D7CD509009D66B2;
+			remoteInfo = DeviceActivityMonitor;
+		};
+		1E147A472D7CD535009D66B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E1479CF2D7CD31B009D66B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E147A3C2D7CD535009D66B2;
+			remoteInfo = DeviceActivityShieldConfiguration;
+		};
+		1E147A5B2D7CD627009D66B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E1479CF2D7CD31B009D66B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E147A502D7CD627009D66B2;
+			remoteInfo = DeviceActivityReportCustom;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1E147A232D7CD50A009D66B2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1E147A1F2D7CD50A009D66B2 /* DeviceActivityMonitor.appex in Embed Foundation Extensions */,
+				1E147A492D7CD535009D66B2 /* DeviceActivityShieldConfiguration.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E147A382D7CD515009D66B2 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				1E147A5D2D7CD627009D66B2 /* DeviceActivityReportCustom.appex in Embed ExtensionKit Extensions */,
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1E1479D72D7CD31B009D66B2 /* EarnYourTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarnYourTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1479DA2D7CD31B009D66B2 /* EarnYourTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnYourTimeApp.swift; sourceTree = "<group>"; };
 		1E1479DC2D7CD31B009D66B2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1E1479DE2D7CD31B009D66B2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		1E1479E02D7CD31C009D66B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E1479E32D7CD31C009D66B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1E1479E92D7CD31C009D66B2 /* EarnYourTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EarnYourTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +113,35 @@
 		1E1479F32D7CD31C009D66B2 /* EarnYourTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EarnYourTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1479F72D7CD31C009D66B2 /* EarnYourTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnYourTimeUITests.swift; sourceTree = "<group>"; };
 		1E1479F92D7CD31C009D66B2 /* EarnYourTimeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnYourTimeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1E147A072D7CD37F009D66B2 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		1E147A0A2D7CD3D8009D66B2 /* DeviceActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityModel.swift; sourceTree = "<group>"; };
+		1E147A0C2D7CD40A009D66B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1E147A0E2D7CD46C009D66B2 /* EarnYourTime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EarnYourTime.entitlements; sourceTree = "<group>"; };
+		1E147A102D7CD4B7009D66B2 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
+		1E147A162D7CD509009D66B2 /* DeviceActivityMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeviceActivityMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E147A192D7CD50A009D66B2 /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
+		1E147A1B2D7CD50A009D66B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E147A1C2D7CD50A009D66B2 /* DeviceActivityMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeviceActivityMonitor.entitlements; sourceTree = "<group>"; };
+		1E147A3D2D7CD535009D66B2 /* DeviceActivityShieldConfiguration.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeviceActivityShieldConfiguration.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E147A3E2D7CD535009D66B2 /* ManagedSettings.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettings.framework; path = System/Library/Frameworks/ManagedSettings.framework; sourceTree = SDKROOT; };
+		1E147A402D7CD535009D66B2 /* ManagedSettingsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettingsUI.framework; path = System/Library/Frameworks/ManagedSettingsUI.framework; sourceTree = SDKROOT; };
+		1E147A432D7CD535009D66B2 /* ShieldConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldConfigurationExtension.swift; sourceTree = "<group>"; };
+		1E147A452D7CD535009D66B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E147A462D7CD535009D66B2 /* DeviceActivityShieldConfiguration.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeviceActivityShieldConfiguration.entitlements; sourceTree = "<group>"; };
+		1E147A512D7CD627009D66B2 /* DeviceActivityReportCustom.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = DeviceActivityReportCustom.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E147A532D7CD627009D66B2 /* DeviceActivityReportCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityReportCustom.swift; sourceTree = "<group>"; };
+		1E147A592D7CD627009D66B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E147A5A2D7CD627009D66B2 /* DeviceActivityReportCustom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeviceActivityReportCustom.entitlements; sourceTree = "<group>"; };
+		1E147A612D7CD662009D66B2 /* BadActivityTotalTimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadActivityTotalTimeReport.swift; sourceTree = "<group>"; };
+		1E147A632D7CD6A5009D66B2 /* BadActivityTotalTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadActivityTotalTimeView.swift; sourceTree = "<group>"; };
+		1E147A672D7CD6E2009D66B2 /* GoodActivityTotalTimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodActivityTotalTimeReport.swift; sourceTree = "<group>"; };
+		1E147A692D7CD6EF009D66B2 /* GoodActivityTotalTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodActivityTotalTimeView.swift; sourceTree = "<group>"; };
+		1E147A6B2D7CD73C009D66B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1E147A6E2D7CD888009D66B2 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		1E147A702D7CD898009D66B2 /* NotificationsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUtils.swift; sourceTree = "<group>"; };
+		1E147A722D7CDAC7009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		1E147A752D7CDFB6009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		1E147A772D7CE05E009D66B2 /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +166,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1E147A132D7CD509009D66B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E147A172D7CD50A009D66B2 /* DeviceActivity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E147A3A2D7CD535009D66B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E147A3F2D7CD535009D66B2 /* ManagedSettings.framework in Frameworks */,
+				1E147A412D7CD535009D66B2 /* ManagedSettingsUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E147A4E2D7CD627009D66B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -79,7 +199,11 @@
 				1E1479D92D7CD31B009D66B2 /* EarnYourTime */,
 				1E1479EC2D7CD31C009D66B2 /* EarnYourTimeTests */,
 				1E1479F62D7CD31C009D66B2 /* EarnYourTimeUITests */,
+				1E147A182D7CD50A009D66B2 /* DeviceActivityMonitor */,
+				1E147A422D7CD535009D66B2 /* DeviceActivityShieldConfiguration */,
+				1E147A522D7CD627009D66B2 /* DeviceActivityReportCustom */,
 				1E1479D82D7CD31B009D66B2 /* Products */,
+				1E147A0F2D7CD4B7009D66B2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +213,9 @@
 				1E1479D72D7CD31B009D66B2 /* EarnYourTime.app */,
 				1E1479E92D7CD31C009D66B2 /* EarnYourTimeTests.xctest */,
 				1E1479F32D7CD31C009D66B2 /* EarnYourTimeUITests.xctest */,
+				1E147A162D7CD509009D66B2 /* DeviceActivityMonitor.appex */,
+				1E147A3D2D7CD535009D66B2 /* DeviceActivityShieldConfiguration.appex */,
+				1E147A512D7CD627009D66B2 /* DeviceActivityReportCustom.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,9 +223,13 @@
 		1E1479D92D7CD31B009D66B2 /* EarnYourTime */ = {
 			isa = PBXGroup;
 			children = (
+				1E147A792D7CE471009D66B2 /* Misc */,
+				1E147A0E2D7CD46C009D66B2 /* EarnYourTime.entitlements */,
+				1E147A092D7CD393009D66B2 /* Models */,
+				1E147A062D7CD364009D66B2 /* Views */,
 				1E1479DA2D7CD31B009D66B2 /* EarnYourTimeApp.swift */,
 				1E1479DC2D7CD31B009D66B2 /* ContentView.swift */,
-				1E1479DE2D7CD31B009D66B2 /* Item.swift */,
+				1E147A772D7CE05E009D66B2 /* testing.swift */,
 				1E1479E02D7CD31C009D66B2 /* Assets.xcassets */,
 				1E1479E22D7CD31C009D66B2 /* Preview Content */,
 			);
@@ -130,6 +261,103 @@
 			path = EarnYourTimeUITests;
 			sourceTree = "<group>";
 		};
+		1E147A062D7CD364009D66B2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A072D7CD37F009D66B2 /* Home.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1E147A092D7CD393009D66B2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A6D2D7CD876009D66B2 /* Notifications */,
+				1E147A0A2D7CD3D8009D66B2 /* DeviceActivityModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1E147A0F2D7CD4B7009D66B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A102D7CD4B7009D66B2 /* DeviceActivity.framework */,
+				1E147A3E2D7CD535009D66B2 /* ManagedSettings.framework */,
+				1E147A402D7CD535009D66B2 /* ManagedSettingsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E147A182D7CD50A009D66B2 /* DeviceActivityMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A192D7CD50A009D66B2 /* DeviceActivityMonitorExtension.swift */,
+				1E147A1B2D7CD50A009D66B2 /* Info.plist */,
+				1E147A1C2D7CD50A009D66B2 /* DeviceActivityMonitor.entitlements */,
+			);
+			path = DeviceActivityMonitor;
+			sourceTree = "<group>";
+		};
+		1E147A422D7CD535009D66B2 /* DeviceActivityShieldConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A432D7CD535009D66B2 /* ShieldConfigurationExtension.swift */,
+				1E147A452D7CD535009D66B2 /* Info.plist */,
+				1E147A462D7CD535009D66B2 /* DeviceActivityShieldConfiguration.entitlements */,
+			);
+			path = DeviceActivityShieldConfiguration;
+			sourceTree = "<group>";
+		};
+		1E147A522D7CD627009D66B2 /* DeviceActivityReportCustom */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A662D7CD6D3009D66B2 /* Good */,
+				1E147A652D7CD6C0009D66B2 /* Bad */,
+				1E147A532D7CD627009D66B2 /* DeviceActivityReportCustom.swift */,
+				1E147A592D7CD627009D66B2 /* Info.plist */,
+				1E147A5A2D7CD627009D66B2 /* DeviceActivityReportCustom.entitlements */,
+				1E147A6B2D7CD73C009D66B2 /* Utils.swift */,
+				1E147A752D7CDFB6009D66B2 /* Design.swift */,
+			);
+			path = DeviceActivityReportCustom;
+			sourceTree = "<group>";
+		};
+		1E147A652D7CD6C0009D66B2 /* Bad */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A612D7CD662009D66B2 /* BadActivityTotalTimeReport.swift */,
+				1E147A632D7CD6A5009D66B2 /* BadActivityTotalTimeView.swift */,
+			);
+			path = Bad;
+			sourceTree = "<group>";
+		};
+		1E147A662D7CD6D3009D66B2 /* Good */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A672D7CD6E2009D66B2 /* GoodActivityTotalTimeReport.swift */,
+				1E147A692D7CD6EF009D66B2 /* GoodActivityTotalTimeView.swift */,
+			);
+			path = Good;
+			sourceTree = "<group>";
+		};
+		1E147A6D2D7CD876009D66B2 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A6E2D7CD888009D66B2 /* NotificationsManager.swift */,
+				1E147A702D7CD898009D66B2 /* NotificationsUtils.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		1E147A792D7CE471009D66B2 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				1E147A0C2D7CD40A009D66B2 /* Utils.swift */,
+				1E147A722D7CDAC7009D66B2 /* Design.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,10 +368,15 @@
 				1E1479D32D7CD31B009D66B2 /* Sources */,
 				1E1479D42D7CD31B009D66B2 /* Frameworks */,
 				1E1479D52D7CD31B009D66B2 /* Resources */,
+				1E147A232D7CD50A009D66B2 /* Embed Foundation Extensions */,
+				1E147A382D7CD515009D66B2 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1E147A1E2D7CD50A009D66B2 /* PBXTargetDependency */,
+				1E147A482D7CD535009D66B2 /* PBXTargetDependency */,
+				1E147A5C2D7CD627009D66B2 /* PBXTargetDependency */,
 			);
 			name = EarnYourTime;
 			productName = EarnYourTime;
@@ -186,6 +419,57 @@
 			productReference = 1E1479F32D7CD31C009D66B2 /* EarnYourTimeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		1E147A152D7CD509009D66B2 /* DeviceActivityMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E147A202D7CD50A009D66B2 /* Build configuration list for PBXNativeTarget "DeviceActivityMonitor" */;
+			buildPhases = (
+				1E147A122D7CD509009D66B2 /* Sources */,
+				1E147A132D7CD509009D66B2 /* Frameworks */,
+				1E147A142D7CD509009D66B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeviceActivityMonitor;
+			productName = DeviceActivityMonitor;
+			productReference = 1E147A162D7CD509009D66B2 /* DeviceActivityMonitor.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1E147A3C2D7CD535009D66B2 /* DeviceActivityShieldConfiguration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E147A4A2D7CD535009D66B2 /* Build configuration list for PBXNativeTarget "DeviceActivityShieldConfiguration" */;
+			buildPhases = (
+				1E147A392D7CD535009D66B2 /* Sources */,
+				1E147A3A2D7CD535009D66B2 /* Frameworks */,
+				1E147A3B2D7CD535009D66B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeviceActivityShieldConfiguration;
+			productName = DeviceActivityShieldConfiguration;
+			productReference = 1E147A3D2D7CD535009D66B2 /* DeviceActivityShieldConfiguration.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1E147A502D7CD627009D66B2 /* DeviceActivityReportCustom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E147A5E2D7CD627009D66B2 /* Build configuration list for PBXNativeTarget "DeviceActivityReportCustom" */;
+			buildPhases = (
+				1E147A4D2D7CD627009D66B2 /* Sources */,
+				1E147A4E2D7CD627009D66B2 /* Frameworks */,
+				1E147A4F2D7CD627009D66B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeviceActivityReportCustom;
+			productName = DeviceActivityReportCustom;
+			productReference = 1E147A512D7CD627009D66B2 /* DeviceActivityReportCustom.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,6 +491,15 @@
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = 1E1479D62D7CD31B009D66B2;
 					};
+					1E147A152D7CD509009D66B2 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					1E147A3C2D7CD535009D66B2 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					1E147A502D7CD627009D66B2 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 				};
 			};
 			buildConfigurationList = 1E1479D22D7CD31B009D66B2 /* Build configuration list for PBXProject "EarnYourTime" */;
@@ -225,6 +518,9 @@
 				1E1479D62D7CD31B009D66B2 /* EarnYourTime */,
 				1E1479E82D7CD31C009D66B2 /* EarnYourTimeTests */,
 				1E1479F22D7CD31C009D66B2 /* EarnYourTimeUITests */,
+				1E147A152D7CD509009D66B2 /* DeviceActivityMonitor */,
+				1E147A3C2D7CD535009D66B2 /* DeviceActivityShieldConfiguration */,
+				1E147A502D7CD627009D66B2 /* DeviceActivityReportCustom */,
 			);
 		};
 /* End PBXProject section */
@@ -253,6 +549,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1E147A142D7CD509009D66B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E147A3B2D7CD535009D66B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E147A4F2D7CD627009D66B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -261,8 +578,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E1479DD2D7CD31B009D66B2 /* ContentView.swift in Sources */,
-				1E1479DF2D7CD31B009D66B2 /* Item.swift in Sources */,
+				1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */,
+				1E147A6F2D7CD888009D66B2 /* NotificationsManager.swift in Sources */,
+				1E147A082D7CD37F009D66B2 /* Home.swift in Sources */,
+				1E147A0B2D7CD3D8009D66B2 /* DeviceActivityModel.swift in Sources */,
+				1E147A782D7CE05E009D66B2 /* testing.swift in Sources */,
 				1E1479DB2D7CD31B009D66B2 /* EarnYourTimeApp.swift in Sources */,
+				1E147A712D7CD898009D66B2 /* NotificationsUtils.swift in Sources */,
+				1E147A0D2D7CD40A009D66B2 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +606,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1E147A122D7CD509009D66B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E147A1A2D7CD50A009D66B2 /* DeviceActivityMonitorExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E147A392D7CD535009D66B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E147A442D7CD535009D66B2 /* ShieldConfigurationExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E147A4D2D7CD627009D66B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E147A622D7CD662009D66B2 /* BadActivityTotalTimeReport.swift in Sources */,
+				1E147A762D7CDFB6009D66B2 /* Design.swift in Sources */,
+				1E147A542D7CD627009D66B2 /* DeviceActivityReportCustom.swift in Sources */,
+				1E147A642D7CD6A5009D66B2 /* BadActivityTotalTimeView.swift in Sources */,
+				1E147A682D7CD6E2009D66B2 /* GoodActivityTotalTimeReport.swift in Sources */,
+				1E147A6A2D7CD6EF009D66B2 /* GoodActivityTotalTimeView.swift in Sources */,
+				1E147A6C2D7CD73C009D66B2 /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -295,6 +648,21 @@
 			isa = PBXTargetDependency;
 			target = 1E1479D62D7CD31B009D66B2 /* EarnYourTime */;
 			targetProxy = 1E1479F42D7CD31C009D66B2 /* PBXContainerItemProxy */;
+		};
+		1E147A1E2D7CD50A009D66B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E147A152D7CD509009D66B2 /* DeviceActivityMonitor */;
+			targetProxy = 1E147A1D2D7CD50A009D66B2 /* PBXContainerItemProxy */;
+		};
+		1E147A482D7CD535009D66B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E147A3C2D7CD535009D66B2 /* DeviceActivityShieldConfiguration */;
+			targetProxy = 1E147A472D7CD535009D66B2 /* PBXContainerItemProxy */;
+		};
+		1E147A5C2D7CD627009D66B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E147A502D7CD627009D66B2 /* DeviceActivityReportCustom */;
+			targetProxy = 1E147A5B2D7CD627009D66B2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -421,8 +789,10 @@
 		1E1479FE2D7CD31C009D66B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EarnYourTime/EarnYourTime.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnYourTime/Preview Content\"";
@@ -432,8 +802,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,8 +821,10 @@
 		1E1479FF2D7CD31C009D66B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EarnYourTime/EarnYourTime.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EarnYourTime/Preview Content\"";
@@ -461,8 +834,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -552,6 +926,162 @@
 			};
 			name = Release;
 		};
+		1E147A212D7CD50A009D66B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityMonitor/DeviceActivityMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 25UU64473F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceActivityMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dan424gg.EarnYourTime.DeviceActivityMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1E147A222D7CD50A009D66B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityMonitor/DeviceActivityMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 25UU64473F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceActivityMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dan424gg.EarnYourTime.DeviceActivityMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1E147A4B2D7CD535009D66B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityShieldConfiguration/DeviceActivityShieldConfiguration.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 25UU64473F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceActivityShieldConfiguration/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityShieldConfiguration;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dan424gg.EarnYourTime.DeviceActivityShieldConfiguration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1E147A4C2D7CD535009D66B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityShieldConfiguration/DeviceActivityShieldConfiguration.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 25UU64473F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceActivityShieldConfiguration/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityShieldConfiguration;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dan424gg.EarnYourTime.DeviceActivityShieldConfiguration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1E147A5F2D7CD627009D66B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityReportCustom/DeviceActivityReportCustom.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 25UU64473F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceActivityReportCustom/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityReportCustom;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dan424gg.EarnYourTime.DeviceActivityReportCustom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1E147A602D7CD627009D66B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityReportCustom/DeviceActivityReportCustom.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 25UU64473F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceActivityReportCustom/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityReportCustom;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dan424gg.EarnYourTime.DeviceActivityReportCustom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -587,6 +1117,33 @@
 			buildConfigurations = (
 				1E147A042D7CD31C009D66B2 /* Debug */,
 				1E147A052D7CD31C009D66B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E147A202D7CD50A009D66B2 /* Build configuration list for PBXNativeTarget "DeviceActivityMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E147A212D7CD50A009D66B2 /* Debug */,
+				1E147A222D7CD50A009D66B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E147A4A2D7CD535009D66B2 /* Build configuration list for PBXNativeTarget "DeviceActivityShieldConfiguration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E147A4B2D7CD535009D66B2 /* Debug */,
+				1E147A4C2D7CD535009D66B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E147A5E2D7CD627009D66B2 /* Build configuration list for PBXNativeTarget "DeviceActivityReportCustom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E147A5F2D7CD627009D66B2 /* Debug */,
+				1E147A602D7CD627009D66B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

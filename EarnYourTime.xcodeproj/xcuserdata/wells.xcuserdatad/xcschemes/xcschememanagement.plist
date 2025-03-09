@@ -4,10 +4,63 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>EarnYourTime.xcscheme_^#shared#^_</key>
+		<key>DeviceActivityMonitor.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>DeviceActivityReport.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>DeviceActivityReportCustom.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>DeviceActivityShieldConfiguration.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>EarnYourTime.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1E1479D62D7CD31B009D66B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E1479E82D7CD31C009D66B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E1479F22D7CD31C009D66B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E147A152D7CD509009D66B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E147A3C2D7CD535009D66B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E147A502D7CD627009D66B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

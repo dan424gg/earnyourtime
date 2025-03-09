@@ -7,55 +7,49 @@
 
 import SwiftUI
 import SwiftData
+import UserNotifications
+import FamilyControls
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    let notificationsManager = NotificationsManager()
+    let center = AuthorizationCenter.shared
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        ZStack {
+            AppBackground()
+            Home()
+                .onAppear {
+                    /// needed for device activity
+                    Task {
+                        do {
+                            try await center.requestAuthorization(for: .individual)
+                        } catch {
+                            print("couldn't get authorization for Device Activity\n\(error)")
+                        }
+                    }
+                    
+                    /// needed for foreground notifications
+                    notificationsManager.setupNotificationDelegate()
+                    
+                    /// needed for notifications
+                    Task {
+                        do {
+                            // todo: finalize options
+                            try await UNUserNotificationCenter.current().requestAuthorization(options: [
+                                .alert,
+                                .sound,
+                                .badge,
+                                .providesAppNotificationSettings])
+                        } catch {
+                            print(error)
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
         }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .environment(DeviceActivityModel())
 }
