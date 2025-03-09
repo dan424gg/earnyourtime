@@ -47,7 +47,7 @@ struct GoodAppsSelectorView: View {
                 loadBadSelections()
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: bindable_model.badSelections.applicationTokens == [] || bindable_model.badSelections.categoryTokens == [] || bindable_model.badSelections.webDomainTokens == []) {
+                SaveButton(disabled: bindable_model.goodSelections.applicationTokens == [] || bindable_model.goodSelections.categoryTokens == [] || bindable_model.goodSelections.webDomainTokens == []) {
                     saveBadSelections()
                     dismiss()
                 }
