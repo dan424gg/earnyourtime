@@ -8,7 +8,7 @@
 import SwiftUI
 import FamilyControls
 
-struct GoodAppsView: View {
+struct GoodAppsSelectorView: View {
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
     @AppStorage("familySelections") private var familySelectionsData: Data = Data()
     @Environment(\.dismiss) var dismiss
@@ -42,6 +42,7 @@ struct GoodAppsView: View {
                     .padding(.top, 50)
                 }
             }
+            .background(Color(UIColor.systemGroupedBackground))
             .onAppear {
                 loadBadSelections()
             }
@@ -56,6 +57,6 @@ struct GoodAppsView: View {
 }
 
 #Preview {
-    GoodAppsView()
+    GoodAppsSelectorView()
         .environment(DeviceActivityModel())
 }

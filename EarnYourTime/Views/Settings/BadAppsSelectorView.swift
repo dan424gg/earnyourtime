@@ -42,6 +42,7 @@ struct BadAppsSelectorView: View {
                     .padding(.top, 50)
                 }
             }
+            .background(Color(UIColor.systemGroupedBackground))
             .onAppear {
                 loadBadSelections()
             }
@@ -57,4 +58,5 @@ struct BadAppsSelectorView: View {
 
 #Preview {
     BadAppsSelectorView()
+        .environment(DeviceActivityModel())
 }

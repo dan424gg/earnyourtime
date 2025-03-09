@@ -43,7 +43,7 @@
 		1E7C82FF2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82FE2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift */; };
 		1E7C83012D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83002D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift */; };
 		1E7C83032D7D8623002C7B84 /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83022D7D8623002C7B84 /* NotificationsSettingsView.swift */; };
-		1E7C83052D7D862E002C7B84 /* GoodAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83042D7D862E002C7B84 /* GoodAppsView.swift */; };
+		1E7C83052D7D862E002C7B84 /* GoodAppsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83042D7D862E002C7B84 /* GoodAppsSelectorView.swift */; };
 		1E7C83072D7D8636002C7B84 /* BadAppsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83062D7D8636002C7B84 /* BadAppsSelectorView.swift */; };
 		1E7C83092D7D863F002C7B84 /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */; };
 		1E7C830B2D7D8648002C7B84 /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */; };
@@ -163,7 +163,7 @@
 		1E7C82FE2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointTimeEditorView.swift; sourceTree = "<group>"; };
 		1E7C83002D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadAppTimeLimitEditorView.swift; sourceTree = "<group>"; };
 		1E7C83022D7D8623002C7B84 /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
-		1E7C83042D7D862E002C7B84 /* GoodAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodAppsView.swift; sourceTree = "<group>"; };
+		1E7C83042D7D862E002C7B84 /* GoodAppsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodAppsSelectorView.swift; sourceTree = "<group>"; };
 		1E7C83062D7D8636002C7B84 /* BadAppsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadAppsSelectorView.swift; sourceTree = "<group>"; };
 		1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
 		1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 				1E7C82FE2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift */,
 				1E7C83002D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift */,
 				1E7C83022D7D8623002C7B84 /* NotificationsSettingsView.swift */,
-				1E7C83042D7D862E002C7B84 /* GoodAppsView.swift */,
+				1E7C83042D7D862E002C7B84 /* GoodAppsSelectorView.swift */,
 				1E7C83062D7D8636002C7B84 /* BadAppsSelectorView.swift */,
 				1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */,
 				1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */,
@@ -634,7 +634,7 @@
 				1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */,
 				1E7C83112D7D8660002C7B84 /* DeleteDataView.swift in Sources */,
 				1E147A6F2D7CD888009D66B2 /* NotificationsManager.swift in Sources */,
-				1E7C83052D7D862E002C7B84 /* GoodAppsView.swift in Sources */,
+				1E7C83052D7D862E002C7B84 /* GoodAppsSelectorView.swift in Sources */,
 				1E7C83072D7D8636002C7B84 /* BadAppsSelectorView.swift in Sources */,
 				1E7C82FB2D7D5B0A002C7B84 /* SettingsMain.swift in Sources */,
 				1E147A082D7CD37F009D66B2 /* Home.swift in Sources */,
