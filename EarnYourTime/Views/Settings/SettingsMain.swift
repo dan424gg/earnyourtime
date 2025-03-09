@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsMain: View {
     enum SettingsDestination: Identifiable {
         case name
+        case vacationMode
         case notifications
         case goodApps
         case badApps
@@ -24,17 +25,49 @@ struct SettingsMain: View {
         var id: Self { self }
     }
     
-    @State private var selectedDestination: SettingsDestination? = .badApps
+    enum SettingsCategory: Identifiable {
+        case personal
+        case appExperience
+        case appearance
+        case other
+        
+        var id: Self { self }
+    }
+    
+    @State private var selectedDestination: SettingsDestination?
+    @State private var selectedCategory: SettingsCategory?
 
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Personal")) {
+                Section(
+                    header: HStack {
+                        Text("Personal")
+                        Image(systemName: "info.circle")
+                            .onTapGesture {
+                                selectedCategory = .personal
+                            }
+                    }
+                ) {
                     SettingsListItem(text: "Name", systemImage: "person") {
                         selectedDestination = .name
                     }
                     SettingsListItem(text: "Notifications", systemImage: "bell") {
                         selectedDestination = .notifications
+                    }
+                }
+                
+                Section(
+                    header: HStack {
+                        Text("App Experience")
+                        Image(systemName: "info.circle")
+                            .onTapGesture {
+                                selectedCategory = .personal
+                            }
+                    }
+                ) {
+                    SettingsListItem(text: "Vacation Mode", systemImage: "beach.umbrella") {
+                        selectedDestination = .vacationMode
                     }
                     SettingsListItem(text: "Good Apps", systemImage: "hand.thumbsup") {
                         selectedDestination = .goodApps
@@ -50,13 +83,29 @@ struct SettingsMain: View {
                     }
                 }
                 
-                Section(header: Text("Appearance")) {
+                Section(
+                    header: HStack {
+                        Text("Appearance")
+                        Image(systemName: "info.circle")
+                            .onTapGesture {
+                                selectedCategory = .personal
+                            }
+                    }
+                ) {
                     SettingsListItem(text: "Placeholder for Picker", systemImage: "paintbrush") {
                         selectedDestination = .appearance
                     }
                 }
                 
-                Section(header: Text("Other")) {
+                Section(
+                    header: HStack {
+                        Text("Other")
+                        Image(systemName: "info.circle")
+                            .onTapGesture {
+                                selectedCategory = .personal
+                            }
+                    }
+                ) {
                     SettingsListItem(text: "Contact Us", systemImage: "envelope") {
                         selectedDestination = .contactUs
                     }
@@ -68,7 +117,15 @@ struct SettingsMain: View {
                     }
                 }
                 
-                Section {
+                Section(
+                    header: HStack {
+                        Text("Data")
+                        Image(systemName: "info.circle")
+                            .onTapGesture {
+                                selectedCategory = .personal
+                            }
+                    }
+                ) {
                     SettingsListItem(text: "Delete Data", systemImage: "trash") {
                         selectedDestination = .deleteData
                     }
@@ -87,8 +144,10 @@ struct SettingsMain: View {
                      .presentationDragIndicator(.visible)
                 case .notifications:
                     NotificationsSettingsView()
+                case .vacationMode:
+                    VacationModeView()
                 case .goodApps:
-                    GoodAppsView()
+                    GoodAppsSelectorView()
                 case .badApps:
                     BadAppsSelectorView()
                 case .checkpointTime:
@@ -110,6 +169,21 @@ struct SettingsMain: View {
                 case .deleteData:
                     DeleteDataView()
             }
+        }
+        .sheet(item: $selectedCategory) { category in
+            Text("nothing yet for \(category)")
+//            switch selectedCategory {
+//                case .personal:
+//                    <#code#>
+//                case .appExperience:
+//                    <#code#>
+//                case .appearance:
+//                    <#code#>
+//                case .other:
+//                    <#code#>
+//                case nil:
+//                    <#code#>
+//            }
         }
     }
 }

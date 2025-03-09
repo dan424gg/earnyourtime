@@ -36,6 +36,7 @@
 		1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A722D7CDAC7009D66B2 /* Design.swift */; };
 		1E147A762D7CDFB6009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A752D7CDFB6009D66B2 /* Design.swift */; };
 		1E147A782D7CE05E009D66B2 /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A772D7CE05E009D66B2 /* testing.swift */; };
+		1E325D682D7D91B20036F5C3 /* VacationModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E325D672D7D91B20036F5C3 /* VacationModeView.swift */; };
 		1E7C82F22D7D3394002C7B84 /* CheckpointTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */; };
 		1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */; };
 		1E7C82FB2D7D5B0A002C7B84 /* SettingsMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */; };
@@ -156,6 +157,7 @@
 		1E147A722D7CDAC7009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		1E147A752D7CDFB6009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		1E147A772D7CE05E009D66B2 /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
+		1E325D672D7D91B20036F5C3 /* VacationModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationModeView.swift; sourceTree = "<group>"; };
 		1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointTimeView.swift; sourceTree = "<group>"; };
 		1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMain.swift; sourceTree = "<group>"; };
@@ -389,21 +391,54 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
-		1E7C82F72D7D5AB6002C7B84 /* Settings */ = {
+		1E325D642D7D915E0036F5C3 /* Personal */ = {
 			isa = PBXGroup;
 			children = (
-				1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */,
 				1E7C82FC2D7D6A6E002C7B84 /* NameEditorView.swift */,
-				1E7C82FE2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift */,
-				1E7C83002D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift */,
 				1E7C83022D7D8623002C7B84 /* NotificationsSettingsView.swift */,
-				1E7C83042D7D862E002C7B84 /* GoodAppsSelectorView.swift */,
-				1E7C83062D7D8636002C7B84 /* BadAppsSelectorView.swift */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		1E325D652D7D91720036F5C3 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
 				1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
+		1E325D662D7D917E0036F5C3 /* Other */ = {
+			isa = PBXGroup;
+			children = (
 				1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */,
 				1E7C830C2D7D8650002C7B84 /* RateAppView.swift */,
 				1E7C830E2D7D8658002C7B84 /* PrivacyPolicyView.swift */,
 				1E7C83102D7D8660002C7B84 /* DeleteDataView.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		1E325D692D7D92620036F5C3 /* App Experience */ = {
+			isa = PBXGroup;
+			children = (
+				1E7C83002D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift */,
+				1E7C82FE2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift */,
+				1E7C83042D7D862E002C7B84 /* GoodAppsSelectorView.swift */,
+				1E7C83062D7D8636002C7B84 /* BadAppsSelectorView.swift */,
+				1E325D672D7D91B20036F5C3 /* VacationModeView.swift */,
+			);
+			path = "App Experience";
+			sourceTree = "<group>";
+		};
+		1E7C82F72D7D5AB6002C7B84 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1E325D642D7D915E0036F5C3 /* Personal */,
+				1E325D692D7D92620036F5C3 /* App Experience */,
+				1E325D652D7D91720036F5C3 /* Appearance */,
+				1E325D662D7D917E0036F5C3 /* Other */,
+				1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -633,6 +668,7 @@
 				1E1479DD2D7CD31B009D66B2 /* ContentView.swift in Sources */,
 				1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */,
 				1E7C83112D7D8660002C7B84 /* DeleteDataView.swift in Sources */,
+				1E325D682D7D91B20036F5C3 /* VacationModeView.swift in Sources */,
 				1E147A6F2D7CD888009D66B2 /* NotificationsManager.swift in Sources */,
 				1E7C83052D7D862E002C7B84 /* GoodAppsSelectorView.swift in Sources */,
 				1E7C83072D7D8636002C7B84 /* BadAppsSelectorView.swift in Sources */,
