@@ -36,6 +36,20 @@
 		1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A722D7CDAC7009D66B2 /* Design.swift */; };
 		1E147A762D7CDFB6009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A752D7CDFB6009D66B2 /* Design.swift */; };
 		1E147A782D7CE05E009D66B2 /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A772D7CE05E009D66B2 /* testing.swift */; };
+		1E7C82F22D7D3394002C7B84 /* CheckpointTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */; };
+		1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */; };
+		1E7C82FB2D7D5B0A002C7B84 /* SettingsMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */; };
+		1E7C82FD2D7D6A6E002C7B84 /* NameEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82FC2D7D6A6E002C7B84 /* NameEditorView.swift */; };
+		1E7C82FF2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82FE2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift */; };
+		1E7C83012D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83002D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift */; };
+		1E7C83032D7D8623002C7B84 /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83022D7D8623002C7B84 /* NotificationsSettingsView.swift */; };
+		1E7C83052D7D862E002C7B84 /* GoodAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83042D7D862E002C7B84 /* GoodAppsView.swift */; };
+		1E7C83072D7D8636002C7B84 /* BadAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83062D7D8636002C7B84 /* BadAppsView.swift */; };
+		1E7C83092D7D863F002C7B84 /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */; };
+		1E7C830B2D7D8648002C7B84 /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */; };
+		1E7C830D2D7D8650002C7B84 /* RateAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C830C2D7D8650002C7B84 /* RateAppView.swift */; };
+		1E7C830F2D7D8658002C7B84 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C830E2D7D8658002C7B84 /* PrivacyPolicyView.swift */; };
+		1E7C83112D7D8660002C7B84 /* DeleteDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83102D7D8660002C7B84 /* DeleteDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +156,20 @@
 		1E147A722D7CDAC7009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		1E147A752D7CDFB6009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		1E147A772D7CE05E009D66B2 /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
+		1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointTimeView.swift; sourceTree = "<group>"; };
+		1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMain.swift; sourceTree = "<group>"; };
+		1E7C82FC2D7D6A6E002C7B84 /* NameEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditorView.swift; sourceTree = "<group>"; };
+		1E7C82FE2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointTimeEditorView.swift; sourceTree = "<group>"; };
+		1E7C83002D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadAppTimeLimitEditorView.swift; sourceTree = "<group>"; };
+		1E7C83022D7D8623002C7B84 /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
+		1E7C83042D7D862E002C7B84 /* GoodAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodAppsView.swift; sourceTree = "<group>"; };
+		1E7C83062D7D8636002C7B84 /* BadAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadAppsView.swift; sourceTree = "<group>"; };
+		1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
+		1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
+		1E7C830C2D7D8650002C7B84 /* RateAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppView.swift; sourceTree = "<group>"; };
+		1E7C830E2D7D8658002C7B84 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		1E7C83102D7D8660002C7B84 /* DeleteDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,10 +251,10 @@
 		1E1479D92D7CD31B009D66B2 /* EarnYourTime */ = {
 			isa = PBXGroup;
 			children = (
-				1E147A792D7CE471009D66B2 /* Misc */,
 				1E147A0E2D7CD46C009D66B2 /* EarnYourTime.entitlements */,
 				1E147A092D7CD393009D66B2 /* Models */,
 				1E147A062D7CD364009D66B2 /* Views */,
+				1E147A792D7CE471009D66B2 /* Misc */,
 				1E1479DA2D7CD31B009D66B2 /* EarnYourTimeApp.swift */,
 				1E1479DC2D7CD31B009D66B2 /* ContentView.swift */,
 				1E147A772D7CE05E009D66B2 /* testing.swift */,
@@ -264,7 +292,10 @@
 		1E147A062D7CD364009D66B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1E7C82F72D7D5AB6002C7B84 /* Settings */,
 				1E147A072D7CD37F009D66B2 /* Home.swift */,
+				1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */,
+				1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -356,6 +387,25 @@
 				1E147A722D7CDAC7009D66B2 /* Design.swift */,
 			);
 			path = Misc;
+			sourceTree = "<group>";
+		};
+		1E7C82F72D7D5AB6002C7B84 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */,
+				1E7C82FC2D7D6A6E002C7B84 /* NameEditorView.swift */,
+				1E7C82FE2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift */,
+				1E7C83002D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift */,
+				1E7C83022D7D8623002C7B84 /* NotificationsSettingsView.swift */,
+				1E7C83042D7D862E002C7B84 /* GoodAppsView.swift */,
+				1E7C83062D7D8636002C7B84 /* BadAppsView.swift */,
+				1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */,
+				1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */,
+				1E7C830C2D7D8650002C7B84 /* RateAppView.swift */,
+				1E7C830E2D7D8658002C7B84 /* PrivacyPolicyView.swift */,
+				1E7C83102D7D8660002C7B84 /* DeleteDataView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -577,15 +627,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E7C83032D7D8623002C7B84 /* NotificationsSettingsView.swift in Sources */,
+				1E7C830B2D7D8648002C7B84 /* ContactUsView.swift in Sources */,
+				1E7C82FD2D7D6A6E002C7B84 /* NameEditorView.swift in Sources */,
 				1E1479DD2D7CD31B009D66B2 /* ContentView.swift in Sources */,
 				1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */,
+				1E7C83112D7D8660002C7B84 /* DeleteDataView.swift in Sources */,
 				1E147A6F2D7CD888009D66B2 /* NotificationsManager.swift in Sources */,
+				1E7C83052D7D862E002C7B84 /* GoodAppsView.swift in Sources */,
+				1E7C83072D7D8636002C7B84 /* BadAppsView.swift in Sources */,
+				1E7C82FB2D7D5B0A002C7B84 /* SettingsMain.swift in Sources */,
 				1E147A082D7CD37F009D66B2 /* Home.swift in Sources */,
 				1E147A0B2D7CD3D8009D66B2 /* DeviceActivityModel.swift in Sources */,
 				1E147A782D7CE05E009D66B2 /* testing.swift in Sources */,
+				1E7C830D2D7D8650002C7B84 /* RateAppView.swift in Sources */,
 				1E1479DB2D7CD31B009D66B2 /* EarnYourTimeApp.swift in Sources */,
 				1E147A712D7CD898009D66B2 /* NotificationsUtils.swift in Sources */,
+				1E7C830F2D7D8658002C7B84 /* PrivacyPolicyView.swift in Sources */,
+				1E7C83012D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift in Sources */,
 				1E147A0D2D7CD40A009D66B2 /* Utils.swift in Sources */,
+				1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */,
+				1E7C83092D7D863F002C7B84 /* AppearanceSettingsView.swift in Sources */,
+				1E7C82FF2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift in Sources */,
+				1E7C82F22D7D3394002C7B84 /* CheckpointTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

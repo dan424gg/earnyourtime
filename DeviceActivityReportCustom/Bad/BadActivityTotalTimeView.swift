@@ -15,31 +15,32 @@ import DeviceActivity
 struct BadActivityTotalTimeView: View {
     var activityReport: String
     @State var progress: Double?
-    var thickness: CGFloat = 20 // Thickness of the ring
     var primaryColor: Color = .bad
 
     var body: some View {
         VStack {
             Text("Bad App Time")
-                .font(.system(size: 23, weight: .bold))
-                .foregroundStyle(Color.accent)
-                
-            ZStack {
-                Circle()
-                    .stroke(
-                        primaryColor,
-                        style: StrokeStyle(lineWidth: thickness, lineCap: .round)
-                    )
-                
-                Text("\(formatDuration(seconds: Int(progress ?? 0.0)))")
-                    .font(.system(size: 30, weight: .bold))
-                    .foregroundStyle(primaryColor)
-            }
-            .padding(thickness / 2) // Prevent cropping
-            .onAppear {
-                progress = Double(activityReport)
-            }
+                .font(.headline)
+                .foregroundStyle(.white)
+                .padding(.bottom, 5)
+            
+            Text(formatDuration(seconds: Int(progress ?? 0.0)))
+                .font(.title.bold())
+                .foregroundStyle(primaryColor)
         }
+        .onAppear {
+            progress = Double(activityReport)
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.black.opacity(0.4))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(primaryColor.opacity(0.7), lineWidth: 2)
+                )
+                .shadow(color: primaryColor.opacity(0.4), radius: 10, x: 0, y: 5)
+        )
     }
 }
 

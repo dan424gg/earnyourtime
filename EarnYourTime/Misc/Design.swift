@@ -72,6 +72,56 @@ struct AppBackground: View {
     }
 }
 
+struct SaveButton: View {    
+    var disabled: Bool
+    var action: (() -> Void)? = nil
+    @Environment(\.colorScheme) var colorScheme
+
+    var body: some View {
+        Button {
+            action?()
+        } label: {
+            Text("Save")
+                .foregroundStyle(colorScheme == .dark ? Color.black : .white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(colorScheme == .dark ? Color.white : .black)
+                )
+        }
+        .buttonStyle(.plain)
+        .disabled(disabled)
+        .padding()
+    }
+}
+
+struct SettingsListItem: View {
+    let text: String
+    let systemImage: String
+    var action: (() -> Void)? = nil
+
+    
+    var body: some View {
+        Button {
+            action?()
+        } label: {
+            HStack {
+                HStack {
+                    Image(systemName: systemImage)
+                    Text(text)
+                }
+                Spacer()
+                Image(systemName: "arrow.right")
+            }
+        }
+        .buttonStyle(.plain)
+    }
+}
+
 #Preview {
-    AppBackground()
+    ZStack {
+        AppBackground()
+        SettingsListItem(text: "Checkpoint Time", systemImage: "flag.checkered")
+    }
 }

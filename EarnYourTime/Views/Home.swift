@@ -6,134 +6,150 @@
 //
 
 import SwiftUI
-
 import FamilyControls
-import SwiftUI
 import DeviceActivity
 
 struct Home: View {
     @Environment(DeviceActivityModel.self) private var model
-    @State var goodSelectorPresented: Bool = false
-    @State var badSelectorPresented: Bool = false
-    @State var goodAppTime: Int?
-    @State var badAppTime: Int?
-    @State var checkpointTime: Int?
-    
+    @AppStorage("checkpointTime") private var checkpointTime: Int = 30 * 60
+    @AppStorage("badAppTime") private var badAppTime: Int = 0
+
+    @State private var showSettings: Bool = false
+    @State private var showSheet: Bool = false
+    @State private var timeRemaining: Int = 0
+    @State private var remainingTimeBoxOffset: CGFloat = 0
+
     @State private var goodContext: DeviceActivityReport.Context = .init(rawValue: "GoodActivity")
     @State private var badContext: DeviceActivityReport.Context = .init(rawValue: "BadActivity")
     @State private var goodFilter: DeviceActivityFilter?
     @State private var badFilter: DeviceActivityFilter?
+
+    var quote: some View {
+        VStack(spacing: 4) {
+            (Text("For every ") +
+             Text(formatDuration(seconds: checkpointTime)).foregroundColor(.blue) +
+             Text(" you spend on ") +
+             Text("good apps").foregroundColor(.green) +
+             Text(",") +
+             Text(" you get to spend ") +
+             Text(formatDuration(seconds: badAppTime)).foregroundColor(.red) +
+             Text(" on ") +
+             Text("bad apps").foregroundColor(.red))
+        }
+        .foregroundStyle(Color.white)
+        .font(.system(size: 17, weight: .medium))
+        .multilineTextAlignment(.center)
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.black.opacity(0.4))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white.opacity(0.5), lineWidth: 2))
+                .shadow(color: Color.white.opacity(0.3), radius: 10, x: 0, y: 5)
+        )
+    }
     
-    
-    var body: some View {
-        @Bindable var bindable_model = model
-        
+    var header: some View {
         VStack {
-            HStack {
-                if goodFilter != nil {
-                    DeviceActivityReport(goodContext, filter: goodFilter!)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .padding(10)
-                } else {
-                    Text("Nothing yet")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
+            Text("Earn Your Time")
+                .font(.system(size: 34, weight: .bold))
+                .shadow(color: Color.black.opacity(0.5), radius: 8, x: 0, y: 4)
+            Divider()
+                .background(Color.white.opacity(0.3))
+            Spacer()
+        }
+    }
+
+    var body: some View {
+        ZStack {
+            header
+            
+            VStack(spacing: 20) {
+//                quote
                 
-                if badFilter != nil {
-                    DeviceActivityReport(badContext, filter: badFilter!)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .padding(10)
-                } else {
-                    Text("Nothing yet")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                HStack(spacing: 15) {
+                    if let filter = goodFilter {
+                        DeviceActivityReport(goodContext, filter: filter)
+                    } else {
+                        GoodActivityTotalTimeView(activityReport: "4000")
+                    }
+
+                    if let filter = badFilter {
+                        DeviceActivityReport(badContext, filter: filter)
+                    } else {
+                        BadActivityTotalTimeView(activityReport: "2500")
+                    }
                 }
-            }
 
-            VStack(spacing: 15) {
-//                TextField("Good App Time", value: $goodAppTime, format: .number)
-//                    .padding([.leading, .trailing], 100)
-//                    .keyboardType(.numberPad)
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .multilineTextAlignment(.center)
-                
-                TextField("Bad App Time", value: $badAppTime, format: .number)
-                    .padding([.leading, .trailing], 100)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .multilineTextAlignment(.center)
+                CheckpointTimeView(checkpoint: checkpointTime)
 
-                TextField("Checkpoint Time", value: $checkpointTime, format: .number)
-                    .padding([.leading, .trailing], 100)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .multilineTextAlignment(.center)
-
-                Button("Select the good apps") {
-                    goodSelectorPresented = true
-                }
-                .buttonStyle(.bordered)
-                .tint(.green)
-                .familyActivityPicker(isPresented: $goodSelectorPresented, selection: $bindable_model.goodSelections)
-
-                Button("Select the bad apps") {
-                    badSelectorPresented = true
-                }
-                .buttonStyle(.bordered)
-                .tint(.red)
-                .familyActivityPicker(isPresented: $badSelectorPresented, selection: $bindable_model.badSelections)
-
-                
-                HStack {
-                    Button("Start Monitoring") {
-                        do {
-                            try model.startMonitoring(badAppTime: badAppTime ?? 0, checkpointTime: checkpointTime ?? 15)
-                        } catch {
-                            print("couldn't start monitoring\n\(error))")
+                Button {
+                    withAnimation {
+                        showSheet.toggle()
+                    }
+                } label: {
+                    Group {
+                        if timeRemaining == 0 {
+                            HStack {
+                                Image(systemName: "clock.fill")
+                                    .font(.system(size: 25, weight: .medium))
+                                    .foregroundColor(.yellow)
+                                Text("Click to find out how long to your next checkpoint")
+                                    .font(.system(size: 18, weight: .medium))
+                                    .foregroundStyle(.yellow)
+                            }
+                        } else {
+                            Text("You need **\(formatDuration(seconds: timeRemaining))** to reach your next checkpoint")
+                                .font(.system(size: 18, weight: .medium))
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.yellow)
                         }
-                        
-                        goodFilter = DeviceActivityFilter(
-                            segment: .daily(
-                                during: DateInterval(
-                                    start: .now,
-                                    end: Calendar.current.startOfDay(for: .now).addingTimeInterval(86400 - 1)
-                                )
-                            ),
-                            devices: .init([.iPhone, .iPad]),
-                            applications: model.goodSelections.applicationTokens
-                        )
-                        
-                        badFilter = DeviceActivityFilter(
-                            segment: .daily(
-                                during: DateInterval(
-                                    start: .now,
-                                    end: Calendar.current.startOfDay(for: .now).addingTimeInterval(86400 - 1)
-                                )
-                            ),
-                            devices: .init([.iPhone, .iPad]),
-                            applications: model.badSelections.applicationTokens
-                        )
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.green)
-                    
-                    Button("Stop Monitoring") {
-                        model.stopMonitoring()
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color.black.opacity(0.4))
+                            .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white.opacity(0.5), lineWidth: 2))
+                            .shadow(color: Color.white.opacity(0.3), radius: 10, x: 0, y: 5)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.red)
                 }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                endTextEditing()
+
+                Button {
+                    withAnimation {
+                        showSettings.toggle()
+                    }
+                } label: {
+                    Image(systemName: "gear")
+                        .font(.system(size: 30, weight: .medium))
+                        .foregroundStyle(Color.white)
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color.black.opacity(0.4))
+                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white.opacity(0.5), lineWidth: 2))
+                                .shadow(color: Color.white.opacity(0.3), radius: 10, x: 0, y: 5)
+                        }
+                }
             }
         }
-        .ignoresSafeArea()
+        .sheet(isPresented: $showSettings) {
+            SettingsMain()
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showSheet) {
+            TimePickerView(checkpointTimeInSeconds: checkpointTime, timeRemaining: $timeRemaining)
+                .presentationDetents([.fraction(0.5)])
+                .presentationDragIndicator(.visible)
+        }
+        .padding()
     }
 }
 
 #Preview {
-    Home()
-        .environment(DeviceActivityModel())
+    ZStack {
+        AppBackground()
+            .edgesIgnoringSafeArea(.all)  // Ensure background covers the full screen
+        Home()
+            .environment(DeviceActivityModel())
+    }
 }

@@ -8,8 +8,37 @@
 import SwiftUI
 
 struct NameEditorView: View {
+    @State private var tempName: String = ""
+    @AppStorage("name") var name: String = ""
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                TextField("Enter your name", text: $tempName)
+            }
+            .onAppear {
+                tempName = name
+            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Image(systemName: "person")
+                            .fontWeight(.bold)
+                        Text("What is your name?")
+                            .font(.title.bold())
+                    }
+                    .padding(.top, 50)
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                SaveButton(disabled: tempName == "") {
+                    name = tempName
+                    dismiss()
+                }
+            }
+        }
     }
 }
 

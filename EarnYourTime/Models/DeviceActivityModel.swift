@@ -25,12 +25,16 @@ extension DeviceActivityEvent.Name {
 
 @Observable
 class DeviceActivityModel {
+    @ObservationIgnored @AppStorage("badAppTime") var badAppTime: Int = 0
+    @ObservationIgnored @AppStorage("checkpointTime") var checkpointTime: Int = 0
+
     var goodSelections: FamilyActivitySelection
     var badSelections: FamilyActivitySelection
     var center: DeviceActivityCenter
     var events: [DeviceActivityEvent.Name: DeviceActivityEvent]
     var schedule: DeviceActivitySchedule
     
+
     init() {
         self.goodSelections = FamilyActivitySelection(includeEntireCategory: true)
         self.badSelections = FamilyActivitySelection(includeEntireCategory: true)
@@ -55,6 +59,9 @@ class DeviceActivityModel {
         
         print("\(checkpointTime) minute checkpoint time")
         print("\(badAppTime) minute bad app time")
+        
+        self.checkpointTime = checkpointTime
+        self.badAppTime = badAppTime
         
         self.events = [
             .checkpoint: DeviceActivityEvent(
