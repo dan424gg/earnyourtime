@@ -137,6 +137,7 @@ struct SettingsMain: View {
                     .foregroundStyle(Color.red)
                 }
             }
+            .padding([.leading, .trailing], 5)
             .navigationTitle("Settings")
             .scrollContentBackground(.hidden)// Add this
             .background(AppBackground())
@@ -149,22 +150,31 @@ struct SettingsMain: View {
                     NameEditorView()
                      .presentationDetents([.medium])
                      .presentationDragIndicator(.visible)
+                     .presentationBackground(.thinMaterial)
                 case .notifications:
                     NotificationsSettingsView()
                 case .vacationMode:
                     VacationModeView()
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(.thinMaterial)
                 case .goodApps:
                     GoodAppsSelectorView()
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(.thinMaterial)
                 case .badApps:
                     BadAppsSelectorView()
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(.thinMaterial)
                 case .checkpointTime:
                     CheckpointTimeEditorView()
                      .presentationDetents([.fraction(0.6)])
                      .presentationDragIndicator(.visible)
+                     .presentationBackground(.thinMaterial)
                 case .badAppTimeLimit:
                     BadAppTimeLimitEditorView()
                         .presentationDetents([.fraction(0.6)])
                         .presentationDragIndicator(.visible)
+                        .presentationBackground(.thinMaterial)
                 case .appearance:
                     AppearanceSettingsView()
                 case .contactUs:

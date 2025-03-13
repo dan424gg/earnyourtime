@@ -58,7 +58,7 @@ struct VacationModeView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: false) {
+                SaveButton(disabled: days == 0 && hours == 0 && minutes == 0) {
                     wasSaved = true
                     
                     // stop monitoring
