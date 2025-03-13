@@ -10,7 +10,6 @@ import FamilyControls
 import ManagedSettings
 import DeviceActivity
 
-
 func formatDuration(seconds: Int) -> String {
     let hours = seconds / 3600
     let minutes = (seconds % 3600) / 60
@@ -22,34 +21,37 @@ func formatDuration(seconds: Int) -> String {
     }
 }
 
-struct BadActivityTotalTimeView: View {
-    var activityReport: String
-    @State private var progress: Double?
-    var primaryColor: Color = .red
+struct ActivityCardView: View {
+    var title: String
+    var duration: String
+    var primaryColor: Color
     
     var body: some View {
-        VStack {
-            Text("Bad App Time")
-                .font(.headline)
-                .foregroundStyle(.white)
-                .padding(.bottom, 5)
-            
-            Text(formatDuration(seconds: Int(progress ?? 0.0)))
-                .font(.title.bold())
+        VStack(spacing: 8) {
+            Text(title)
+                .font(.system(size: 18, weight: .semibold))
                 .foregroundStyle(primaryColor)
-        }
-        .onAppear {
-            progress = Double(activityReport)
+
+            Text(duration)
+                .font(.system(size: 20, weight: .bold))
+                .foregroundStyle(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(primaryColor.opacity(0.8))
+//                        .shadow(color: primaryColor.opacity(0.4), radius: 8, x: 0, y: 4)
+                )
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.black.opacity(0.4))
+                .fill(.ultraThinMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(primaryColor.opacity(0.7), lineWidth: 2)
                 )
-                .shadow(color: primaryColor.opacity(0.4), radius: 10, x: 0, y: 5)
+//                .shadow(color: primaryColor.opacity(0.3), radius: 8, x: 0, y: 4)
         )
     }
 }
@@ -57,126 +59,122 @@ struct BadActivityTotalTimeView: View {
 struct GoodActivityTotalTimeView: View {
     var activityReport: String
     @State private var progress: Double?
-    var primaryColor: Color = .green
-    
+
     var body: some View {
-        VStack {
-            Text("Good App Time")
-                .font(.headline)
-                .foregroundStyle(.white)
-                .padding(.bottom, 5)
-            
-            Text(formatDuration(seconds: Int(progress ?? 0.0)))
-                .font(.title.bold())
-                .foregroundStyle(primaryColor)
-        }
+        ActivityCardView(
+            title: "Good",
+            duration: formatDuration(seconds: Int(progress ?? 0.0)),
+            primaryColor: .green
+        )
         .onAppear {
             progress = Double(activityReport)
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.black.opacity(0.4))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(primaryColor.opacity(0.7), lineWidth: 2)
-                )
-                .shadow(color: primaryColor.opacity(0.3), radius: 10, x: 0, y: 5)
-        )
     }
 }
 
-//struct CheckpointTimeView: View {
-//    var checkpoint: Int
-//    var primaryColor: Color = .blue
-//    
-//    var body: some View {
-//        VStack {
-//            Text("Checkpoint Time")
-//                .font(.headline)
-//                .foregroundStyle(.white)
-//                .padding(.bottom, 5)
-//            
-//            Text(formatDuration(seconds: checkpoint))
-//                .font(.title.bold())
-//                .foregroundStyle(primaryColor)
-//        }
-//        .padding()
-//        .background(
-//            RoundedRectangle(cornerRadius: 16)
-//                .fill(Color.black.opacity(0.4))
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 16)
-//                        .stroke(primaryColor.opacity(0.7), lineWidth: 2)
-//                )
-//                .shadow(color: primaryColor.opacity(0.3), radius: 10, x: 0, y: 5)
-//        )
-//    }
-//}
+struct BadActivityTotalTimeView: View {
+    var activityReport: String
+    @State private var progress: Double?
+
+    var body: some View {
+        ActivityCardView(
+            title: "Bad",
+            duration: formatDuration(seconds: Int(progress ?? 0.0)),
+            primaryColor: .red
+        )
+        .onAppear {
+            progress = Double(activityReport)
+        }
+    }
+}
 
 struct Testing: View {
-    @State private var badAppTime: Int = 15 * 60
-    @State private var checkpointTime: Int = 30 * 60
-    
+    @Environment(DeviceActivityModel.self) private var model
+    @AppStorage(StorageKey.fullName.rawValue) var userName: String = ""
+    @AppStorage(StorageKey.checkpointTime.rawValue) private var checkpointTime: Int = 30 * 60
+    @AppStorage(StorageKey.badAppTime.rawValue) private var badAppTime: Int = 0
+
+    @State private var showSettings: Bool = false
     @State private var showSheet: Bool = false
     @State private var timeRemaining: Int = 0
-    
-    
-    var quote: some View {
-        VStack(spacing: 4) {
-            (Text("For every ") + Text(formatDuration(seconds: checkpointTime)).foregroundColor(.blue) + Text(" I spend on ") + Text("good apps").foregroundColor(.green) + Text(","))
-            (Text("I get to spend ") + Text(formatDuration(seconds: badAppTime)).foregroundColor(.red) + Text(" on ") + Text("bad apps").foregroundColor(.red))
-        }
-        .foregroundStyle(Color.white)
-        .font(.system(size: 18, weight: .medium))
-        .multilineTextAlignment(.center)
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.black.opacity(0.4))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.white.opacity(0.5), lineWidth: 2)
-                )
-                .shadow(color: Color.white.opacity(0.3), radius: 10, x: 0, y: 5)
-        )
-    }
-    
-    var body: some View {
-        VStack(spacing: 20) {
-            HStack(spacing: 15) {
-                GoodActivityTotalTimeView(activityReport: "4000")
-                BadActivityTotalTimeView(activityReport: "2500")
-            }
-            CheckpointTimeView(checkpoint: checkpointTime)
-            
-            quote
-            
-            Button {
-                showSheet.toggle()
-            } label: {
-                Text("You need **\(formatDuration(seconds: $timeRemaining.wrappedValue))** to reach your next checkpoint!")
-                    .font(.system(size: 18, weight: .medium))
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(.yellow)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.black.opacity(0.4))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.white.opacity(0.5), lineWidth: 2)
-                            )
-                            .shadow(color: Color.white.opacity(0.3), radius: 10, x: 0, y: 5)
-                    )
-            }
+    @State private var remainingTimeBoxOffset: CGFloat = 0
 
+    @State private var goodContext: DeviceActivityReport.Context = .init(rawValue: "GoodActivity")
+    @State private var badContext: DeviceActivityReport.Context = .init(rawValue: "BadActivity")
+    @State private var goodFilter: DeviceActivityFilter?
+    @State private var badFilter: DeviceActivityFilter?
+
+    var body: some View {
+        NavigationView {
+            List {
+                Section(header: Text("Usage Time")) {
+                    VStack(spacing: 16) {
+                        HStack(spacing: 16) {
+                            GoodActivityTotalTimeView(activityReport: "4000")
+                            BadActivityTotalTimeView(activityReport: "2500")
+                        }
+                        CheckpointTimeView(checkpoint: 30*60)
+                    }
+                }
+                .listRowBackground(Color.clear)
+                
+                Section(header: Text("Calculate Checkpoint Time")) {
+                    Button {
+                        withAnimation {
+                            showSheet.toggle()
+                        }
+                    } label: {
+                        if timeRemaining == 0 {
+                            ActivityCardView(
+                                title: "Progress to Next Checkpoint",
+                                duration: "Press to Calculate",
+                                primaryColor: .orange
+                            )
+                        } else {
+                            ActivityCardView(
+                                title: "Progress to Next Checkpoint",
+                                duration: "\(formatDuration(seconds: timeRemaining))",
+                                primaryColor: .yellow
+                            )
+                        }
+                    }
+                }
+                .listRowBackground(Color.clear)
+            }
+            .navigationTitle("Welcome, \(userName)")
+            .scrollContentBackground(.hidden)
+            .background(AppBackground())
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        withAnimation {
+                            showSettings.toggle()
+                        }
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                            .font(.title2)
+                            .foregroundStyle(.gray)
+                            .padding(10)
+                    }
+                }
+            }
+            .sheet(isPresented: $showSettings) {
+                SettingsMain()
+                    .presentationDetents([.large])
+                    .presentationBackground(.thinMaterial)
+                    .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $showSheet) {
+                TimePickerView(checkpointTimeInSeconds: checkpointTime, timeRemaining: $timeRemaining)
+                    .presentationDetents([.fraction(0.5)])
+                    .presentationDragIndicator(.visible)
+                    .presentationBackground(.thinMaterial)
+            }
         }
-        .sheet(isPresented: $showSheet) {
-            TimePickerView(checkpointTimeInSeconds: checkpointTime, timeRemaining: $timeRemaining)
-                .presentationDetents([.fraction(0.5)])
-                .presentationDragIndicator(.visible)
-        }
-        .padding()
     }
+}
+
+#Preview {
+    Testing()
+        .environment(DeviceActivityModel())
 }

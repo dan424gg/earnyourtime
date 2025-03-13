@@ -10,7 +10,7 @@ import FamilyControls
 
 struct BadAppsSelectorView: View {
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
-    @AppStorage("badFamilySelections") private var familySelectionsData: Data = Data()
+    @AppStorage(StorageKey.badFamilySelections.rawValue) private var familySelectionsData: Data = Data()
     @Environment(\.dismiss) var dismiss
         
     private func loadBadSelections() {

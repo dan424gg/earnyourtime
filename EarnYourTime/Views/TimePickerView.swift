@@ -24,10 +24,10 @@ struct TimePickerView: View {
                 Text("What's Your ") + Text("Good").foregroundStyle(Color.good) + Text(" Time?")
             }
             .font(.title2.bold())
-            .foregroundStyle(.white)
+//            .foregroundStyle(.white)
             .padding()
                             
-            TimePicker(hours: $goodHours, minutes: $goodMinutes)
+            TimePicker(days: .constant(-1), hours: $goodHours, minutes: $goodMinutes)
                 .onChange(of: [goodHours, goodMinutes]) {
                     if (goodHours != 0 && goodMinutes != 0) || goodMinutes != 0 {
                         withAnimation {
@@ -45,11 +45,19 @@ struct TimePickerView: View {
 }
 
 struct TimePicker: View {
+    @Binding var days: Int
     @Binding var hours: Int
     @Binding var minutes: Int
     
     var body: some View {
         HStack {
+            if days != -1 {
+                Picker("Days", selection: $days) {
+                    ForEach(0..<365, id: \.self) { Text("\($0) d") }
+                }
+                .pickerStyle(.wheel)
+            }
+
             if hours != -1 {
                 Picker("Hours", selection: $hours) {
                     ForEach(0..<24, id: \.self) { Text("\($0) h") }

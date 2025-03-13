@@ -11,8 +11,8 @@ import DeviceActivity
 
 struct Home: View {
     @Environment(DeviceActivityModel.self) private var model
-    @AppStorage("checkpointTime") private var checkpointTime: Int = 30 * 60
-    @AppStorage("badAppTime") private var badAppTime: Int = 0
+    @AppStorage(StorageKey.checkpointTime.rawValue) private var checkpointTime: Int = 30 * 60
+    @AppStorage(StorageKey.badAppTime.rawValue) private var badAppTime: Int = 0
 
     @State private var showSettings: Bool = false
     @State private var showSheet: Bool = false

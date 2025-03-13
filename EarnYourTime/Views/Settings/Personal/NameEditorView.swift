@@ -9,9 +9,8 @@ import SwiftUI
 
 struct NameEditorView: View {
     @State private var tempName: String = ""
-    @AppStorage("name") var name: String = ""
+    @AppStorage(StorageKey.fullName.rawValue) var name: String = ""
     @Environment(\.dismiss) var dismiss
-    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {

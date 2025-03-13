@@ -36,6 +36,7 @@
 		1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A722D7CDAC7009D66B2 /* Design.swift */; };
 		1E147A762D7CDFB6009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A752D7CDFB6009D66B2 /* Design.swift */; };
 		1E147A782D7CE05E009D66B2 /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A772D7CE05E009D66B2 /* testing.swift */; };
+		1E2514D72D82867900DBF598 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2514D62D82867900DBF598 /* Constants.swift */; };
 		1E325D682D7D91B20036F5C3 /* VacationModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E325D672D7D91B20036F5C3 /* VacationModeView.swift */; };
 		1E7C82F22D7D3394002C7B84 /* CheckpointTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */; };
 		1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */; };
@@ -157,6 +158,7 @@
 		1E147A722D7CDAC7009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		1E147A752D7CDFB6009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		1E147A772D7CE05E009D66B2 /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
+		1E2514D62D82867900DBF598 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1E325D672D7D91B20036F5C3 /* VacationModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationModeView.swift; sourceTree = "<group>"; };
 		1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointTimeView.swift; sourceTree = "<group>"; };
 		1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 			children = (
 				1E147A0C2D7CD40A009D66B2 /* Utils.swift */,
 				1E147A722D7CDAC7009D66B2 /* Design.swift */,
+				1E2514D62D82867900DBF598 /* Constants.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E2514D72D82867900DBF598 /* Constants.swift in Sources */,
 				1E7C83032D7D8623002C7B84 /* NotificationsSettingsView.swift in Sources */,
 				1E7C830B2D7D8648002C7B84 /* ContactUsView.swift in Sources */,
 				1E7C82FD2D7D6A6E002C7B84 /* NameEditorView.swift in Sources */,

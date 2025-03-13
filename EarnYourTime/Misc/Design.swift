@@ -96,12 +96,41 @@ struct SaveButton: View {
     }
 }
 
-struct SettingsListItem: View {
+struct SettingsName: View {
+    @Binding var name: String
+    @State var tempName: String = ""
+    let text: String
+    let systemImage: String
+
+    var body: some View {
+        HStack {
+            HStack {
+                Image(systemName: systemImage)
+                Text(text)
+            }
+            Spacer()
+            TextField("Name", text: $tempName)
+                .multilineTextAlignment(.trailing)
+                .submitLabel(.done)
+                .onSubmit {
+                    name = tempName
+                }
+        }
+        .onAppear {
+            tempName = name
+        }
+    }
+}
+
+//#Preview {
+////    SettingsName()
+//}
+
+struct SettingsButton: View {
     let text: String
     let systemImage: String
     var action: (() -> Void)? = nil
 
-    
     var body: some View {
         Button {
             action?()
@@ -119,9 +148,47 @@ struct SettingsListItem: View {
     }
 }
 
-#Preview {
-    ZStack {
-        AppBackground()
-        SettingsListItem(text: "Checkpoint Time", systemImage: "flag.checkered")
+struct SettingsAppearancePicker: View {
+    @Binding var colorScheme: String
+    let text: String
+    let systemImage: String
+
+    var body: some View {
+        ZStack {
+            HStack {
+                HStack {
+                    Image(systemName: systemImage)
+                    Text(text)
+                }
+                Spacer()
+                Picker("Theme", selection: $colorScheme) {
+                    Text("System").tag("system")
+                    Text("Light").tag("light")
+                    Text("Dark").tag("dark")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+//                .padding(.leading)
+            }
+        }
     }
 }
+
+struct SettingsToggle: View {
+    @Binding var state: Bool
+    let text: String
+    let systemImage: String
+
+    var body: some View {
+        ZStack {
+            HStack {
+                HStack {
+                    Image(systemName: systemImage)
+                    Text(text)
+                }
+                Spacer()
+                Toggle("", isOn: $state)
+            }
+        }
+    }
+}
+

@@ -34,6 +34,9 @@ struct SettingsMain: View {
         var id: Self { self }
     }
     
+    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = true
+    @AppStorage(StorageKey.fullName.rawValue) var name: String = ""
+    @AppStorage(StorageKey.colorScheme.rawValue) private var colorScheme: String = "system"
     @State private var selectedDestination: SettingsDestination?
     @State private var selectedCategory: SettingsCategory?
 
@@ -49,10 +52,11 @@ struct SettingsMain: View {
                             }
                     }
                 ) {
-                    SettingsListItem(text: "Name", systemImage: "person") {
-                        selectedDestination = .name
-                    }
-                    SettingsListItem(text: "Notifications", systemImage: "bell") {
+//                    SettingsButton(text: "Name", systemImage: "person") {
+//                        selectedDestination = .name
+//                    }
+                    SettingsName(name: $name, text: "Name", systemImage: "person")
+                    SettingsButton(text: "Notifications", systemImage: "bell") {
                         selectedDestination = .notifications
                     }
                 }
@@ -66,19 +70,22 @@ struct SettingsMain: View {
                             }
                     }
                 ) {
-                    SettingsListItem(text: "Vacation Mode", systemImage: "beach.umbrella") {
-                        selectedDestination = .vacationMode
-                    }
-                    SettingsListItem(text: "Good Apps", systemImage: "hand.thumbsup") {
+                    SettingsToggle(state: $vacationMode, text: "Vacation Mode", systemImage: "beach.umbrella")
+                        .onChange(of: vacationMode) { (old, new) in
+                            if !old && new && selectedDestination == .none {
+                                selectedDestination = .vacationMode
+                            }
+                        }
+                    SettingsButton(text: "Good Apps", systemImage: "hand.thumbsup") {
                         selectedDestination = .goodApps
                     }
-                    SettingsListItem(text: "Bad Apps", systemImage: "hand.thumbsdown") {
+                    SettingsButton(text: "Bad Apps", systemImage: "hand.thumbsdown") {
                         selectedDestination = .badApps
                     }
-                    SettingsListItem(text: "Checkpoint Time", systemImage: "flag.checkered") {
+                    SettingsButton(text: "Checkpoint Time", systemImage: "flag.checkered") {
                         selectedDestination = .checkpointTime
                     }
-                    SettingsListItem(text: "Bad App Time Limit", systemImage: "timer") {
+                    SettingsButton(text: "Bad App Time Limit", systemImage: "timer") {
                         selectedDestination = .badAppTimeLimit
                     }
                 }
@@ -92,9 +99,7 @@ struct SettingsMain: View {
                             }
                     }
                 ) {
-                    SettingsListItem(text: "Placeholder for Picker", systemImage: "paintbrush") {
-                        selectedDestination = .appearance
-                    }
+                    SettingsAppearancePicker(colorScheme: $colorScheme, text: "Theme", systemImage: "paintbrush")
                 }
                 
                 Section(
@@ -106,13 +111,13 @@ struct SettingsMain: View {
                             }
                     }
                 ) {
-                    SettingsListItem(text: "Contact Us", systemImage: "envelope") {
+                    SettingsButton(text: "Contact Us", systemImage: "envelope") {
                         selectedDestination = .contactUs
                     }
-                    SettingsListItem(text: "Rate Our App", systemImage: "star") {
+                    SettingsButton(text: "Rate Our App", systemImage: "star") {
                         selectedDestination = .rateApp
                     }
-                    SettingsListItem(text: "Privacy Policy", systemImage: "lock.shield") {
+                    SettingsButton(text: "Privacy Policy", systemImage: "lock.shield") {
                         selectedDestination = .privacyPolicy
                     }
                 }
@@ -126,7 +131,7 @@ struct SettingsMain: View {
                             }
                     }
                 ) {
-                    SettingsListItem(text: "Delete Data", systemImage: "trash") {
+                    SettingsButton(text: "Delete Data", systemImage: "trash") {
                         selectedDestination = .deleteData
                     }
                     .foregroundStyle(Color.red)
@@ -136,7 +141,9 @@ struct SettingsMain: View {
             .scrollContentBackground(.hidden)// Add this
             .background(AppBackground())
         }
-        .sheet(item: $selectedDestination) { destination in
+        .sheet(item: $selectedDestination, onDismiss: {
+            selectedDestination = .none
+        }) { destination in
             switch destination {
                 case .name:
                     NameEditorView()

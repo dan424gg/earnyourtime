@@ -11,8 +11,8 @@ struct BadAppTimeLimitEditorView: View {
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
     @State private var showAlert: Bool = false
-    @AppStorage("checkpointTime") var checkpointTime: Int = 0
-    @AppStorage("badAppTimeLimit") var badAppTimeLimit: Int = 0
+    @AppStorage(StorageKey.checkpointTime.rawValue) var checkpointTime: Int = 0
+    @AppStorage(StorageKey.badAppTime.rawValue) var badAppTimeLimit: Int = 0
     @Environment(\.dismiss) var dismiss
     
     private var timeInSeconds: Int {
@@ -22,7 +22,7 @@ struct BadAppTimeLimitEditorView: View {
     var body: some View {
         NavigationView {
             Form {
-                TimePicker(hours: $hours, minutes: $minutes)
+                TimePicker(days: .constant(-1), hours: $hours, minutes: $minutes)
             }
             .onAppear {
                 minutes = Int(badAppTimeLimit / 60)

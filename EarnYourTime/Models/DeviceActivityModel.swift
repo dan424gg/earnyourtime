@@ -25,8 +25,8 @@ extension DeviceActivityEvent.Name {
 
 @Observable
 class DeviceActivityModel {
-    @ObservationIgnored @AppStorage("badAppTime") var badAppTime: Int = 0
-    @ObservationIgnored @AppStorage("checkpointTime") var checkpointTime: Int = 0
+    @ObservationIgnored @AppStorage(StorageKey.badAppTime.rawValue) var badAppTime: Int = 0
+    @ObservationIgnored @AppStorage(StorageKey.checkpointTime.rawValue) var checkpointTime: Int = 0
 
     var goodSelections: FamilyActivitySelection
     var badSelections: FamilyActivitySelection
