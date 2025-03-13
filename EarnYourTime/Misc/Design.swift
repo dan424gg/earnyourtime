@@ -154,6 +154,7 @@ struct SettingsButton: View {
                 Spacer()
                 Image(systemName: "arrow.right")
             }
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
     }
