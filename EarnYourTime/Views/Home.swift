@@ -31,9 +31,15 @@ struct Home: View {
                 Section(header: Text("Usage Time")) {
                     VStack(spacing: 16) {
                         HStack(spacing: 16) {
+                            #if DEBUG
                             GoodActivityTotalTimeView(activityReport: "4000")
                             BadActivityTotalTimeView(activityReport: "2500")
+                            #else
+                            DeviceActivityReport(goodContext, filter: goodFilter!)
+                            DeviceActivityReport(badContext, filter: badFilter!)
+                            #endif
                         }
+
                         CheckpointTimeView(checkpoint: 30*60)
                     }
                 }

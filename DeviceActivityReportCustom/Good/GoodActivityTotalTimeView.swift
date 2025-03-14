@@ -12,33 +12,17 @@ import ManagedSettings
 
 struct GoodActivityTotalTimeView: View {
     var activityReport: String
-    @State var progress: Double?
-    var primaryColor: Color = .good
+    @State private var progress: Double?
 
     var body: some View {
-        VStack {
-            Text("Good App Time")
-                .font(.headline)
-                .foregroundStyle(.white)
-                .padding(.bottom, 5)
-            
-            Text(formatDuration(seconds: Int(progress ?? 0.0)))
-                .font(.title.bold())
-                .foregroundStyle(primaryColor)
-        }
+        ActivityCardView(
+            title: "Good",
+            duration: formatDuration(seconds: Int(progress ?? 0.0)),
+            primaryColor: .green
+        )
         .onAppear {
             progress = Double(activityReport)
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.black.opacity(0.4))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(primaryColor.opacity(0.7), lineWidth: 2)
-                )
-                .shadow(color: primaryColor.opacity(0.3), radius: 10, x: 0, y: 5)
-        )
     }
 }
 
