@@ -17,6 +17,29 @@ enum StorageKey: String {
     case badFamilySelections
     case goodFamilySelections
     case colorScheme
+    case seenIntroSequence
+}
+
+enum SettingsDestination: Identifiable {
+    case name
+    case vacationMode
+    case notifications
+    case goodApps
+    case badApps
+    case checkpointTime
+    case badAppTimeLimit
+    case appearance
+    
+    var id: Self { self }
+}
+
+enum SettingsCategory: Identifiable {
+    case personal
+    case appExperience
+    case appearance
+    case other
+    
+    var id: Self { self }
 }
 
 

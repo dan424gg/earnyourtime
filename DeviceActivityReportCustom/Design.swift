@@ -70,6 +70,7 @@ struct ActivityCardView: View {
                 )
 //                .shadow(color: primaryColor.opacity(0.3), radius: 8, x: 0, y: 4)
         )
+        .padding(2)
     }
 }
 

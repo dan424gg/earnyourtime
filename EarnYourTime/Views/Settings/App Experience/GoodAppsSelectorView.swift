@@ -8,28 +8,15 @@
 import SwiftUI
 import FamilyControls
 
+
 struct GoodAppsSelectorView: View {
-    @Environment(DeviceActivityModel.self) private var deviceActivityModel
+    @State private var tempFamilySelectionsData: FamilyActivitySelection = FamilyActivitySelection()
     @AppStorage(StorageKey.goodFamilySelections.rawValue) private var familySelectionsData: Data = Data()
     @Environment(\.dismiss) var dismiss
-        
-    private func loadBadSelections() {
-        if let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: familySelectionsData) {
-            deviceActivityModel.goodSelections = decoded
-        }
-    }
-    
-    private func saveBadSelections() {
-        if let encoded = try? JSONEncoder().encode(deviceActivityModel.goodSelections) {
-            familySelectionsData = encoded
-        }
-    }
-
+            
     var body: some View {
-        @Bindable var bindable_model = deviceActivityModel
-
         NavigationView {
-            FamilyActivityPicker(selection: $bindable_model.goodSelections)
+            FamilyActivityPicker(selection: $tempFamilySelectionsData)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
@@ -44,11 +31,11 @@ struct GoodAppsSelectorView: View {
             }
             .background(Color(UIColor.systemGroupedBackground))
             .onAppear {
-                loadBadSelections()
+                tempFamilySelectionsData = decode(FamilyActivitySelection.self, from: familySelectionsData, defaultValue: FamilyActivitySelection())
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: bindable_model.goodSelections.applicationTokens == [] || bindable_model.goodSelections.categoryTokens == [] || bindable_model.goodSelections.webDomainTokens == []) {
-                    saveBadSelections()
+                SaveButton(disabled: tempFamilySelectionsData == FamilyActivitySelection()) {
+                    familySelectionsData = encode(tempFamilySelectionsData)
                     dismiss()
                 }
             }
@@ -58,5 +45,4 @@ struct GoodAppsSelectorView: View {
 
 #Preview {
     GoodAppsSelectorView()
-        .environment(DeviceActivityModel())
 }

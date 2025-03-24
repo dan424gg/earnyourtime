@@ -52,7 +52,7 @@ struct BadAppTimeLimitEditorView: View {
             }
         }
         .alert("Bad, Bad App Time Limit", isPresented: $showAlert) {} message: {
-            Text("Your Bad App Time Limit has to be less than or equal to your checkpoint time.")
+            Text("Your Bad App Time Limit has to be less than or equal to \(formatDuration(seconds: checkpointTime)) (your checkpoint time).")
         }
     }
 }
