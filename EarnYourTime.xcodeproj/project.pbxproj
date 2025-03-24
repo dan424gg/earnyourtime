@@ -38,6 +38,10 @@
 		1E2514D72D82867900DBF598 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2514D62D82867900DBF598 /* Constants.swift */; };
 		1E325D682D7D91B20036F5C3 /* VacationModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E325D672D7D91B20036F5C3 /* VacationModeView.swift */; };
 		1E69E4E32D90DE1900BDB285 /* DeviceActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E69E4E22D90DE1900BDB285 /* DeviceActivityModel.swift */; };
+		1E69E50E2D91A65600BDB285 /* PersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E69E50D2D91A65600BDB285 /* PersonalInfo.swift */; };
+		1E69E5102D91A8B600BDB285 /* AppExperienceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E69E50F2D91A8B600BDB285 /* AppExperienceInfo.swift */; };
+		1E69E5122D91A8C300BDB285 /* AppearanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E69E5112D91A8C300BDB285 /* AppearanceInfo.swift */; };
+		1E69E5142D91A8CA00BDB285 /* OtherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E69E5132D91A8CA00BDB285 /* OtherInfo.swift */; };
 		1E7C82F22D7D3394002C7B84 /* CheckpointTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */; };
 		1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */; };
 		1E7C82FB2D7D5B0A002C7B84 /* SettingsMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */; };
@@ -156,6 +160,10 @@
 		1E2514D62D82867900DBF598 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1E325D672D7D91B20036F5C3 /* VacationModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationModeView.swift; sourceTree = "<group>"; };
 		1E69E4E22D90DE1900BDB285 /* DeviceActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityModel.swift; sourceTree = "<group>"; };
+		1E69E50D2D91A65600BDB285 /* PersonalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfo.swift; sourceTree = "<group>"; };
+		1E69E50F2D91A8B600BDB285 /* AppExperienceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExperienceInfo.swift; sourceTree = "<group>"; };
+		1E69E5112D91A8C300BDB285 /* AppearanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceInfo.swift; sourceTree = "<group>"; };
+		1E69E5132D91A8CA00BDB285 /* OtherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherInfo.swift; sourceTree = "<group>"; };
 		1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointTimeView.swift; sourceTree = "<group>"; };
 		1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMain.swift; sourceTree = "<group>"; };
@@ -407,13 +415,33 @@
 			path = "App Experience";
 			sourceTree = "<group>";
 		};
-		1E7C82F72D7D5AB6002C7B84 /* Settings */ = {
+		1E69E5072D91A60800BDB285 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				1E325D642D7D915E0036F5C3 /* Personal */,
 				1E325D692D7D92620036F5C3 /* App Experience */,
 				1E325D652D7D91720036F5C3 /* Appearance */,
 				1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1E69E5082D91A61900BDB285 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				1E69E50D2D91A65600BDB285 /* PersonalInfo.swift */,
+				1E69E50F2D91A8B600BDB285 /* AppExperienceInfo.swift */,
+				1E69E5112D91A8C300BDB285 /* AppearanceInfo.swift */,
+				1E69E5132D91A8CA00BDB285 /* OtherInfo.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		1E7C82F72D7D5AB6002C7B84 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1E69E5082D91A61900BDB285 /* Info */,
+				1E69E5072D91A60800BDB285 /* Views */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -637,11 +665,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E69E5142D91A8CA00BDB285 /* OtherInfo.swift in Sources */,
 				1E2514D72D82867900DBF598 /* Constants.swift in Sources */,
 				1E7C83032D7D8623002C7B84 /* NotificationsSettingsView.swift in Sources */,
 				1E7C82FD2D7D6A6E002C7B84 /* NameEditorView.swift in Sources */,
+				1E69E5122D91A8C300BDB285 /* AppearanceInfo.swift in Sources */,
 				1E1479DD2D7CD31B009D66B2 /* ContentView.swift in Sources */,
 				1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */,
+				1E69E5102D91A8B600BDB285 /* AppExperienceInfo.swift in Sources */,
 				1E325D682D7D91B20036F5C3 /* VacationModeView.swift in Sources */,
 				1E147A6F2D7CD888009D66B2 /* NotificationsManager.swift in Sources */,
 				1E7C83052D7D862E002C7B84 /* GoodAppsSelectorView.swift in Sources */,
@@ -652,6 +683,7 @@
 				1E1479DB2D7CD31B009D66B2 /* EarnYourTimeApp.swift in Sources */,
 				1E147A712D7CD898009D66B2 /* NotificationsUtils.swift in Sources */,
 				1E7C83012D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift in Sources */,
+				1E69E50E2D91A65600BDB285 /* PersonalInfo.swift in Sources */,
 				1E147A0D2D7CD40A009D66B2 /* Utils.swift in Sources */,
 				1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */,
 				1E7C83092D7D863F002C7B84 /* AppearanceSettingsView.swift in Sources */,

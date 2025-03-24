@@ -31,9 +31,6 @@ struct SettingsMain: View {
                             }
                     }
                 ) {
-//                    SettingsButton(text: "Name", systemImage: "person") {
-//                        selectedDestination = .name
-//                    }
                     SettingsName(name: $name, text: "Name", systemImage: "person")
                     SettingsButton(text: "Notifications", systemImage: "bell") {
                         selectedDestination = .notifications
@@ -45,7 +42,7 @@ struct SettingsMain: View {
                         Text("App Experience")
                         Image(systemName: "info.circle")
                             .onTapGesture {
-                                selectedCategory = .personal
+                                selectedCategory = .appExperience
                             }
                     }
                 ) {
@@ -74,7 +71,7 @@ struct SettingsMain: View {
                         Text("Appearance")
                         Image(systemName: "info.circle")
                             .onTapGesture {
-                                selectedCategory = .personal
+                                selectedCategory = .appearance
                             }
                     }
                 ) {
@@ -86,7 +83,7 @@ struct SettingsMain: View {
                         Text("Other")
                         Image(systemName: "info.circle")
                             .onTapGesture {
-                                selectedCategory = .personal
+                                selectedCategory = .other
                             }
                     }
                 ) {
@@ -102,19 +99,8 @@ struct SettingsMain: View {
                     SettingsButton(text: "Privacy Policy", systemImage: "lock.shield") {
 //                        selectedDestination = .privacyPolicy
                     }
-                }
-                
-                Section(
-                    header: HStack {
-                        Text("Data")
-                        Image(systemName: "info.circle")
-                            .onTapGesture {
-                                selectedCategory = .personal
-                            }
-                    }
-                ) {
                     SettingsButton(text: "Delete Data", systemImage: "trash") {
-//                        selectedDeswewtination = .deleteData
+//                        selectedDestination = .deleteData
                     }
                     .foregroundStyle(Color.red)
                 }
@@ -162,19 +148,34 @@ struct SettingsMain: View {
             }
         }
         .sheet(item: $selectedCategory) { category in
-            Text("nothing yet for \(category)")
-//            switch selectedCategory {
-//                case .personal:
-//                    <#code#>
-//                case .appExperience:
-//                    <#code#>
-//                case .appearance:
-//                    <#code#>
-//                case .other:
-//                    <#code#>
-//                case nil:
-//                    <#code#>
-//            }
+            switch category {
+                case .personal:
+                    PersonalInfo()
+                        .presentationDetents([.medium])
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(.thinMaterial)
+                        .scrollDisabled(true)
+                    
+                case .appExperience:
+                    AppExperienceInfo()
+                        .presentationDetents([.medium])
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(.thinMaterial)
+
+                case .appearance:
+                    AppearanceInfo()
+                        .presentationDetents([.medium])
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(.thinMaterial)
+                        .scrollDisabled(true)
+
+                case .other:
+                    OtherInfo()
+                        .presentationDetents([.medium])
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(.thinMaterial)
+
+            }
         }
     }
 }
