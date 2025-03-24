@@ -9,7 +9,7 @@ import SwiftUI
 import StoreKit
 
 struct SettingsMain: View {    
-    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = true
+    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
     @AppStorage(StorageKey.fullName.rawValue) var name: String = ""
     @AppStorage(StorageKey.colorScheme.rawValue) private var colorScheme: String = "system"
     

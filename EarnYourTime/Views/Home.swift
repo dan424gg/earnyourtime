@@ -10,6 +10,7 @@ import FamilyControls
 import DeviceActivity
 
 struct Home: View {
+    @Environment(DeviceActivityModel.self) private var deviceActivityModel
     
     @AppStorage(StorageKey.fullName.rawValue) var userName: String = ""
     @AppStorage(StorageKey.checkpointTime.rawValue) private var checkpointTime: Int = 30 * 60
@@ -158,7 +159,7 @@ struct Home: View {
             }
         }
         .onChange(of: [checkpointTime, badAppTime]) {
-            updateMonitoring()
+            deviceActivityModel.updateMonitoring()
         }
         .onChange(of: badFamilySelections, initial: true) {
             badFilter = DeviceActivityFilter(
@@ -193,4 +194,5 @@ struct Home: View {
             .edgesIgnoringSafeArea(.all)  // Ensure background covers the full screen
         Home()
     }
+    .environment(DeviceActivityModel())
 }

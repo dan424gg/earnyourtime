@@ -2,29 +2,16 @@ import SwiftUI
 import UIKit
 
 struct testing: View {
-    @State private var showLoading = true
-    @State private var showView: Bool = false
-
+    
 
     var body: some View {
-        ZStack {
-            if showLoading {
-                Text("Loading...")
+        VStack {
+            Button("Press me") {
+                Task {
+                    await sendNotification(title: "Test", subtitle: "Stay calm, this is a test", waitDuration: 1, repeats: false)
+                }
             }
-
-            if showView {
-                Text("Actual view")
-                    .background(Color.white)
-            }
-        }
-        .onAppear {
-            showLoading = true
-        }
-        .task {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                showLoading = false
-                showView = true
-            }
+            .buttonStyle(.borderedProminent)
         }
     }
 }

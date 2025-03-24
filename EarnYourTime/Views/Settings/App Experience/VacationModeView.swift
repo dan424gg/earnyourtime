@@ -10,6 +10,7 @@
 import SwiftUI
 
 struct VacationModeView: View {
+    @Environment(DeviceActivityModel.self) private var deviceActivityModel
     @State var wasSaved: Bool = false
     @State private var timer: Timer?
     @State private var days: Int = 0
@@ -29,7 +30,11 @@ struct VacationModeView: View {
         let timeInterval = futureDate.timeIntervalSince(Date())
         guard timeInterval > 0 else { return }
         timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { _ in
-            // start monitoring again
+            do {
+                try deviceActivityModel.startMonitoring()
+            } catch {
+                //
+            }
         }
     }
 
@@ -61,7 +66,7 @@ struct VacationModeView: View {
                 SaveButton(disabled: days == 0 && hours == 0 && minutes == 0) {
                     wasSaved = true
                     
-                    // stop monitoring
+                    deviceActivityModel.stopMonitoring()
                     scheduleTimer()
                     
                     dismiss()

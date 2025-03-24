@@ -11,6 +11,8 @@ import UserNotifications
 import FamilyControls
 
 struct ContentView: View {
+    @Environment(DeviceActivityModel.self) private var deviceActivityModel
+    
     @AppStorage(StorageKey.seenIntroSequence.rawValue) var seenIntroSequence: Bool = false
     let notificationsManager = NotificationsManager()
     let center = AuthorizationCenter.shared
@@ -34,6 +36,7 @@ struct ContentView: View {
         ZStack {
             AppBackground()
             if seenIntroSequence {
+//                testing()
                 Home()
             } else {
                 // we want some sort of mechanism to nil out the defaults if the user doesn't go all the way through with the introduction
@@ -63,7 +66,7 @@ struct ContentView: View {
                     SaveButton(disabled: !isAllFilledOut()) {
                         seenIntroSequence = true
                         do {
-                            try startMonitoring()
+                            try deviceActivityModel.startMonitoring()
                         } catch {
                             print("error in startMonitoring")
                         }
@@ -107,32 +110,34 @@ struct ContentView: View {
                             AppearanceSettingsView()
                     }
                 }
-                .onAppear {
-                    /// needed for device activity
-                    Task {
-                        do {
-                            try await center.requestAuthorization(for: .individual)
-                        } catch {
-                            print("couldn't get authorization for Device Activity\n\(error)")
-                        }
-                    }
-                    
-                    /// needed for foreground notifications
-                    notificationsManager.setupNotificationDelegate()
-                    
-                    /// needed for notifications
-                    Task {
-                        do {
-                            // todo: finalize options
-                            try await UNUserNotificationCenter.current().requestAuthorization(options: [
-                                .alert,
-                                .sound,
-                                .badge,
-                                .providesAppNotificationSettings])
-                        } catch {
-                            print(error)
-                        }
-                    }
+            }
+        }
+        .onAppear {
+            /// needed for device activity
+            Task {
+                do {
+                    try await center.requestAuthorization(for: .individual)
+                } catch {
+                    print("couldn't get authorization for Device Activity\n\(error)")
+                }
+            }
+            
+            /// needed for foreground notifications
+            notificationsManager.setupNotificationDelegate()
+            
+            /// needed for notifications
+            Task {
+                do {
+                    // todo: finalize options
+                    try await UNUserNotificationCenter.current().requestAuthorization(options: [
+                        .alert,
+                        .sound,
+                        .badge,
+                        .carPlay,
+                        .criticalAlert,
+                        .providesAppNotificationSettings])
+                } catch {
+                    print(error)
                 }
             }
         }
@@ -141,4 +146,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environment(DeviceActivityModel())
 }

@@ -37,6 +37,7 @@
 		1E147A782D7CE05E009D66B2 /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A772D7CE05E009D66B2 /* testing.swift */; };
 		1E2514D72D82867900DBF598 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2514D62D82867900DBF598 /* Constants.swift */; };
 		1E325D682D7D91B20036F5C3 /* VacationModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E325D672D7D91B20036F5C3 /* VacationModeView.swift */; };
+		1E69E4E32D90DE1900BDB285 /* DeviceActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E69E4E22D90DE1900BDB285 /* DeviceActivityModel.swift */; };
 		1E7C82F22D7D3394002C7B84 /* CheckpointTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */; };
 		1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */; };
 		1E7C82FB2D7D5B0A002C7B84 /* SettingsMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */; };
@@ -154,6 +155,7 @@
 		1E147A772D7CE05E009D66B2 /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
 		1E2514D62D82867900DBF598 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1E325D672D7D91B20036F5C3 /* VacationModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationModeView.swift; sourceTree = "<group>"; };
+		1E69E4E22D90DE1900BDB285 /* DeviceActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityModel.swift; sourceTree = "<group>"; };
 		1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointTimeView.swift; sourceTree = "<group>"; };
 		1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMain.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				1E147A792D7CE471009D66B2 /* Misc */,
 				1E1479DA2D7CD31B009D66B2 /* EarnYourTimeApp.swift */,
 				1E1479DC2D7CD31B009D66B2 /* ContentView.swift */,
+				1E69E4E22D90DE1900BDB285 /* DeviceActivityModel.swift */,
 				1E147A772D7CE05E009D66B2 /* testing.swift */,
 				1E1479E02D7CD31C009D66B2 /* Assets.xcassets */,
 				1E1479E22D7CD31C009D66B2 /* Preview Content */,
@@ -653,6 +656,7 @@
 				1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */,
 				1E7C83092D7D863F002C7B84 /* AppearanceSettingsView.swift in Sources */,
 				1E7C82FF2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift in Sources */,
+				1E69E4E32D90DE1900BDB285 /* DeviceActivityModel.swift in Sources */,
 				1E7C82F22D7D3394002C7B84 /* CheckpointTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,10 +11,11 @@ import SwiftData
 @main
 struct EarnYourTimeApp: App {
     @AppStorage(StorageKey.colorScheme.rawValue) private var colorScheme: String = "system"
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(DeviceActivityModel())
                 .onAppear {
                     // Ensure to apply the appearance mode when the view appears
                     updateAppearanceMode()
