@@ -133,10 +133,6 @@ struct SettingsName: View {
     }
 }
 
-//#Preview {
-////    SettingsName()
-//}
-
 struct SettingsButton: View {
     let text: String
     let systemImage: String
@@ -204,3 +200,70 @@ struct SettingsToggle: View {
     }
 }
 
+struct ActivityCardView: View {
+    var title: String
+    var duration: String
+    var primaryColor: Color
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Text(title)
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundStyle(primaryColor)
+
+            Text(duration)
+                .font(.system(size: 20, weight: .bold))
+                .foregroundStyle(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(primaryColor.opacity(0.8))
+//                        .shadow(color: primaryColor.opacity(0.4), radius: 8, x: 0, y: 4)
+                )
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(.ultraThinMaterial)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(primaryColor.opacity(0.7), lineWidth: 2)
+                )
+//                .shadow(color: primaryColor.opacity(0.3), radius: 8, x: 0, y: 4)
+        )
+        .padding(2)
+    }
+}
+
+struct GoodActivityTotalTimeView: View {
+    var activityReport: String
+    @State private var progress: Double?
+
+    var body: some View {
+        ActivityCardView(
+            title: "Good",
+            duration: formatDuration(seconds: Int(progress ?? 0.0)),
+            primaryColor: .green
+        )
+        .onAppear {
+            progress = Double(activityReport)
+        }
+    }
+}
+
+struct BadActivityTotalTimeView: View {
+    var activityReport: String
+    @State private var progress: Double?
+
+    var body: some View {
+        ActivityCardView(
+            title: "Bad",
+            duration: formatDuration(seconds: Int(progress ?? 0.0)),
+            primaryColor: .red
+        )
+        .onAppear {
+            progress = Double(activityReport)
+        }
+    }
+}

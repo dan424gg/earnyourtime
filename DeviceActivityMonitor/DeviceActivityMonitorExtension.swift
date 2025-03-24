@@ -11,25 +11,12 @@ import ManagedSettings
 import UserNotifications
 
 
-func sendNotification(title: String, subtitle: String, waitDuration: Double = 5.0, repeats: Bool = false) async {
-    
+func sendNotification(title: String, subtitle: String, waitDuration: Double = 1.0, repeats: Bool = false) async {
     let content = UNMutableNotificationContent()
     content.title = title
     content.subtitle = subtitle
     content.sound = UNNotificationSound.default
-    content.interruptionLevel = .critical // set notification severity level
-    content.badge = 0 // manually set badge number for app
-
-    /// Set different actions for the user to take on the notification
-    let action1 = UNNotificationAction(identifier: "snoozeAction", title: "Snooze", options: [])
-    let action2 = UNNotificationAction(identifier: "cancelAction", title: "Cancel", options: [.destructive])
-
-    let category = UNNotificationCategory(identifier: "meetingCategory", actions: [action1, action2], intentIdentifiers: [], options: [])
-
-    UNUserNotificationCenter.current().setNotificationCategories([category])
-
-    content.categoryIdentifier = "meetingCategory"
-    /// ***
+    content.interruptionLevel = .active
     
     print("\nsending the following notification: \n\(title)\n\(subtitle)\n\(waitDuration)")
 
@@ -41,6 +28,7 @@ func sendNotification(title: String, subtitle: String, waitDuration: Double = 5.
 
     // schedule the request with the system.
     let notificationCenter = UNUserNotificationCenter.current()
+    
     do {
         try await notificationCenter.add(request)
     } catch {
@@ -110,9 +98,9 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
                 do {
                     try DeviceActivityCenter().startMonitoring(activity, during: schedule, events: events)
                 } catch {
-                    Task {
-                        await sendNotification(title: "title", subtitle: "couldn't start monitoring")
-                    }
+//                    Task {
+//                        await sendNotification(title: "title", subtitle: "couldn't start monitoring")
+//                    }
                 }
                 
                 store.shield.applications = nil
@@ -129,9 +117,13 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
             if let badApps = events[DeviceActivityEvent.Name("badAppMonitor")]?.applications {
                 store.shield.applications = badApps
             } else {
-                Task {
-                    await sendNotification(title: "Couldn't get bad apps", subtitle: "sorry")
-                }
+//                Task {
+//                    await sendNotification(title: "Couldn't get bad apps", subtitle: "sorry")
+//                }
+            }
+            
+            Task {
+                await sendNotification(title:"Oh no!", subtitle: "Use your \"productive\" apps to get more time!")
             }
         }
         

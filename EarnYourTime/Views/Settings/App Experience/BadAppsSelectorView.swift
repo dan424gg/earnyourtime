@@ -9,27 +9,13 @@ import SwiftUI
 import FamilyControls
 
 struct BadAppsSelectorView: View {
-    @Environment(DeviceActivityModel.self) private var deviceActivityModel
+    @State private var tempFamilySelectionsData: FamilyActivitySelection = FamilyActivitySelection()
     @AppStorage(StorageKey.badFamilySelections.rawValue) private var familySelectionsData: Data = Data()
     @Environment(\.dismiss) var dismiss
         
-    private func loadBadSelections() {
-        if let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: familySelectionsData) {
-            deviceActivityModel.badSelections = decoded
-        }
-    }
-    
-    private func saveBadSelections() {
-        if let encoded = try? JSONEncoder().encode(deviceActivityModel.badSelections) {
-            familySelectionsData = encoded
-        }
-    }
-
     var body: some View {
-        @Bindable var bindable_model = deviceActivityModel
-
         NavigationView {
-            FamilyActivityPicker(selection: $bindable_model.badSelections)
+            FamilyActivityPicker(selection: $tempFamilySelectionsData)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
@@ -44,11 +30,11 @@ struct BadAppsSelectorView: View {
             }
             .background(Color(UIColor.systemGroupedBackground))
             .onAppear {
-                loadBadSelections()
+                tempFamilySelectionsData = decode(FamilyActivitySelection.self, from: familySelectionsData, defaultValue: FamilyActivitySelection())
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: bindable_model.badSelections.applicationTokens == [] || bindable_model.badSelections.categoryTokens == [] || bindable_model.badSelections.webDomainTokens == []) {
-                    saveBadSelections()
+                SaveButton(disabled: tempFamilySelectionsData == FamilyActivitySelection()) {
+                    familySelectionsData = encode(tempFamilySelectionsData)
                     dismiss()
                 }
             }
@@ -58,5 +44,4 @@ struct BadAppsSelectorView: View {
 
 #Preview {
     BadAppsSelectorView()
-        .environment(DeviceActivityModel())
 }

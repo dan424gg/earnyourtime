@@ -6,37 +6,16 @@
 //
 
 import SwiftUI
+import StoreKit
 
-struct SettingsMain: View {
-    enum SettingsDestination: Identifiable {
-        case name
-        case vacationMode
-        case notifications
-        case goodApps
-        case badApps
-        case checkpointTime
-        case badAppTimeLimit
-        case appearance
-        case contactUs
-        case rateApp
-        case privacyPolicy
-        case deleteData
-
-        var id: Self { self }
-    }
-    
-    enum SettingsCategory: Identifiable {
-        case personal
-        case appExperience
-        case appearance
-        case other
-        
-        var id: Self { self }
-    }
-    
+struct SettingsMain: View {    
     @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = true
     @AppStorage(StorageKey.fullName.rawValue) var name: String = ""
     @AppStorage(StorageKey.colorScheme.rawValue) private var colorScheme: String = "system"
+    
+    @Environment(\.requestReview) var requestReview
+    @Environment(\.openURL) var openURL
+
     @State private var selectedDestination: SettingsDestination?
     @State private var selectedCategory: SettingsCategory?
 
@@ -112,13 +91,16 @@ struct SettingsMain: View {
                     }
                 ) {
                     SettingsButton(text: "Contact Us", systemImage: "envelope") {
-                        selectedDestination = .contactUs
+                        openEmail(email: "some_email@gmail.com", subject: "Feedback")
                     }
                     SettingsButton(text: "Rate Our App", systemImage: "star") {
-                        selectedDestination = .rateApp
+                        requestReview()
+                    }
+                    SettingsButton(text: "Request a Feature", systemImage: "wrench") {
+                        openURL(URL(string: "https://earnyourtime.featurebase.app")!)
                     }
                     SettingsButton(text: "Privacy Policy", systemImage: "lock.shield") {
-                        selectedDestination = .privacyPolicy
+//                        selectedDestination = .privacyPolicy
                     }
                 }
                 
@@ -132,7 +114,7 @@ struct SettingsMain: View {
                     }
                 ) {
                     SettingsButton(text: "Delete Data", systemImage: "trash") {
-                        selectedDestination = .deleteData
+//                        selectedDeswewtination = .deleteData
                     }
                     .foregroundStyle(Color.red)
                 }
@@ -177,14 +159,6 @@ struct SettingsMain: View {
                         .presentationBackground(.thinMaterial)
                 case .appearance:
                     AppearanceSettingsView()
-                case .contactUs:
-                    ContactUsView()
-                case .rateApp:
-                    RateAppView()
-                case .privacyPolicy:
-                    PrivacyPolicyView()
-                case .deleteData:
-                    DeleteDataView()
             }
         }
         .sheet(item: $selectedCategory) { category in
@@ -210,6 +184,5 @@ struct SettingsMain: View {
     ZStack {
         AppBackground()
         SettingsMain()
-            .environment(DeviceActivityModel())
     }
 }

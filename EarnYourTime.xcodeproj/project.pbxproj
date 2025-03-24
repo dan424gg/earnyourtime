@@ -15,7 +15,6 @@
 		1E1479F82D7CD31C009D66B2 /* EarnYourTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1479F72D7CD31C009D66B2 /* EarnYourTimeUITests.swift */; };
 		1E1479FA2D7CD31C009D66B2 /* EarnYourTimeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1479F92D7CD31C009D66B2 /* EarnYourTimeUITestsLaunchTests.swift */; };
 		1E147A082D7CD37F009D66B2 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A072D7CD37F009D66B2 /* Home.swift */; };
-		1E147A0B2D7CD3D8009D66B2 /* DeviceActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A0A2D7CD3D8009D66B2 /* DeviceActivityModel.swift */; };
 		1E147A0D2D7CD40A009D66B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A0C2D7CD40A009D66B2 /* Utils.swift */; };
 		1E147A172D7CD50A009D66B2 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E147A102D7CD4B7009D66B2 /* DeviceActivity.framework */; };
 		1E147A1A2D7CD50A009D66B2 /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A192D7CD50A009D66B2 /* DeviceActivityMonitorExtension.swift */; };
@@ -48,10 +47,6 @@
 		1E7C83052D7D862E002C7B84 /* GoodAppsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83042D7D862E002C7B84 /* GoodAppsSelectorView.swift */; };
 		1E7C83072D7D8636002C7B84 /* BadAppsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83062D7D8636002C7B84 /* BadAppsSelectorView.swift */; };
 		1E7C83092D7D863F002C7B84 /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */; };
-		1E7C830B2D7D8648002C7B84 /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */; };
-		1E7C830D2D7D8650002C7B84 /* RateAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C830C2D7D8650002C7B84 /* RateAppView.swift */; };
-		1E7C830F2D7D8658002C7B84 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C830E2D7D8658002C7B84 /* PrivacyPolicyView.swift */; };
-		1E7C83112D7D8660002C7B84 /* DeleteDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83102D7D8660002C7B84 /* DeleteDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,7 +125,6 @@
 		1E1479F72D7CD31C009D66B2 /* EarnYourTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnYourTimeUITests.swift; sourceTree = "<group>"; };
 		1E1479F92D7CD31C009D66B2 /* EarnYourTimeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnYourTimeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1E147A072D7CD37F009D66B2 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		1E147A0A2D7CD3D8009D66B2 /* DeviceActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityModel.swift; sourceTree = "<group>"; };
 		1E147A0C2D7CD40A009D66B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1E147A0E2D7CD46C009D66B2 /* EarnYourTime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EarnYourTime.entitlements; sourceTree = "<group>"; };
 		1E147A102D7CD4B7009D66B2 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
@@ -170,10 +164,6 @@
 		1E7C83042D7D862E002C7B84 /* GoodAppsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodAppsSelectorView.swift; sourceTree = "<group>"; };
 		1E7C83062D7D8636002C7B84 /* BadAppsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadAppsSelectorView.swift; sourceTree = "<group>"; };
 		1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
-		1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
-		1E7C830C2D7D8650002C7B84 /* RateAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppView.swift; sourceTree = "<group>"; };
-		1E7C830E2D7D8658002C7B84 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
-		1E7C83102D7D8660002C7B84 /* DeleteDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,7 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				1E147A0E2D7CD46C009D66B2 /* EarnYourTime.entitlements */,
-				1E147A092D7CD393009D66B2 /* Models */,
 				1E147A062D7CD364009D66B2 /* Views */,
 				1E147A792D7CE471009D66B2 /* Misc */,
 				1E1479DA2D7CD31B009D66B2 /* EarnYourTimeApp.swift */,
@@ -302,15 +291,6 @@
 				1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		1E147A092D7CD393009D66B2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				1E147A6D2D7CD876009D66B2 /* Notifications */,
-				1E147A0A2D7CD3D8009D66B2 /* DeviceActivityModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		1E147A0F2D7CD4B7009D66B2 /* Frameworks */ = {
@@ -387,6 +367,7 @@
 		1E147A792D7CE471009D66B2 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				1E147A6D2D7CD876009D66B2 /* Notifications */,
 				1E147A0C2D7CD40A009D66B2 /* Utils.swift */,
 				1E147A722D7CDAC7009D66B2 /* Design.swift */,
 				1E2514D62D82867900DBF598 /* Constants.swift */,
@@ -411,17 +392,6 @@
 			path = Appearance;
 			sourceTree = "<group>";
 		};
-		1E325D662D7D917E0036F5C3 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				1E7C830A2D7D8648002C7B84 /* ContactUsView.swift */,
-				1E7C830C2D7D8650002C7B84 /* RateAppView.swift */,
-				1E7C830E2D7D8658002C7B84 /* PrivacyPolicyView.swift */,
-				1E7C83102D7D8660002C7B84 /* DeleteDataView.swift */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		1E325D692D7D92620036F5C3 /* App Experience */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,7 +410,6 @@
 				1E325D642D7D915E0036F5C3 /* Personal */,
 				1E325D692D7D92620036F5C3 /* App Experience */,
 				1E325D652D7D91720036F5C3 /* Appearance */,
-				1E325D662D7D917E0036F5C3 /* Other */,
 				1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */,
 			);
 			path = Settings;
@@ -667,23 +636,18 @@
 			files = (
 				1E2514D72D82867900DBF598 /* Constants.swift in Sources */,
 				1E7C83032D7D8623002C7B84 /* NotificationsSettingsView.swift in Sources */,
-				1E7C830B2D7D8648002C7B84 /* ContactUsView.swift in Sources */,
 				1E7C82FD2D7D6A6E002C7B84 /* NameEditorView.swift in Sources */,
 				1E1479DD2D7CD31B009D66B2 /* ContentView.swift in Sources */,
 				1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */,
-				1E7C83112D7D8660002C7B84 /* DeleteDataView.swift in Sources */,
 				1E325D682D7D91B20036F5C3 /* VacationModeView.swift in Sources */,
 				1E147A6F2D7CD888009D66B2 /* NotificationsManager.swift in Sources */,
 				1E7C83052D7D862E002C7B84 /* GoodAppsSelectorView.swift in Sources */,
 				1E7C83072D7D8636002C7B84 /* BadAppsSelectorView.swift in Sources */,
 				1E7C82FB2D7D5B0A002C7B84 /* SettingsMain.swift in Sources */,
 				1E147A082D7CD37F009D66B2 /* Home.swift in Sources */,
-				1E147A0B2D7CD3D8009D66B2 /* DeviceActivityModel.swift in Sources */,
 				1E147A782D7CE05E009D66B2 /* testing.swift in Sources */,
-				1E7C830D2D7D8650002C7B84 /* RateAppView.swift in Sources */,
 				1E1479DB2D7CD31B009D66B2 /* EarnYourTimeApp.swift in Sources */,
 				1E147A712D7CD898009D66B2 /* NotificationsUtils.swift in Sources */,
-				1E7C830F2D7D8658002C7B84 /* PrivacyPolicyView.swift in Sources */,
 				1E7C83012D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift in Sources */,
 				1E147A0D2D7CD40A009D66B2 /* Utils.swift in Sources */,
 				1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */,
