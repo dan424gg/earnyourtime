@@ -18,6 +18,7 @@ enum StorageKey: String {
     case goodFamilySelections
     case colorScheme
     case seenIntroSequence
+    case vacationModeEndDate
 }
 
 enum SettingsDestination: Identifiable {

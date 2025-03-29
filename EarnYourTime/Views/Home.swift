@@ -17,6 +17,7 @@ struct Home: View {
     @AppStorage(StorageKey.badAppTime.rawValue) private var badAppTime: Int = 0
     @AppStorage(StorageKey.goodFamilySelections.rawValue) private var goodFamilySelections: Data = Data()
     @AppStorage(StorageKey.badFamilySelections.rawValue) private var badFamilySelections: Data = Data()
+    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
 
     @Namespace private var animationNamespace
 
@@ -51,33 +52,29 @@ struct Home: View {
 //                #else
 
                 ZStack {
+                    ActivityCardView(
+                        title: "Good",
+                        duration: "...",
+                        primaryColor: .green
+                    )
+                    
                     if goodFilter != nil {
                         DeviceActivityReport(goodContext, filter: goodFilter!)
                             .opacity(showActivityView ? 1.0 : 0.0000001)
-                    }
-                    
-                    if !showActivityView {
-                        ActivityCardView(
-                            title: "Good",
-                            duration: "...",
-                            primaryColor: .green
-                        )
                     }
                 }
                 .frame(width: activityReportSize.width, height: activityReportSize.height)
                 
                 ZStack {
+                    ActivityCardView(
+                        title: "Bad",
+                        duration: "...",
+                        primaryColor: .red
+                    )
+
                     if badFilter != nil {
                         DeviceActivityReport(badContext, filter: badFilter!)
                             .opacity(showActivityView ? 1.0 : 0.0000001)
-                    }
-                    
-                    if !showActivityView {
-                        ActivityCardView(
-                            title: "Bad",
-                            duration: "...",
-                            primaryColor: .red
-                        )
                     }
                 }
                 .frame(width: activityReportSize.width, height: activityReportSize.height)
@@ -161,10 +158,12 @@ struct Home: View {
         .onChange(of: [checkpointTime, badAppTime]) {
             deviceActivityModel.updateMonitoring()
         }
+        // add a timer here to reset dayOne AppStorage to false, to enable normal usage
         .onChange(of: badFamilySelections, initial: true) {
             badFilter = DeviceActivityFilter(
                 segment: .daily(
                     during: DateInterval(
+                        // change here
                         start: .now,
                         end: Calendar.current.startOfDay(for: .now).addingTimeInterval(86400 - 1)
                     )
@@ -177,6 +176,7 @@ struct Home: View {
             goodFilter = DeviceActivityFilter(
                 segment: .daily(
                     during: DateInterval(
+                        // change here
                         start: .now,
                         end: Calendar.current.startOfDay(for: .now).addingTimeInterval(86400 - 1)
                     )
@@ -191,7 +191,7 @@ struct Home: View {
 #Preview {
     ZStack {
         AppBackground()
-            .edgesIgnoringSafeArea(.all)  // Ensure background covers the full screen
+            .edgesIgnoringSafeArea(.all)
         Home()
     }
     .environment(DeviceActivityModel())

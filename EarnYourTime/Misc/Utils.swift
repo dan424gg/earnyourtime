@@ -10,6 +10,9 @@ import FamilyControls
 import Foundation
 import ManagedSettings
 import SwiftUI
+import UserNotifications
+import BackgroundTasks
+
 
 func decode<T: Decodable>(_ type: T.Type, from data: Data, defaultValue: T) -> T {
     (try? JSONDecoder().decode(T.self, from: data)) ?? defaultValue
@@ -72,15 +75,36 @@ func getHeightOfScreen(includingSafeArea: Bool = false) -> CGFloat {
     return screenHeight
 }
 
-func formatDuration(seconds: Int) -> String {
-    let hours = seconds / 3600
+func formatDuration(seconds: Int, includeSeconds: Bool = false) -> String {
+    /*
+     day  = 86400s
+     hour = 3600s
+     min  = 60s
+     */
+    let days = seconds / 86400
+    let hours = (seconds % 86400) / 3600
     let minutes = (seconds % 3600) / 60
+    let remainingSeconds = seconds % 60
     
-    if hours > 0 {
-        return "\(hours)h \(minutes)m"
-    } else {
-        return "\(minutes)m"
+    var result = ""
+    
+    if days > 0 {
+        result += "\(days)d "
     }
+    
+    if hours > 0 || days > 0 {
+        result += "\(hours)h "
+    }
+    
+    if minutes > 0 || hours > 0 || days > 0 {
+        result += "\(minutes)m"
+    }
+    
+    if includeSeconds || result == "" {
+        result += " \(remainingSeconds)s"
+    }
+    
+    return result
 }
 
 struct OptionBackground: ViewModifier {

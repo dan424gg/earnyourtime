@@ -68,10 +68,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
         
-        Task {
-            await sendNotification(title:"here", subtitle: "got to checkpoint", waitDuration: 1, repeats: false)
-        }
-
         if event == DeviceActivityEvent.Name("checkpoint") {
             /// if we reach the goodAppMonitor threshold, we want to increase the badAppMonitor's threshold by the incrementHack.threshold
             let events = DeviceActivityCenter().events(for: activity)
@@ -125,10 +121,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         }
             
         else if event == DeviceActivityEvent.Name("badAppMonitor") {
-            Task {
-                await sendNotification(title:"here", subtitle: "got to badAppMonitor", waitDuration: 1, repeats: false)
-            }
-
             let events = DeviceActivityCenter().events(for: activity)
             
             if let badApps = events[DeviceActivityEvent.Name("badAppMonitor")]?.applications {

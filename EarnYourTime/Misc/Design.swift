@@ -219,19 +219,9 @@ struct ActivityCardView: View {
                 .background(
                     RoundedRectangle(cornerRadius: 16)
                         .fill(primaryColor.opacity(0.8))
-//                        .shadow(color: primaryColor.opacity(0.4), radius: 8, x: 0, y: 4)
                 )
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThinMaterial)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(primaryColor.opacity(0.7), lineWidth: 2)
-                )
-//                .shadow(color: primaryColor.opacity(0.3), radius: 8, x: 0, y: 4)
-        )
+        .activityBackground(color: primaryColor)
         .padding(2)
     }
 }
@@ -265,5 +255,28 @@ struct BadActivityTotalTimeView: View {
         .onAppear {
             progress = Double(activityReport)
         }
+    }
+}
+
+struct ActivityCardBackground: ViewModifier {
+    var color: Color
+    
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.ultraThinMaterial)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(color.opacity(0.7), lineWidth: 2)
+                    )
+            )
+    }
+}
+
+extension View {
+    func activityBackground(color: Color) -> some View {
+        self.modifier(ActivityCardBackground(color: color))
     }
 }

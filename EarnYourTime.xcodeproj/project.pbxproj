@@ -164,6 +164,7 @@
 		1E69E50F2D91A8B600BDB285 /* AppExperienceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExperienceInfo.swift; sourceTree = "<group>"; };
 		1E69E5112D91A8C300BDB285 /* AppearanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceInfo.swift; sourceTree = "<group>"; };
 		1E69E5132D91A8CA00BDB285 /* OtherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherInfo.swift; sourceTree = "<group>"; };
+		1E69E5152D978F8F00BDB285 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointTimeView.swift; sourceTree = "<group>"; };
 		1E7C82F32D7D33FF002C7B84 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMain.swift; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 		1E1479D92D7CD31B009D66B2 /* EarnYourTime */ = {
 			isa = PBXGroup;
 			children = (
+				1E69E5152D978F8F00BDB285 /* Info.plist */,
 				1E147A0E2D7CD46C009D66B2 /* EarnYourTime.entitlements */,
 				1E147A062D7CD364009D66B2 /* Views */,
 				1E147A792D7CE471009D66B2 /* Misc */,
@@ -421,7 +423,6 @@
 				1E325D642D7D915E0036F5C3 /* Personal */,
 				1E325D692D7D92620036F5C3 /* App Experience */,
 				1E325D652D7D91720036F5C3 /* Appearance */,
-				1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -442,6 +443,7 @@
 			children = (
 				1E69E5082D91A61900BDB285 /* Info */,
 				1E69E5072D91A60800BDB285 /* Views */,
+				1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -903,6 +905,7 @@
 				DEVELOPMENT_TEAM = 25UU64473F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EarnYourTime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -935,6 +938,7 @@
 				DEVELOPMENT_TEAM = 25UU64473F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EarnYourTime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

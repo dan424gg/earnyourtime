@@ -8,11 +8,12 @@
 import SwiftUI
 import StoreKit
 
-struct SettingsMain: View {    
+struct SettingsMain: View {
     @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
     @AppStorage(StorageKey.fullName.rawValue) var name: String = ""
     @AppStorage(StorageKey.colorScheme.rawValue) private var colorScheme: String = "system"
     
+    @Environment(DeviceActivityModel.self) private var deviceActivityModel
     @Environment(\.requestReview) var requestReview
     @Environment(\.openURL) var openURL
 
@@ -50,6 +51,10 @@ struct SettingsMain: View {
                         .onChange(of: vacationMode) { (old, new) in
                             if !old && new && selectedDestination == .none {
                                 selectedDestination = .vacationMode
+                            }
+                            
+                            if old && !new {
+                                deviceActivityModel.cancelVacationMode()
                             }
                         }
                     SettingsButton(text: "Good Apps", systemImage: "hand.thumbsup") {

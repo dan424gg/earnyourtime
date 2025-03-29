@@ -10,39 +10,19 @@
 import SwiftUI
 
 struct VacationModeView: View {
+    @Environment(\.dismiss) var dismiss
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
+    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
     @State var wasSaved: Bool = false
-    @State private var timer: Timer?
     @State private var days: Int = 0
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
-    @Environment(\.dismiss) var dismiss
-    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+
     
-    private var futureDate: Date {
-        let totalSeconds = (days * 24 * 3600) + (hours * 3600) + (minutes * 60)
-        return Date().addingTimeInterval(TimeInterval(totalSeconds))
+    var duration: Double {
+        return Double((days * 24 * 3600) + (hours * 3600) + (minutes * 60))
     }
     
-    func scheduleTimer() {
-        cancelTimer()
-        
-        let timeInterval = futureDate.timeIntervalSince(Date())
-        guard timeInterval > 0 else { return }
-        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { _ in
-            do {
-                try deviceActivityModel.startMonitoring()
-            } catch {
-                //
-            }
-        }
-    }
-
-    func cancelTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-
     var body: some View {
         NavigationView {
             Form {
@@ -65,17 +45,10 @@ struct VacationModeView: View {
             .safeAreaInset(edge: .bottom) {
                 SaveButton(disabled: days == 0 && hours == 0 && minutes == 0) {
                     wasSaved = true
-                    
-                    deviceActivityModel.stopMonitoring()
-                    scheduleTimer()
-                    
+                    vacationMode = true
+                    deviceActivityModel.startVacationMode(duration)
                     dismiss()
                 }
-            }
-        }
-        .onChange(of: vacationMode) { (old, new) in
-            if old && !new {
-                cancelTimer()
             }
         }
         .onDisappear {
@@ -83,7 +56,7 @@ struct VacationModeView: View {
                 vacationMode = false
             }
         }
-    }
+    }    
 }
 
 #Preview {

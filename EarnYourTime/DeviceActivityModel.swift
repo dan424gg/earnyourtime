@@ -10,6 +10,8 @@ import FamilyControls
 import Foundation
 import ManagedSettings
 import SwiftUI
+import BackgroundTasks
+
 
 // Extension for defining event names.
 extension DeviceActivityName {
@@ -23,6 +25,8 @@ extension DeviceActivityEvent.Name {
 
 @Observable
 class DeviceActivityModel {
+    @ObservationIgnored @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+    @ObservationIgnored @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
     private var deviceActivityCenter: DeviceActivityCenter
     
     init() {
@@ -50,18 +54,19 @@ class DeviceActivityModel {
                 categories: goodSelections.categoryTokens,
                 webDomains: goodSelections.webDomainTokens,
                 threshold: DateComponents(minute: checkpointTime / 60),
-                includesPastActivity: false
+                includesPastActivity: true
             ),
             .badAppMonitor: DeviceActivityEvent(
                 applications: badSelections.applicationTokens,
                 categories: badSelections.categoryTokens,
                 webDomains: badSelections.webDomainTokens,
-                threshold: DateComponents(minute: badAppTime / 60),
-                includesPastActivity: false
+                threshold: DateComponents(minute: 0),
+                includesPastActivity: true
             ),
         ]
         
         let schedule: DeviceActivitySchedule = DeviceActivitySchedule(
+            // change here
             intervalStart: DateComponents(hour: 0, minute: 0, second: 0),
             intervalEnd: DateComponents(hour: 23, minute: 59, second: 59),
             repeats: true
@@ -93,4 +98,64 @@ class DeviceActivityModel {
             print("Failed to restart monitoring: \(error)")
         }
     }
+    
+    func checkVacationModeStatus() {
+        let currentTime = Date().timeIntervalSince1970
+        if vacationMode, currentTime >= vacationModeEndDate {
+            stopVacationMode()
+        }
+    }
+
+    func scheduleBackgroundTask() {
+        let request = BGAppRefreshTaskRequest(identifier: "dan424gg.EarnYourTime.resumeMonitoring")
+
+        request.earliestBeginDate = Date(timeIntervalSince1970: vacationModeEndDate) // Schedule when Vacation Mode ends
+        
+        do {
+            try BGTaskScheduler.shared.submit(request)
+            print("Background task scheduled for \(vacationModeEndDate)")
+        } catch {
+            print("Could not schedule background task: \(error)")
+        }
+    }
+
+    func startVacationMode(_ duration: Double) {
+        let endDate = Date().addingTimeInterval(duration).timeIntervalSince1970
+        vacationModeEndDate = endDate
+        self.stopMonitoring()
+        scheduleVacationEndNotification()
+        self.scheduleBackgroundTask()
+    }
+
+    func stopVacationMode() {
+        vacationModeEndDate = 0
+        vacationMode = false
+        
+        do {
+            try self.startMonitoring()
+        } catch {}
+    }
+
+    func cancelVacationMode() {
+        vacationModeEndDate = 0
+        vacationMode = false
+        
+        cancelScheduledVacationNotification()
+        cancelBackgroundTask()
+        
+        do {
+            try self.startMonitoring()
+        } catch {}
+    }
+
+    func cancelScheduledVacationNotification() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["VacationModeEnd"])
+        print("Canceled Vacation Mode notification")
+    }
+
+    func cancelBackgroundTask() {
+        BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: "dan424gg.EarnYourTime.resumeMonitoring")
+        print("Canceled Vacation Mode background task")
+    }
+
 }

@@ -46,3 +46,23 @@ func sendNotification(title: String, subtitle: String, waitDuration: Double = 5.
         print(error)
     }
 }
+
+func scheduleVacationEndNotification() {
+    @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
+    
+    let content = UNMutableNotificationContent()
+    content.title = "Vacation Mode Ended"
+    content.body = "Time tracking has resumed."
+    content.sound = .default
+
+    let triggerDate = Date(timeIntervalSince1970: vacationModeEndDate)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: triggerDate), repeats: false)
+
+    let request = UNNotificationRequest(identifier: "VacationModeEnd", content: content, trigger: trigger)
+
+    UNUserNotificationCenter.current().add(request) { error in
+        if let error = error {
+            print("Failed to schedule notification: \(error)")
+        }
+    }
+}
