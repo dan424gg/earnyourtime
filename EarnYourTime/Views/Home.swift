@@ -12,12 +12,11 @@ import DeviceActivity
 struct Home: View {
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
     
-    @AppStorage(StorageKey.fullName.rawValue) var userName: String = ""
+    @AppStorage(StorageKey.fullName.rawValue) var userName: String = "Dan"
     @AppStorage(StorageKey.checkpointTime.rawValue) private var checkpointTime: Int = 30 * 60
     @AppStorage(StorageKey.badAppTime.rawValue) private var badAppTime: Int = 0
     @AppStorage(StorageKey.goodFamilySelections.rawValue) private var goodFamilySelections: Data = Data()
     @AppStorage(StorageKey.badFamilySelections.rawValue) private var badFamilySelections: Data = Data()
-    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
 
     @Namespace private var animationNamespace
 
@@ -94,15 +93,16 @@ struct Home: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Usage Time")) {
+                Section {
                     VStack(spacing: 16) {
+                        MonitoringStatusView()
                         deviceActivityView
                         CheckpointTimeView(checkpoint: checkpointTime)
                     }
                 }
                 .listRowBackground(Color.clear)
                 
-                Section(header: Text("Calculate Checkpoint Time")) {
+                Section {
                     Button {
                         withAnimation {
                             showSheet.toggle()

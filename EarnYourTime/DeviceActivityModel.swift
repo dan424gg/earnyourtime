@@ -25,8 +25,6 @@ extension DeviceActivityEvent.Name {
 
 @Observable
 class DeviceActivityModel {
-    @ObservationIgnored @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
-    @ObservationIgnored @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
     private var deviceActivityCenter: DeviceActivityCenter
     
     init() {
@@ -100,6 +98,9 @@ class DeviceActivityModel {
     }
     
     func checkVacationModeStatus() {
+        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
+        
         let currentTime = Date().timeIntervalSince1970
         if vacationMode, currentTime >= vacationModeEndDate {
             stopVacationMode()
@@ -107,6 +108,9 @@ class DeviceActivityModel {
     }
 
     func scheduleBackgroundTask() {
+        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
+        
         let request = BGAppRefreshTaskRequest(identifier: "dan424gg.EarnYourTime.resumeMonitoring")
 
         request.earliestBeginDate = Date(timeIntervalSince1970: vacationModeEndDate) // Schedule when Vacation Mode ends
@@ -120,6 +124,9 @@ class DeviceActivityModel {
     }
 
     func startVacationMode(_ duration: Double) {
+        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
+        
         let endDate = Date().addingTimeInterval(duration).timeIntervalSince1970
         vacationModeEndDate = endDate
         self.stopMonitoring()
@@ -128,6 +135,9 @@ class DeviceActivityModel {
     }
 
     func stopVacationMode() {
+        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
+        
         vacationModeEndDate = 0
         vacationMode = false
         
@@ -137,6 +147,9 @@ class DeviceActivityModel {
     }
 
     func cancelVacationMode() {
+        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
+        
         vacationModeEndDate = 0
         vacationMode = false
         
