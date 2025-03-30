@@ -7,16 +7,19 @@
 
 import SwiftUI
 import StoreKit
+import BackgroundTasks
 
 struct SettingsMain: View {
     @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+    @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
     @AppStorage(StorageKey.fullName.rawValue) var name: String = ""
     @AppStorage(StorageKey.colorScheme.rawValue) private var colorScheme: String = "system"
-    
+    @AppStorage(StorageKey.isMonitoring.rawValue) private var isMonitoring: Bool = false
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
     @Environment(\.requestReview) var requestReview
     @Environment(\.openURL) var openURL
 
+    @State private var temp_vacationMode: Bool = false
     @State private var selectedDestination: SettingsDestination?
     @State private var selectedCategory: SettingsCategory?
 
@@ -47,14 +50,17 @@ struct SettingsMain: View {
                             }
                     }
                 ) {
-                    SettingsToggle(state: $vacationMode, text: "Vacation Mode", systemImage: "beach.umbrella")
-                        .onChange(of: vacationMode) { (old, new) in
-                            if !old && new && selectedDestination == .none {
-                                selectedDestination = .vacationMode
-                            }
-                            
-                            if old && !new {
-                                deviceActivityModel.cancelVacationMode()
+//                    SettingsButton(text: "Vacation Mode", systemImage: "beach.umbrella") {
+//                        selectedDestination = .vacationMode
+//                    }
+                    SettingsToggle(state: $isMonitoring, text: "Monitoring", systemImage: "antenna.radiowaves.left.and.right")
+                        .onChange(of: isMonitoring) {
+                            if isMonitoring {
+                                do {
+                                    try deviceActivityModel.startMonitoring()
+                                } catch {}
+                            } else {
+                                deviceActivityModel.stopMonitoring()
                             }
                         }
                     SettingsButton(text: "Good Apps", systemImage: "hand.thumbsup") {
@@ -127,7 +133,7 @@ struct SettingsMain: View {
                 case .notifications:
                     NotificationsSettingsView()
                 case .vacationMode:
-                    VacationModeView()
+                    VacationModeView(temp_vacationMode: $temp_vacationMode)
                         .presentationDragIndicator(.visible)
                         .presentationBackground(.thinMaterial)
                 case .goodApps:

@@ -131,9 +131,9 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
                 }
             }
             
-            Task {
-                await sendNotification(title:"Oh no!", subtitle: "Use your \"productive\" apps to get more time.")
-            }
+//            Task {
+//                await sendNotification(title:"Oh no!", subtitle: "Use your \"productive\" apps to get more time.")
+//            }
         }
         
     }

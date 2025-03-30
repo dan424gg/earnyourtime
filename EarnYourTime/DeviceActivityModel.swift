@@ -38,6 +38,7 @@ class DeviceActivityModel {
         @AppStorage(StorageKey.checkpointTime.rawValue) var checkpointTime: Int = -1
         @AppStorage(StorageKey.goodFamilySelections.rawValue) var goodSelectionsStorage: Data = Data()
         @AppStorage(StorageKey.badFamilySelections.rawValue) var badSelectionsStorage: Data = Data()
+        @AppStorage(StorageKey.isMonitoring.rawValue) var isMonitoring: Bool = true
         
         let goodSelections: FamilyActivitySelection = decode(FamilyActivitySelection.self, from: goodSelectionsStorage, defaultValue: FamilyActivitySelection())
         let badSelections: FamilyActivitySelection = decode(FamilyActivitySelection.self, from: badSelectionsStorage, defaultValue: FamilyActivitySelection())
@@ -71,17 +72,20 @@ class DeviceActivityModel {
         )
         
         try self.deviceActivityCenter.startMonitoring(.daily, during: schedule, events: events)
+        isMonitoring = true
         print("Started monitoring at \(Calendar.current.component(.minute, from: Date()))")
     }
 
     // Stop monitoring device activity.
     func stopMonitoring() {
+        @AppStorage(StorageKey.isMonitoring.rawValue) var isMonitoring: Bool = true
+        
         let store = ManagedSettingsStore()
         store.shield.applications = nil
         store.shield.webDomains = nil
         
         self.deviceActivityCenter.stopMonitoring()
-        
+        isMonitoring = false
         print("Stopped monitoring")
     }
 
@@ -96,79 +100,4 @@ class DeviceActivityModel {
             print("Failed to restart monitoring: \(error)")
         }
     }
-    
-    func checkVacationModeStatus() {
-        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
-        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
-        
-        let currentTime = Date().timeIntervalSince1970
-        if vacationMode, currentTime >= vacationModeEndDate {
-            stopVacationMode()
-        }
-    }
-
-    func scheduleBackgroundTask() {
-        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
-        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
-        
-        let request = BGAppRefreshTaskRequest(identifier: "dan424gg.EarnYourTime.resumeMonitoring")
-
-        request.earliestBeginDate = Date(timeIntervalSince1970: vacationModeEndDate) // Schedule when Vacation Mode ends
-        
-        do {
-            try BGTaskScheduler.shared.submit(request)
-            print("Background task scheduled for \(vacationModeEndDate)")
-        } catch {
-            print("Could not schedule background task: \(error)")
-        }
-    }
-
-    func startVacationMode(_ duration: Double) {
-        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
-        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
-        
-        let endDate = Date().addingTimeInterval(duration).timeIntervalSince1970
-        vacationModeEndDate = endDate
-        self.stopMonitoring()
-        scheduleVacationEndNotification()
-        self.scheduleBackgroundTask()
-    }
-
-    func stopVacationMode() {
-        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
-        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
-        
-        vacationModeEndDate = 0
-        vacationMode = false
-        
-        do {
-            try self.startMonitoring()
-        } catch {}
-    }
-
-    func cancelVacationMode() {
-        @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
-        @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
-        
-        vacationModeEndDate = 0
-        vacationMode = false
-        
-        cancelScheduledVacationNotification()
-        cancelBackgroundTask()
-        
-        do {
-            try self.startMonitoring()
-        } catch {}
-    }
-
-    func cancelScheduledVacationNotification() {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["VacationModeEnd"])
-        print("Canceled Vacation Mode notification")
-    }
-
-    func cancelBackgroundTask() {
-        BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: "dan424gg.EarnYourTime.resumeMonitoring")
-        print("Canceled Vacation Mode background task")
-    }
-
 }

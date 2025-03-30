@@ -63,7 +63,7 @@ struct ContentView: View {
                     .background(AppBackground())
                 }
                 .safeAreaInset(edge: .bottom) {
-                    SaveButton(disabled: !isAllFilledOut()) {
+                    ActionButton(disabled: !isAllFilledOut()) {
                         seenIntroSequence = true
                         do {
                             try deviceActivityModel.startMonitoring()
@@ -85,9 +85,7 @@ struct ContentView: View {
                         case .notifications:
                             NotificationsSettingsView()
                         case .vacationMode:
-                            VacationModeView()
-                                .presentationDragIndicator(.visible)
-                                .presentationBackground(.thinMaterial)
+                            EmptyView()
                         case .goodApps:
                             GoodAppsSelectorView()
                                 .presentationDragIndicator(.visible)

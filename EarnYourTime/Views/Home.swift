@@ -17,6 +17,8 @@ struct Home: View {
     @AppStorage(StorageKey.badAppTime.rawValue) private var badAppTime: Int = 0
     @AppStorage(StorageKey.goodFamilySelections.rawValue) private var goodFamilySelections: Data = Data()
     @AppStorage(StorageKey.badFamilySelections.rawValue) private var badFamilySelections: Data = Data()
+    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+    @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
 
     @Namespace private var animationNamespace
 

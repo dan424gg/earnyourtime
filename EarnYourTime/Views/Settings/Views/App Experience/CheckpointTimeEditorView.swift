@@ -39,7 +39,7 @@ struct CheckpointTimeEditorView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: timeInSeconds == 0) {
+                ActionButton(disabled: timeInSeconds == 0) {
                     checkpointTime = timeInSeconds
                     dismiss()
                 }

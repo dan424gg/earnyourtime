@@ -41,7 +41,7 @@ struct BadAppTimeLimitEditorView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: timeInSeconds == 0) {
+                ActionButton(disabled: timeInSeconds == 0) {
                     if timeInSeconds > checkpointTime {
                         showAlert.toggle()
                     } else {

@@ -32,7 +32,7 @@ struct NameEditorView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: tempName == "") {
+                ActionButton(disabled: tempName == "") {
                     name = tempName
                     dismiss()
                 }

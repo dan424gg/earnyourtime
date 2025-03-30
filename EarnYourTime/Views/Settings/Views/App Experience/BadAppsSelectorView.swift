@@ -33,7 +33,7 @@ struct BadAppsSelectorView: View {
                 tempFamilySelectionsData = decode(FamilyActivitySelection.self, from: familySelectionsData, defaultValue: FamilyActivitySelection())
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: tempFamilySelectionsData == FamilyActivitySelection()) {
+                ActionButton(disabled: tempFamilySelectionsData == FamilyActivitySelection()) {
                     familySelectionsData = encode(tempFamilySelectionsData)
                     dismiss()
                 }

@@ -79,7 +79,7 @@ struct ActivityCardView: View {
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .fill(primaryColor.opacity(0.5))
+                        .fill(primaryColor)
                 )
         }
         .padding()

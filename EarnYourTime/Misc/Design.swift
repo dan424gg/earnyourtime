@@ -83,27 +83,49 @@ struct AppBackground: View {
     }
 }
 
-struct SaveButton: View {    
+struct ActionButton: View {    
     var disabled: Bool
+    var text: String = "Save"
+    var color: Color?
     var action: (() -> Void)? = nil
+    
+    @State private var textColor: Color = .white
+    @State private var buttonColor: Color = .black
+
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         Button {
             action?()
         } label: {
-            Text("Save")
-                .foregroundStyle(colorScheme == .dark ? Color.black : .white)
+            Text(text)
+                .fontWeight(.semibold)
+                .foregroundStyle(textColor)
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .fill(colorScheme == .dark ? Color.white : .black)
+                        .fill(buttonColor)
                 )
+        }
+        .onAppear {
+            if color == nil {
+                textColor = (colorScheme == .dark ? Color.black : .white)
+                buttonColor = (colorScheme == .dark ? Color.white : .black)
+            } else {
+                textColor = (colorScheme == .dark ? Color.black : .white)
+                buttonColor = color!
+            }
         }
         .buttonStyle(.plain)
         .disabled(disabled)
         .padding()
+    }
+}
+
+#Preview {
+    ActionButton(disabled: false, text: "Cancel", color: .red) {
+        // something
     }
 }
 
