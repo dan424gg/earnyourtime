@@ -17,9 +17,9 @@ struct EarnYourTimeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            Testing()
             ContentView()
                 .environment(deviceActivityModel)
+                .environment(OnboardingObservable())
                 .onAppear {
                     // Ensure to apply the appearance mode when the view appears
                     updateAppearanceMode()

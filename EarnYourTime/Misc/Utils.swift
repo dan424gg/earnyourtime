@@ -107,6 +107,25 @@ func formatDuration(seconds: Int, includeSeconds: Bool = false) -> String {
     return result
 }
 
+func getEod(_ timestamp: TimeInterval) -> TimeInterval {
+    let date = Date(timeIntervalSince1970: timestamp)
+    let calendar = Calendar.current
+
+    // Get the start of the next day
+    if let startOfNextDay = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: date)) {
+        // Subtract one second (or nanosecond if you want extreme precision)
+        let endOfDay = startOfNextDay.addingTimeInterval(-1)
+        
+        print("End of day:", endOfDay)
+        
+        let endOfDayTimestamp = endOfDay.timeIntervalSince1970
+        
+        return endOfDayTimestamp
+    } else {
+        return 0
+    }
+}
+
 struct OptionBackground: ViewModifier {
     var width: CGFloat
     

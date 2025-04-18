@@ -11,7 +11,6 @@ import Foundation
 enum StorageKey: String {
     case fullName
     case vacationMode
-    case lastOpenedPage
     case checkpointTime
     case badAppTime
     case badFamilySelections
@@ -20,6 +19,7 @@ enum StorageKey: String {
     case seenIntroSequence
     case vacationModeEndDate
     case isMonitoring
+    case recentUpdateTime
 }
 
 enum SettingsDestination: Identifiable {

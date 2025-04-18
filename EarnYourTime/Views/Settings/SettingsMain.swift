@@ -196,5 +196,6 @@ struct SettingsMain: View {
     ZStack {
         AppBackground()
         SettingsMain()
+            .environment(DeviceActivityModel())
     }
 }

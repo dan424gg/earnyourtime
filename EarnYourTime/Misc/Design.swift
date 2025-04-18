@@ -83,7 +83,7 @@ struct AppBackground: View {
     }
 }
 
-struct ActionButton: View {    
+struct ActionButton: View {
     var disabled: Bool
     var text: String = "Save"
     var color: Color?
@@ -91,9 +91,9 @@ struct ActionButton: View {
     
     @State private var textColor: Color = .white
     @State private var buttonColor: Color = .black
-
+    
     @Environment(\.colorScheme) var colorScheme
-
+    
     var body: some View {
         Button {
             action?()
@@ -110,22 +110,16 @@ struct ActionButton: View {
         }
         .onAppear {
             if color == nil {
-                textColor = (colorScheme == .dark ? Color.black : .white)
-                buttonColor = (colorScheme == .dark ? Color.white : .black)
+                textColor = (colorScheme == .dark ? Color.white : .black)
+                buttonColor = (colorScheme == .dark ? Color.black : .white)
             } else {
-                textColor = (colorScheme == .dark ? Color.black : .white)
+                textColor = (colorScheme == .dark ? Color.white : .black)
                 buttonColor = color!
             }
         }
         .buttonStyle(.plain)
         .disabled(disabled)
         .padding()
-    }
-}
-
-#Preview {
-    ActionButton(disabled: false, text: "Cancel", color: .red) {
-        // something
     }
 }
 
@@ -227,11 +221,14 @@ struct ActivityCardView: View {
     var duration: String
     var primaryColor: Color
     
+    @AppStorage(StorageKey.isMonitoring.rawValue) private var isMonitoring = false
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         VStack(spacing: 8) {
             Text(title)
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(primaryColor)
+                .font(.system(size: 18, weight: .medium))
+                .foregroundStyle(colorScheme == .dark ? .white : .black)
 
             Text(duration)
                 .font(.system(size: 20, weight: .bold))
@@ -244,6 +241,7 @@ struct ActivityCardView: View {
                 )
         }
         .activityBackground(color: primaryColor)
+//        .disabledOverlay(isDisabled: !isMonitoring)
         .padding(2)
     }
 }
@@ -289,6 +287,10 @@ struct ActivityCardBackground: ViewModifier {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.ultraThinMaterial)
+                    .background {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(color.opacity(0.12))
+                    }
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke(color.opacity(0.7), lineWidth: 2)
@@ -297,8 +299,97 @@ struct ActivityCardBackground: ViewModifier {
     }
 }
 
+#Preview {
+    Button {
+        //
+    } label: {
+        HStack {
+            Text("Notifications")
+                .font(.title3)
+                .fontWeight(.medium)
+
+            Spacer()
+            Image(systemName: "arrow.right")
+        }
+        .contentShape(Rectangle())
+    }
+    .buttonStyle(.plain)
+    .activityBackground(color: .gray)
+    .frame(width: getWidthOfScreen() * 0.75)
+}
+
 extension View {
     func activityBackground(color: Color) -> some View {
         self.modifier(ActivityCardBackground(color: color))
+    }
+}
+
+struct DisabledOverlayModifier: ViewModifier {
+    let isDisabled: Bool
+    let message: String?
+
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+                .disabled(isDisabled)
+//                .blur(radius: isDisabled ? 2 : 0)
+
+            if isDisabled {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color.black.opacity(0.3))
+                        .overlay(DiagonalLines().clipShape(RoundedRectangle(cornerRadius: 16)))
+
+                    if let message = message {
+                        Text(message)
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 16).fill(Color.black.opacity(0.7)))
+                    }
+                }
+//                .padding(-10) // Adjust for better appearance
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+            }
+        }
+        .animation(.easeInOut, value: isDisabled)
+    }
+}
+
+// Diagonal Lines Shape
+struct DiagonalLines: View {
+    var body: some View {
+        Canvas { context, size in
+            let spacing: CGFloat = 30
+            let color = Color.white.opacity(0.3)
+
+            for x in stride(from: -size.height, to: size.width, by: spacing) {
+                var path = Path()
+                path.move(to: CGPoint(x: x, y: -10))
+                path.addLine(to: CGPoint(x: x + size.height + 5, y: size.height + 10))
+                context.stroke(path, with: .color(color), lineWidth: 10)
+            }
+        }
+    }
+}
+
+extension View {
+    func disabledOverlay(isDisabled: Bool, message: String? = nil) -> some View {
+        modifier(DisabledOverlayModifier(isDisabled: isDisabled, message: message))
+    }
+}
+
+struct PermissionsArrowCheck: View {
+    var conditional: Bool
+    
+    var body: some View {
+        if conditional {
+            Image(systemName: "checkmark.circle.fill")
+                .foregroundStyle(.white, .green)
+                .font(.title3)
+        } else {
+            Image(systemName: "arrow.right")
+                .font(.title3)
+        }
     }
 }

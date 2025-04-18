@@ -35,6 +35,7 @@
 		1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A722D7CDAC7009D66B2 /* Design.swift */; };
 		1E147A762D7CDFB6009D66B2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A752D7CDFB6009D66B2 /* Design.swift */; };
 		1E147A782D7CE05E009D66B2 /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E147A772D7CE05E009D66B2 /* testing.swift */; };
+		1E157C4B2DAB84B40016E7CA /* NameOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E157C4A2DAB84B40016E7CA /* NameOnboardingView.swift */; };
 		1E2514D72D82867900DBF598 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2514D62D82867900DBF598 /* Constants.swift */; };
 		1E325D682D7D91B20036F5C3 /* VacationModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E325D672D7D91B20036F5C3 /* VacationModeView.swift */; };
 		1E69E4E32D90DE1900BDB285 /* DeviceActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E69E4E22D90DE1900BDB285 /* DeviceActivityModel.swift */; };
@@ -53,6 +54,14 @@
 		1E7C83052D7D862E002C7B84 /* GoodAppsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83042D7D862E002C7B84 /* GoodAppsSelectorView.swift */; };
 		1E7C83072D7D8636002C7B84 /* BadAppsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83062D7D8636002C7B84 /* BadAppsSelectorView.swift */; };
 		1E7C83092D7D863F002C7B84 /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */; };
+		1ED16C552DA0C0F700E7BF2C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16C542DA0C0F700E7BF2C /* OnboardingView.swift */; };
+		1ED16C582DA0C17500E7BF2C /* IntroOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16C572DA0C17500E7BF2C /* IntroOnboardingView.swift */; };
+		1ED16C5A2DA0C17D00E7BF2C /* TextOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16C592DA0C17D00E7BF2C /* TextOnboardingView.swift */; };
+		1ED16C5C2DA0C19400E7BF2C /* PermissionsOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16C5B2DA0C19400E7BF2C /* PermissionsOnboardingView.swift */; };
+		1ED16C5E2DA0C19D00E7BF2C /* AppSelectionOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16C5D2DA0C19D00E7BF2C /* AppSelectionOnboardingView.swift */; };
+		1ED16C602DA0C1A600E7BF2C /* TimeSelectionOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16C5F2DA0C1A600E7BF2C /* TimeSelectionOnboardingView.swift */; };
+		1ED16C622DA0C1AD00E7BF2C /* FinalOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16C612DA0C1AD00E7BF2C /* FinalOnboardingView.swift */; };
+		1ED16C642DA0C27400E7BF2C /* OnboardingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED16C632DA0C27400E7BF2C /* OnboardingObservable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +167,7 @@
 		1E147A722D7CDAC7009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		1E147A752D7CDFB6009D66B2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		1E147A772D7CE05E009D66B2 /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
+		1E157C4A2DAB84B40016E7CA /* NameOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOnboardingView.swift; sourceTree = "<group>"; };
 		1E2514D62D82867900DBF598 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1E325D672D7D91B20036F5C3 /* VacationModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationModeView.swift; sourceTree = "<group>"; };
 		1E69E4E22D90DE1900BDB285 /* DeviceActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityModel.swift; sourceTree = "<group>"; };
@@ -177,6 +187,14 @@
 		1E7C83042D7D862E002C7B84 /* GoodAppsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodAppsSelectorView.swift; sourceTree = "<group>"; };
 		1E7C83062D7D8636002C7B84 /* BadAppsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadAppsSelectorView.swift; sourceTree = "<group>"; };
 		1E7C83082D7D863F002C7B84 /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
+		1ED16C542DA0C0F700E7BF2C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		1ED16C572DA0C17500E7BF2C /* IntroOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroOnboardingView.swift; sourceTree = "<group>"; };
+		1ED16C592DA0C17D00E7BF2C /* TextOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnboardingView.swift; sourceTree = "<group>"; };
+		1ED16C5B2DA0C19400E7BF2C /* PermissionsOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsOnboardingView.swift; sourceTree = "<group>"; };
+		1ED16C5D2DA0C19D00E7BF2C /* AppSelectionOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSelectionOnboardingView.swift; sourceTree = "<group>"; };
+		1ED16C5F2DA0C1A600E7BF2C /* TimeSelectionOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectionOnboardingView.swift; sourceTree = "<group>"; };
+		1ED16C612DA0C1AD00E7BF2C /* FinalOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalOnboardingView.swift; sourceTree = "<group>"; };
+		1ED16C632DA0C27400E7BF2C /* OnboardingObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingObservable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +318,7 @@
 		1E147A062D7CD364009D66B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1EF609882DA0BF9100C2B9AB /* Onboarding */,
 				1E7C82F72D7D5AB6002C7B84 /* Settings */,
 				1E147A072D7CD37F009D66B2 /* Home.swift */,
 				1E7C82F12D7D3394002C7B84 /* CheckpointTimeView.swift */,
@@ -449,6 +468,30 @@
 				1E7C82FA2D7D5B0A002C7B84 /* SettingsMain.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		1ED16C562DA0C15800E7BF2C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1ED16C572DA0C17500E7BF2C /* IntroOnboardingView.swift */,
+				1ED16C592DA0C17D00E7BF2C /* TextOnboardingView.swift */,
+				1E157C4A2DAB84B40016E7CA /* NameOnboardingView.swift */,
+				1ED16C5B2DA0C19400E7BF2C /* PermissionsOnboardingView.swift */,
+				1ED16C5D2DA0C19D00E7BF2C /* AppSelectionOnboardingView.swift */,
+				1ED16C5F2DA0C1A600E7BF2C /* TimeSelectionOnboardingView.swift */,
+				1ED16C612DA0C1AD00E7BF2C /* FinalOnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1EF609882DA0BF9100C2B9AB /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1ED16C562DA0C15800E7BF2C /* Views */,
+				1ED16C542DA0C0F700E7BF2C /* OnboardingView.swift */,
+				1ED16C632DA0C27400E7BF2C /* OnboardingObservable.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -672,17 +715,24 @@
 			files = (
 				1E69E5142D91A8CA00BDB285 /* OtherInfo.swift in Sources */,
 				1E2514D72D82867900DBF598 /* Constants.swift in Sources */,
+				1E157C4B2DAB84B40016E7CA /* NameOnboardingView.swift in Sources */,
 				1E7C83032D7D8623002C7B84 /* NotificationsSettingsView.swift in Sources */,
+				1ED16C642DA0C27400E7BF2C /* OnboardingObservable.swift in Sources */,
 				1E7C82FD2D7D6A6E002C7B84 /* NameEditorView.swift in Sources */,
+				1ED16C622DA0C1AD00E7BF2C /* FinalOnboardingView.swift in Sources */,
 				1E69E5122D91A8C300BDB285 /* AppearanceInfo.swift in Sources */,
 				1E1479DD2D7CD31B009D66B2 /* ContentView.swift in Sources */,
+				1ED16C5C2DA0C19400E7BF2C /* PermissionsOnboardingView.swift in Sources */,
 				1E147A732D7CDAC7009D66B2 /* Design.swift in Sources */,
 				1E69E5102D91A8B600BDB285 /* AppExperienceInfo.swift in Sources */,
 				1E325D682D7D91B20036F5C3 /* VacationModeView.swift in Sources */,
 				1E147A6F2D7CD888009D66B2 /* NotificationsManager.swift in Sources */,
 				1E69E5192D989C6B00BDB285 /* MonitoringStatusView.swift in Sources */,
 				1E7C83052D7D862E002C7B84 /* GoodAppsSelectorView.swift in Sources */,
+				1ED16C602DA0C1A600E7BF2C /* TimeSelectionOnboardingView.swift in Sources */,
+				1ED16C552DA0C0F700E7BF2C /* OnboardingView.swift in Sources */,
 				1E7C83072D7D8636002C7B84 /* BadAppsSelectorView.swift in Sources */,
+				1ED16C582DA0C17500E7BF2C /* IntroOnboardingView.swift in Sources */,
 				1E7C82FB2D7D5B0A002C7B84 /* SettingsMain.swift in Sources */,
 				1E147A082D7CD37F009D66B2 /* Home.swift in Sources */,
 				1E147A782D7CE05E009D66B2 /* testing.swift in Sources */,
@@ -691,10 +741,12 @@
 				1E7C83012D7D83C5002C7B84 /* BadAppTimeLimitEditorView.swift in Sources */,
 				1E69E50E2D91A65600BDB285 /* PersonalInfo.swift in Sources */,
 				1E147A0D2D7CD40A009D66B2 /* Utils.swift in Sources */,
+				1ED16C5E2DA0C19D00E7BF2C /* AppSelectionOnboardingView.swift in Sources */,
 				1E7C82F42D7D33FF002C7B84 /* TimePickerView.swift in Sources */,
 				1E7C83092D7D863F002C7B84 /* AppearanceSettingsView.swift in Sources */,
 				1E7C82FF2D7D7E85002C7B84 /* CheckpointTimeEditorView.swift in Sources */,
 				1E69E4E32D90DE1900BDB285 /* DeviceActivityModel.swift in Sources */,
+				1ED16C5A2DA0C17D00E7BF2C /* TextOnboardingView.swift in Sources */,
 				1E7C82F22D7D3394002C7B84 /* CheckpointTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

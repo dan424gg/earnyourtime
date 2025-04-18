@@ -4,7 +4,7 @@ import Combine
 struct MonitoringStatusView: View {
     @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = true
     @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
-    @AppStorage(StorageKey.isMonitoring.rawValue) private var isMonitoring: Bool = true
+    @AppStorage(StorageKey.isMonitoring.rawValue) private var isMonitoring: Bool = false
     @State private var timeLeft: Double = 0
     @State private var timerRunning: Bool = false
     private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -17,17 +17,6 @@ struct MonitoringStatusView: View {
         VStack {
             statusIndicator
                 .activityBackground(color: color)
-//                .onAppear {
-//                    updateTimeLeft()
-//                }
-//                .onChange(of: vacationMode) { _, newValue in
-//                    if newValue {
-//                        updateTimeLeft()
-//                    } else {
-//                        timeLeft = 0
-//                        timerRunning = false
-//                    }
-//                }
         }
     }
 
@@ -36,11 +25,11 @@ struct MonitoringStatusView: View {
             HStack {
                 Image(systemName: isMonitoring ? "checkmark.circle.fill" : "x.circle.fill")
                     .foregroundColor(color)
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 18, weight: .medium))
                     .animation(.easeInOut, value: isMonitoring)
                 
                 Text(isMonitoring ? "Monitoring Active" : "Monitoring Inactive")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: 14, weight: .medium))
                     .animation(.easeInOut, value: isMonitoring)
             }
 
