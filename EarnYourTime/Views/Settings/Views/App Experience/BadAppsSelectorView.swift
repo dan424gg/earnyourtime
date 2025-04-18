@@ -9,7 +9,10 @@ import SwiftUI
 import FamilyControls
 
 struct BadAppsSelectorView: View {
+    var updateMonitoring: Bool = true
+    
     @State private var tempFamilySelectionsData: FamilyActivitySelection = FamilyActivitySelection()
+    @Environment(DeviceActivityModel.self) private var deviceActivityModel
     @AppStorage(StorageKey.badFamilySelections.rawValue) private var familySelectionsData: Data = Data()
     @Environment(\.dismiss) var dismiss
         
@@ -33,8 +36,11 @@ struct BadAppsSelectorView: View {
                 tempFamilySelectionsData = decode(FamilyActivitySelection.self, from: familySelectionsData, defaultValue: FamilyActivitySelection())
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: tempFamilySelectionsData == FamilyActivitySelection()) {
+                ActionButton(disabled: tempFamilySelectionsData == FamilyActivitySelection()) {
                     familySelectionsData = encode(tempFamilySelectionsData)
+                    if updateMonitoring {
+                        deviceActivityModel.updateMonitoring()
+                    }
                     dismiss()
                 }
             }

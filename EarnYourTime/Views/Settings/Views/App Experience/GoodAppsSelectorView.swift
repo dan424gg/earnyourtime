@@ -10,7 +10,10 @@ import FamilyControls
 
 
 struct GoodAppsSelectorView: View {
+    var updateMonitoring: Bool = true
+    
     @State private var tempFamilySelectionsData: FamilyActivitySelection = FamilyActivitySelection()
+    @Environment(DeviceActivityModel.self) private var deviceActivityModel
     @AppStorage(StorageKey.goodFamilySelections.rawValue) private var familySelectionsData: Data = Data()
     @Environment(\.dismiss) var dismiss
             
@@ -34,8 +37,11 @@ struct GoodAppsSelectorView: View {
                 tempFamilySelectionsData = decode(FamilyActivitySelection.self, from: familySelectionsData, defaultValue: FamilyActivitySelection())
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: tempFamilySelectionsData == FamilyActivitySelection()) {
+                ActionButton(disabled: tempFamilySelectionsData == FamilyActivitySelection()) {
                     familySelectionsData = encode(tempFamilySelectionsData)
+                    if updateMonitoring {
+                        deviceActivityModel.updateMonitoring()
+                    }
                     dismiss()
                 }
             }

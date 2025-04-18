@@ -13,11 +13,15 @@ struct Home: View {
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
     
     @AppStorage(StorageKey.fullName.rawValue) var userName: String = ""
-    @AppStorage(StorageKey.checkpointTime.rawValue) private var checkpointTime: Int = 30 * 60
+    @AppStorage(StorageKey.checkpointTime.rawValue) private var checkpointTime: Int = 0
     @AppStorage(StorageKey.badAppTime.rawValue) private var badAppTime: Int = 0
     @AppStorage(StorageKey.goodFamilySelections.rawValue) private var goodFamilySelections: Data = Data()
     @AppStorage(StorageKey.badFamilySelections.rawValue) private var badFamilySelections: Data = Data()
-
+    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+    @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
+    @AppStorage(StorageKey.isMonitoring.rawValue) private var isMonitoring: Bool = false
+    @AppStorage(StorageKey.recentUpdateTime.rawValue) private var recentUpdateTime: Double = -1
+    
     @Namespace private var animationNamespace
 
     @State private var showSettings: Bool = false
@@ -33,6 +37,14 @@ struct Home: View {
     
     @State private var activityReportSize: CGSize = .zero
         
+    var startTime: Date {
+        if recentUpdateTime != -1 {
+            return Date(timeIntervalSince1970: recentUpdateTime)
+        } else {
+            return .now
+        }
+    }
+    
     var deviceActivityView: some View {
         ZStack {
             // hacky way to get size of report
@@ -51,33 +63,29 @@ struct Home: View {
 //                #else
 
                 ZStack {
-                    if goodFilter != nil {
+                    ActivityCardView(
+                        title: "Good",
+                        duration: "...",
+                        primaryColor: .green
+                    )
+                    
+                    if isMonitoring && goodFilter != nil {
                         DeviceActivityReport(goodContext, filter: goodFilter!)
                             .opacity(showActivityView ? 1.0 : 0.0000001)
-                    }
-                    
-                    if !showActivityView {
-                        ActivityCardView(
-                            title: "Good",
-                            duration: "...",
-                            primaryColor: .green
-                        )
                     }
                 }
                 .frame(width: activityReportSize.width, height: activityReportSize.height)
                 
                 ZStack {
-                    if badFilter != nil {
+                    ActivityCardView(
+                        title: "Bad",
+                        duration: "...",
+                        primaryColor: .red
+                    )
+
+                    if isMonitoring && badFilter != nil {
                         DeviceActivityReport(badContext, filter: badFilter!)
                             .opacity(showActivityView ? 1.0 : 0.0000001)
-                    }
-                    
-                    if !showActivityView {
-                        ActivityCardView(
-                            title: "Bad",
-                            duration: "...",
-                            primaryColor: .red
-                        )
                     }
                 }
                 .frame(width: activityReportSize.width, height: activityReportSize.height)
@@ -93,40 +101,45 @@ struct Home: View {
         }
 
     }
+    
+    var calculateCheckpoint: some View {
+        Button {
+            withAnimation {
+                showSheet.toggle()
+            }
+        } label: {
+            if timeRemaining == 0 {
+                ActivityCardView(
+                    title: "Progress to Next Checkpoint",
+                    duration: "Press to Calculate",
+                    primaryColor: .orange
+                )
+            } else {
+                ActivityCardView(
+                    title: "Progress to Next Checkpoint",
+                    duration: "\(formatDuration(seconds: timeRemaining))",
+                    primaryColor: .orange
+                )
+            }
+        }
+    }
         
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Usage Time")) {
+                Section {
                     VStack(spacing: 16) {
+                        MonitoringStatusView()
                         deviceActivityView
                         CheckpointTimeView(checkpoint: checkpointTime)
+                        calculateCheckpoint
                     }
                 }
                 .listRowBackground(Color.clear)
                 
-                Section(header: Text("Calculate Checkpoint Time")) {
-                    Button {
-                        withAnimation {
-                            showSheet.toggle()
-                        }
-                    } label: {
-                        if timeRemaining == 0 {
-                            ActivityCardView(
-                                title: "Progress to Next Checkpoint",
-                                duration: "Press to Calculate",
-                                primaryColor: .orange
-                            )
-                        } else {
-                            ActivityCardView(
-                                title: "Progress to Next Checkpoint",
-                                duration: "\(formatDuration(seconds: timeRemaining))",
-                                primaryColor: .orange
-                            )
-                        }
-                    }
-                }
-                .listRowBackground(Color.clear)
+//                Section {
+//                }
+//                .listRowBackground(Color.clear)
             }
             .navigationTitle("Welcome, \(userName)")
             .scrollContentBackground(.hidden)
@@ -158,26 +171,26 @@ struct Home: View {
                     .presentationBackground(.thinMaterial)
             }
         }
-        .onChange(of: [checkpointTime, badAppTime]) {
-            deviceActivityModel.updateMonitoring()
-        }
         .onChange(of: badFamilySelections, initial: true) {
             badFilter = DeviceActivityFilter(
                 segment: .daily(
                     during: DateInterval(
-                        start: .now,
+                        start: startTime,
                         end: Calendar.current.startOfDay(for: .now).addingTimeInterval(86400 - 1)
                     )
                 ),
                 devices: .init([.iPhone, .iPad]),
                 applications: decode(FamilyActivitySelection.self, from: badFamilySelections, defaultValue: FamilyActivitySelection()).applicationTokens
             )
+            
+            print(startTime)
         }
         .onChange(of: goodFamilySelections, initial: true) {
             goodFilter = DeviceActivityFilter(
                 segment: .daily(
                     during: DateInterval(
-                        start: .now,
+                        // change here
+                        start: startTime,
                         end: Calendar.current.startOfDay(for: .now).addingTimeInterval(86400 - 1)
                     )
                 ),
@@ -191,7 +204,7 @@ struct Home: View {
 #Preview {
     ZStack {
         AppBackground()
-            .edgesIgnoringSafeArea(.all)  // Ensure background covers the full screen
+            .edgesIgnoringSafeArea(.all)
         Home()
     }
     .environment(DeviceActivityModel())

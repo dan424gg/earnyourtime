@@ -11,26 +11,13 @@ import ManagedSettings
 import UserNotifications
 
 
-func sendNotification(title: String, subtitle: String, waitDuration: Double = 1.0, repeats: Bool = false) async {
+func sendNotification(title: String, body: String, waitDuration: Double = 1.0, repeats: Bool = false) async {
     let content = UNMutableNotificationContent()
     content.title = title
-    content.subtitle = subtitle
+    content.body = body
     content.sound = UNNotificationSound.default
     content.interruptionLevel = .critical // set notification severity level
     content.badge = 0 // manually set badge number for app
-
-    /// Set different actions for the user to take on the notification
-    let action1 = UNNotificationAction(identifier: "snoozeAction", title: "Snooze", options: [])
-    let action2 = UNNotificationAction(identifier: "cancelAction", title: "Cancel", options: [.destructive])
-
-    let category = UNNotificationCategory(identifier: "meetingCategory", actions: [action1, action2], intentIdentifiers: [], options: [])
-
-    UNUserNotificationCenter.current().setNotificationCategories([category])
-
-    content.categoryIdentifier = "meetingCategory"
-    /// ***
-    
-    print("\nsending the following notification: \n\(title)\n\(subtitle)\n\(waitDuration)")
 
     // show this notification five seconds from now
     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: waitDuration, repeats: repeats)
@@ -40,6 +27,7 @@ func sendNotification(title: String, subtitle: String, waitDuration: Double = 1.
 
     // schedule the request with the system.
     let notificationCenter = UNUserNotificationCenter.current()
+    
     do {
         try await notificationCenter.add(request)
     } catch {
@@ -68,99 +56,80 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
         
-        Task {
-            await sendNotification(title:"here", subtitle: "got to checkpoint", waitDuration: 1, repeats: false)
-        }
+        let events = DeviceActivityCenter().events(for: activity)
+        
+        if activity == DeviceActivityName("checkpoint"), event == DeviceActivityEvent.Name("checkpoint") {
+            /// When the checkpoint event reaches its threshold, increase the bad app monitor's threshold.
+            if let badAppSchedule = DeviceActivityCenter().schedule(for: DeviceActivityName("badAppMonitor")),
+               let checkpointEvent = events[event],
+               let badAppEvent = DeviceActivityCenter().events(for: DeviceActivityName("badAppMonitor"))[DeviceActivityEvent.Name("badAppMonitor")] {
 
-        if event == DeviceActivityEvent.Name("checkpoint") {
-            /// if we reach the goodAppMonitor threshold, we want to increase the badAppMonitor's threshold by the incrementHack.threshold
-            let events = DeviceActivityCenter().events(for: activity)
-            
-            // get activity schedule
-            if
-                let schedule = DeviceActivityCenter().schedule(for: activity),
-//                let goodAppEvent = events[DeviceActivityEvent.Name("goodAppMonitor")],
-                let badAppEvent = events[DeviceActivityEvent.Name("badAppMonitor")],
-                let checkpointEvent = events[DeviceActivityEvent.Name("checkpoint")]
-            {
+                let oldThreshold = badAppEvent.threshold.minute ?? 0
+                let incrementThreshold = checkpointEvent.threshold.minute ?? 0
                 
-                // get existing threshold
-                let oldThreshold = badAppEvent.threshold.minute
-                
-                // get incrementHack threshold
-                let incrementThreshold = checkpointEvent.threshold.minute
-                
-                // update threshold
                 let newBadAppEvent = DeviceActivityEvent(
                     applications: badAppEvent.applications,
                     categories: badAppEvent.categories,
                     webDomains: badAppEvent.webDomains,
-                    threshold: DateComponents(minute: (oldThreshold ?? 0) + (incrementThreshold ?? 0)),
+                    threshold: DateComponents(minute: oldThreshold + incrementThreshold),
                     includesPastActivity: true
                 )
                 
-                // stop monitoring to reset monitoring
-                DeviceActivityCenter().stopMonitoring()
-                
-                // create list of events
-                let events = [
-                    DeviceActivityEvent.Name("checkpoint"): checkpointEvent,
-                    DeviceActivityEvent.Name("badAppMonitor"): newBadAppEvent,
-                ]
-                
+                // set checkpoint schedule to new time to start monitoring for a new checkpoint segment
+                // without this, once the user hits their checkpoint (ie. 15 min), they will continously get notifications after
+                let currentTime = Date()
+                let calendar = Calendar.current
+                let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentTime)
+
+                let checkpointSchedule = DeviceActivitySchedule(
+                    intervalStart: dateComponents,
+                    intervalEnd: DateComponents(hour: 23, minute: 59, second: 59),
+                    repeats: true
+                )
+
+                DeviceActivityCenter().stopMonitoring([DeviceActivityName("badAppMonitor")])
+                DeviceActivityCenter().stopMonitoring([DeviceActivityName("checkpoint")])
+
                 do {
-                    try DeviceActivityCenter().startMonitoring(activity, during: schedule, events: events)
+                    try DeviceActivityCenter().startMonitoring(DeviceActivityName("badAppMonitor"), during: badAppSchedule, events: [DeviceActivityEvent.Name("badAppMonitor"): newBadAppEvent])
+                    try DeviceActivityCenter().startMonitoring(DeviceActivityName("checkpoint"), during: checkpointSchedule, events: [DeviceActivityEvent.Name("checkpoint"): checkpointEvent])
                 } catch {
-//                    Task {
-//                        await sendNotification(title: "title", subtitle: "couldn't start monitoring")
-//                    }
+                    print("Error restarting bad app monitoring: \(error)")
                 }
-                
                 store.shield.applications = nil
-                
                 Task {
-                    await sendNotification(title: "All good!", subtitle: "You can start using your \"unproductive\" apps now.")
+                    await sendNotification(title: "All good!", body: "You can start using your \"unproductive\" apps now.")
                 }
             }
         }
-            
-        else if event == DeviceActivityEvent.Name("badAppMonitor") {
-            Task {
-                await sendNotification(title:"here", subtitle: "got to badAppMonitor", waitDuration: 1, repeats: false)
-            }
-
-            let events = DeviceActivityCenter().events(for: activity)
-            
+        
+        else if activity == DeviceActivityName("badAppMonitor"), event == DeviceActivityEvent.Name("badAppMonitor") {
+            /// When the bad app monitor reaches its threshold, restrict bad apps.
             if let badApps = events[DeviceActivityEvent.Name("badAppMonitor")]?.applications {
                 store.shield.applications = badApps
             } else {
                 Task {
-                    await sendNotification(title: "Couldn't get bad apps", subtitle: "sorry")
+                    await sendNotification(title: "Couldn't get bad apps", body: "Sorry, something went wrong.")
                 }
             }
-            
-            Task {
-                await sendNotification(title:"Oh no!", subtitle: "Use your \"productive\" apps to get more time.")
-            }
         }
-        
     }
 
     override func intervalWillStartWarning(for activity: DeviceActivityName) {
         super.intervalWillStartWarning(for: activity)
         
-        // Handle the warning before the interval starts.
+        // Handle warning before the interval starts.
     }
     
     override func intervalWillEndWarning(for activity: DeviceActivityName) {
         super.intervalWillEndWarning(for: activity)
         
-        // Handle the warning before the interval ends.
+        // Handle warning before the interval ends.
     }
     
     override func eventWillReachThresholdWarning(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventWillReachThresholdWarning(event, activity: activity)
         
-        // Handle the warning before the event reaches its threshold.
+        // Handle warning before the event reaches its threshold.
     }
 }

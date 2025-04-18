@@ -7,15 +7,19 @@
 
 import SwiftUI
 import SwiftData
+import BackgroundTasks
 
 @main
 struct EarnYourTimeApp: App {
     @AppStorage(StorageKey.colorScheme.rawValue) private var colorScheme: String = "system"
-    
+
+    private var deviceActivityModel = DeviceActivityModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(DeviceActivityModel())
+                .environment(deviceActivityModel)
+                .environment(OnboardingObservable())
                 .onAppear {
                     // Ensure to apply the appearance mode when the view appears
                     updateAppearanceMode()
@@ -26,7 +30,7 @@ struct EarnYourTimeApp: App {
                 }
         }
     }
-    
+
     private func updateAppearanceMode() {
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             let window = windowScene.windows.first

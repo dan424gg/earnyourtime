@@ -38,6 +38,28 @@ extension Color {
     }
 }
 
+struct AppBackground: View {
+    var body: some View {
+        LinearGradient(
+            gradient: Gradient(
+                stops: [
+                    .init(
+                        color: Color.good.opacity(0.2),
+                        location: 0.1
+                    ),
+                    .init(
+                        color: Color.bad.opacity(0.3),
+                        location: 1.0
+                    )
+                ]
+            ),
+            startPoint: .leading,
+            endPoint: .bottomTrailing
+        )
+        .ignoresSafeArea()
+    }
+}
+
 struct ActivityCardView: View {
     var title: String
     var duration: String
@@ -48,6 +70,7 @@ struct ActivityCardView: View {
             Text(title)
                 .font(.system(size: 18, weight: .semibold))
                 .foregroundStyle(primaryColor)
+                .hidden()
 
             Text(duration)
                 .font(.system(size: 20, weight: .bold))
@@ -56,20 +79,10 @@ struct ActivityCardView: View {
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .fill(primaryColor.opacity(0.8))
-//                        .shadow(color: primaryColor.opacity(0.4), radius: 8, x: 0, y: 4)
+                        .fill(primaryColor)
                 )
         }
         .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThinMaterial)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(primaryColor.opacity(0.7), lineWidth: 2)
-                )
-//                .shadow(color: primaryColor.opacity(0.3), radius: 8, x: 0, y: 4)
-        )
         .padding(2)
     }
 }

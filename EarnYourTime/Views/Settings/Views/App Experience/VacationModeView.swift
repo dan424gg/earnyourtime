@@ -8,41 +8,27 @@
 // TODO: implement starting/stopping monitoring
 
 import SwiftUI
+import BackgroundTasks
 
 struct VacationModeView: View {
+    @Environment(\.dismiss) var dismiss
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
+    
+    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+    @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
+    
+    @Binding var temp_vacationMode: Bool
+    
     @State var wasSaved: Bool = false
-    @State private var timer: Timer?
     @State private var days: Int = 0
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
-    @Environment(\.dismiss) var dismiss
-    @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
+
     
-    private var futureDate: Date {
-        let totalSeconds = (days * 24 * 3600) + (hours * 3600) + (minutes * 60)
-        return Date().addingTimeInterval(TimeInterval(totalSeconds))
+    var duration: Double {
+        return Double((days * 24 * 3600) + (hours * 3600) + (minutes * 60))
     }
     
-    func scheduleTimer() {
-        cancelTimer()
-        
-        let timeInterval = futureDate.timeIntervalSince(Date())
-        guard timeInterval > 0 else { return }
-        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { _ in
-            do {
-                try deviceActivityModel.startMonitoring()
-            } catch {
-                //
-            }
-        }
-    }
-
-    func cancelTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-
     var body: some View {
         NavigationView {
             Form {
@@ -63,29 +49,49 @@ struct VacationModeView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: days == 0 && hours == 0 && minutes == 0) {
-                    wasSaved = true
+                VStack(spacing: -20) {
+                    ActionButton(disabled: !vacationMode, text: "Cancel", color: .red) {
+                        cancelVacationMode()
+                        dismiss()
+                    }
                     
-                    deviceActivityModel.stopMonitoring()
-                    scheduleTimer()
-                    
-                    dismiss()
+                    ActionButton(disabled: days == 0 && hours == 0 && minutes == 0) {
+                        let endDate = Date().addingTimeInterval(duration).timeIntervalSince1970
+                        vacationModeEndDate = endDate
+                        
+                        vacationMode = true
+                        
+                        startVacationMode()
+                        
+                        dismiss()
+                    }
                 }
             }
         }
-        .onChange(of: vacationMode) { (old, new) in
-            if old && !new {
-                cancelTimer()
-            }
-        }
-        .onDisappear {
-            if !wasSaved {
-                vacationMode = false
-            }
-        }
+    }
+    
+    func cancelVacationMode() {
+        vacationModeEndDate = 0
+        vacationMode = false
+                
+        do {
+            try deviceActivityModel.startMonitoring()
+        } catch {}
+    }
+
+    func cancelScheduledVacationNotification() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["VacationModeEnd"])
+        print("Canceled Vacation Mode notification")
+    }
+
+    func startVacationMode() {
+        deviceActivityModel.stopMonitoring()
+        scheduleVacationEndNotification()
+        // start scheduled monitoring
     }
 }
 
 #Preview {
-    VacationModeView()
+    VacationModeView(temp_vacationMode: .constant(false))
+        .environment(DeviceActivityModel())
 }

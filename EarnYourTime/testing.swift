@@ -1,21 +1,26 @@
 import SwiftUI
-import UIKit
+import Combine
+import BackgroundTasks
 
-struct testing: View {
-    
 
+struct Testing: View {
     var body: some View {
-        VStack {
-            Button("Press me") {
-                Task {
-                    await sendNotification(title: "Test", subtitle: "Stay calm, this is a test", waitDuration: 1, repeats: false)
-                }
-            }
-            .buttonStyle(.borderedProminent)
+        Button ("Start Background Task!") {
+            scheduleAppRefresh()
         }
     }
+    
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: "StartBackgroundTask!")
+        let time = Date.now.addingTimeInterval(5)
+        request.earliestBeginDate = time // in 5 seconds
+        try? BGTaskScheduler.shared.submit(request)
+        
+        print("submitted task for \(request.earliestBeginDate ?? Date())")
+    }
+
 }
 
 #Preview {
-    testing()
+    Testing()
 }

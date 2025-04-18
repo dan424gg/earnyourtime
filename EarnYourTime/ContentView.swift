@@ -21,6 +21,7 @@ struct ContentView: View {
     @AppStorage(StorageKey.checkpointTime.rawValue) var checkpointTime: Int = 0
     @AppStorage(StorageKey.goodFamilySelections.rawValue) private var goodFamilySelectionsData: Data = Data()
     @AppStorage(StorageKey.badFamilySelections.rawValue) private var badFamilySelectionsData: Data = Data()
+    @AppStorage(StorageKey.recentUpdateTime.rawValue) private var recentUpdateTime: Double = 0
 
     @State private var selectedDestination: SettingsDestination?
     @Environment(\.dismiss) var dismiss
@@ -36,110 +37,19 @@ struct ContentView: View {
         ZStack {
             AppBackground()
             if seenIntroSequence {
-//                testing()
                 Home()
             } else {
-                // we want some sort of mechanism to nil out the defaults if the user doesn't go all the way through with the introduction
-                NavigationView {
-                    List {
-                        Section() {
-                            SettingsButton(text: "Good Apps", systemImage: "hand.thumbsup") {
-                                selectedDestination = .goodApps
-                            }
-                            SettingsButton(text: "Bad Apps", systemImage: "hand.thumbsdown") {
-                                selectedDestination = .badApps
-                            }
-                            SettingsButton(text: "Checkpoint Time", systemImage: "flag.checkered") {
-                                selectedDestination = .checkpointTime
-                            }
-                            SettingsButton(text: "Bad App Time Limit", systemImage: "timer") {
-                                selectedDestination = .badAppTimeLimit
-                            }
-                        }
-                    }
-                    .padding([.leading, .trailing], 5)
-                    .navigationTitle("Temporary Intro Set Up")
-                    .scrollContentBackground(.hidden)// Add this
-                    .background(AppBackground())
-                }
-                .safeAreaInset(edge: .bottom) {
-                    SaveButton(disabled: !isAllFilledOut()) {
-                        seenIntroSequence = true
-                        do {
-                            try deviceActivityModel.startMonitoring()
-                        } catch {
-                            print("error in startMonitoring")
-                        }
-                        dismiss()
-                    }
-                }
-                .sheet(item: $selectedDestination, onDismiss: {
-                    selectedDestination = .none
-                }) { destination in
-                    switch destination {
-                        case .name:
-                            NameEditorView()
-                             .presentationDetents([.medium])
-                             .presentationDragIndicator(.visible)
-                             .presentationBackground(.thinMaterial)
-                        case .notifications:
-                            NotificationsSettingsView()
-                        case .vacationMode:
-                            VacationModeView()
-                                .presentationDragIndicator(.visible)
-                                .presentationBackground(.thinMaterial)
-                        case .goodApps:
-                            GoodAppsSelectorView()
-                                .presentationDragIndicator(.visible)
-                                .presentationBackground(.thinMaterial)
-                        case .badApps:
-                            BadAppsSelectorView()
-                                .presentationDragIndicator(.visible)
-                                .presentationBackground(.thinMaterial)
-                        case .checkpointTime:
-                            CheckpointTimeEditorView()
-                             .presentationDetents([.fraction(0.6)])
-                             .presentationDragIndicator(.visible)
-                             .presentationBackground(.thinMaterial)
-                        case .badAppTimeLimit:
-                            BadAppTimeLimitEditorView()
-                                .presentationDetents([.fraction(0.6)])
-                                .presentationDragIndicator(.visible)
-                                .presentationBackground(.thinMaterial)
-                        case .appearance:
-                            AppearanceSettingsView()
-                    }
-                }
+                OnboardingView()
             }
         }
+        .animation(.default, value: seenIntroSequence)
         .onAppear {
-            /// needed for device activity
-            Task {
-                do {
-                    try await center.requestAuthorization(for: .individual)
-                } catch {
-                    print("couldn't get authorization for Device Activity\n\(error)")
-                }
-            }
-            
-            /// needed for foreground notifications
-            notificationsManager.setupNotificationDelegate()
-            
-            /// needed for notifications
-            Task {
-                do {
-                    // todo: finalize options
-                    try await UNUserNotificationCenter.current().requestAuthorization(options: [
-                        .alert,
-                        .sound,
-                        .badge,
-                        .carPlay,
-                        .criticalAlert,
-                        .providesAppNotificationSettings])
-                } catch {
-                    print(error)
-                }
-            }
+//            if Date().timeIntervalSince1970 > getEod(recentUpdateTime) {
+//                recentUpdateTime = -1
+//            }
+
+            recentUpdateTime = Date().timeIntervalSince1970
+            print(Date(timeIntervalSince1970: recentUpdateTime))
         }
     }
 }
@@ -147,4 +57,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environment(DeviceActivityModel())
+        .environment(OnboardingObservable())
 }

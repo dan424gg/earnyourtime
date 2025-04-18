@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct BadAppTimeLimitEditorView: View {
+    var updateMonitoring: Bool = true
+    
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
     @State private var showAlert: Bool = false
+    @Environment(DeviceActivityModel.self) private var deviceActivityModel
     @AppStorage(StorageKey.checkpointTime.rawValue) var checkpointTime: Int = 0
     @AppStorage(StorageKey.badAppTime.rawValue) var badAppTimeLimit: Int = 0
     @Environment(\.dismiss) var dismiss
@@ -41,11 +44,14 @@ struct BadAppTimeLimitEditorView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: timeInSeconds == 0) {
+                ActionButton(disabled: timeInSeconds == 0) {
                     if timeInSeconds > checkpointTime {
                         showAlert.toggle()
                     } else {
                         badAppTimeLimit = timeInSeconds
+                        if updateMonitoring {
+                            deviceActivityModel.updateMonitoring()
+                        }
                         dismiss()
                     }
                 }

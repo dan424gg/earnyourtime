@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct CheckpointTimeEditorView: View {
+    var updateMonitoring: Bool = true
+    
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
+    @Environment(DeviceActivityModel.self) private var deviceActivityModel
     @AppStorage(StorageKey.checkpointTime.rawValue) var checkpointTime: Int = 0
     @Environment(\.dismiss) var dismiss
     
@@ -39,8 +42,11 @@ struct CheckpointTimeEditorView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                SaveButton(disabled: timeInSeconds == 0) {
+                ActionButton(disabled: timeInSeconds == 0) {
                     checkpointTime = timeInSeconds
+                    if updateMonitoring {
+                        deviceActivityModel.updateMonitoring()
+                    }
                     dismiss()
                 }
             }
@@ -50,4 +56,5 @@ struct CheckpointTimeEditorView: View {
 
 #Preview {
     CheckpointTimeEditorView()
+        .environment(DeviceActivityModel())
 }
