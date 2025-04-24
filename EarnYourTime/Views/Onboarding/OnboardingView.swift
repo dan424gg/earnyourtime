@@ -7,9 +7,15 @@
 
 import SwiftUI
 
+/*
+ TODO: Ideas to clear things up
+    - add sections to explain the user input screens
+    - maybe rework the ordering and have user pick good 
+      apps and checkpoint time, then do the bad app stuff
+ */
+
 struct OnboardingView: View {
     @AppStorage(StorageKey.seenIntroSequence.rawValue) private var seenIntroSequence = false
-    @AppStorage(StorageKey.recentUpdateTime.rawValue) private var recentUpdateTime: TimeInterval = -1
     @Environment(OnboardingObservable.self) private var vm
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
     
@@ -54,7 +60,6 @@ struct OnboardingView: View {
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                 vm.phase = 6
-                                recentUpdateTime = Date().timeIntervalSince1970
                                 seenIntroSequence = true
                             }
                         }

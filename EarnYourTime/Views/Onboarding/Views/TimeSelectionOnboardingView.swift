@@ -17,7 +17,7 @@ struct TimeSelectionOnboardingView: View {
         VStack(spacing: 25) {
             VStack(spacing: 15) {
                 Group {
-                    Text("Set a ") + Text("Checkpoint").foregroundStyle(.blue) + Text(" goal to achieve...")
+                    Text("Set a ") + Text("Checkpoint").foregroundStyle(.blue) + Text(" to get to...")
                 }
                 .font(.title3)
                 .fontWeight(.medium)
@@ -43,7 +43,7 @@ struct TimeSelectionOnboardingView: View {
             
             VStack(spacing: 15) {
                 Group {
-                    Text("to be rewarded with ") + Text("Bad App Time").foregroundStyle(.red)
+                    Text("and be rewarded with ") + Text("Bad App Time").foregroundStyle(.red)
                 }
                     .font(.title3)
                     .fontWeight(.medium)
@@ -72,12 +72,12 @@ struct TimeSelectionOnboardingView: View {
         }) { destination in
             switch destination {
                 case .checkpointTime:
-                    CheckpointTimeEditorView(updateMonitoring: false)
+                    CheckpointTimeEditorView(updateMonitoring: false, askConfirmation: false)
                         .presentationDetents([.fraction(0.6)])
                         .presentationDragIndicator(.visible)
                         .presentationBackground(.thinMaterial)
                 case .badAppTimeLimit:
-                    BadAppTimeLimitEditorView(updateMonitoring: false)
+                    BadAppTimeLimitEditorView(updateMonitoring: false, askConfirmation: false)
                         .presentationDetents([.fraction(0.6)])
                         .presentationDragIndicator(.visible)
                         .presentationBackground(.thinMaterial)

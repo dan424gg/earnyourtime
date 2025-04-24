@@ -63,10 +63,10 @@ struct AppSelectionOnboardingView: View {
         }) { destination in
             switch destination {
                 case .goodApps:
-                    GoodAppsSelectorView(updateMonitoring: false)
+                    GoodAppsSelectorView(updateMonitoring: false, askConfirmation: false)
                         .presentationBackground(.thinMaterial)
                 case .badApps:
-                    BadAppsSelectorView(updateMonitoring: false)
+                    BadAppsSelectorView(updateMonitoring: false, askConfirmation: false)
                         .presentationBackground(.thinMaterial)
                 default:
                     EmptyView()

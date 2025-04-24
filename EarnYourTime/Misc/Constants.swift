@@ -19,7 +19,6 @@ enum StorageKey: String {
     case seenIntroSequence
     case vacationModeEndDate
     case isMonitoring
-    case recentUpdateTime
 }
 
 enum SettingsDestination: Identifiable {

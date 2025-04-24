@@ -9,10 +9,15 @@ import SwiftUI
 import FamilyControls
 import DeviceActivity
 
+/*
+ TODO: Add a little tutorial to explain the screen
+    - maybe rework some of the text stuf
+ */
+
 struct Home: View {
     @Environment(DeviceActivityModel.self) private var deviceActivityModel
     
-    @AppStorage(StorageKey.fullName.rawValue) var userName: String = ""
+    @AppStorage(StorageKey.fullName.rawValue) var userName: String = "TestName"
     @AppStorage(StorageKey.checkpointTime.rawValue) private var checkpointTime: Int = 0
     @AppStorage(StorageKey.badAppTime.rawValue) private var badAppTime: Int = 0
     @AppStorage(StorageKey.goodFamilySelections.rawValue) private var goodFamilySelections: Data = Data()
@@ -20,7 +25,6 @@ struct Home: View {
     @AppStorage(StorageKey.vacationMode.rawValue) var vacationMode: Bool = false
     @AppStorage(StorageKey.vacationModeEndDate.rawValue) var vacationModeEndDate: Double = 0
     @AppStorage(StorageKey.isMonitoring.rawValue) private var isMonitoring: Bool = false
-    @AppStorage(StorageKey.recentUpdateTime.rawValue) private var recentUpdateTime: Double = -1
     
     @Namespace private var animationNamespace
 
@@ -36,14 +40,6 @@ struct Home: View {
     @State private var goodFilter: DeviceActivityFilter?
     
     @State private var activityReportSize: CGSize = .zero
-        
-    var startTime: Date {
-        if recentUpdateTime != -1 {
-            return Date(timeIntervalSince1970: recentUpdateTime)
-        } else {
-            return .now
-        }
-    }
     
     var deviceActivityView: some View {
         ZStack {
@@ -175,22 +171,19 @@ struct Home: View {
             badFilter = DeviceActivityFilter(
                 segment: .daily(
                     during: DateInterval(
-                        start: startTime,
+                        start: Calendar.current.startOfDay(for: .now),
                         end: Calendar.current.startOfDay(for: .now).addingTimeInterval(86400 - 1)
                     )
                 ),
                 devices: .init([.iPhone, .iPad]),
                 applications: decode(FamilyActivitySelection.self, from: badFamilySelections, defaultValue: FamilyActivitySelection()).applicationTokens
-            )
-            
-            print(startTime)
+            )            
         }
         .onChange(of: goodFamilySelections, initial: true) {
             goodFilter = DeviceActivityFilter(
                 segment: .daily(
                     during: DateInterval(
-                        // change here
-                        start: startTime,
+                        start: Calendar.current.startOfDay(for: .now),
                         end: Calendar.current.startOfDay(for: .now).addingTimeInterval(86400 - 1)
                     )
                 ),

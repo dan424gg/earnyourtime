@@ -45,7 +45,6 @@ class DeviceActivityModel {
         @AppStorage(StorageKey.goodFamilySelections.rawValue) var goodSelectionsStorage: Data = Data()
         @AppStorage(StorageKey.badFamilySelections.rawValue) var badSelectionsStorage: Data = Data()
         @AppStorage(StorageKey.isMonitoring.rawValue) var isMonitoring: Bool = true
-        @AppStorage(StorageKey.recentUpdateTime.rawValue) var recentUpdateTime: Double = 0
         
         let goodSelections: FamilyActivitySelection = decode(FamilyActivitySelection.self, from: goodSelectionsStorage, defaultValue: FamilyActivitySelection())
         let badSelections: FamilyActivitySelection = decode(FamilyActivitySelection.self, from: badSelectionsStorage, defaultValue: FamilyActivitySelection())
@@ -66,7 +65,7 @@ class DeviceActivityModel {
                 categories: goodSelections.categoryTokens,
                 webDomains: goodSelections.webDomainTokens,
                 threshold: DateComponents(minute: checkpointTime / 60),
-                includesPastActivity: false
+                includesPastActivity: true
             )
 
             try self.deviceActivityCenter.startMonitoring(.checkpoint, during: checkpointSchedule, events: [.checkpoint: checkpointEvent])
@@ -85,7 +84,7 @@ class DeviceActivityModel {
                 categories: badSelections.categoryTokens,
                 webDomains: badSelections.webDomainTokens,
                 threshold: DateComponents(minute: 0),
-                includesPastActivity: false
+                includesPastActivity: true
             )
 
             try self.deviceActivityCenter.startMonitoring(.badAppMonitor, during: badAppSchedule, events: [.badAppMonitor: badAppEvent])
@@ -103,7 +102,6 @@ class DeviceActivityModel {
         }
 
         isMonitoring = true
-        recentUpdateTime = Date().timeIntervalSince1970
         print("Started monitoring at \(Calendar.current.component(.minute, from: Date()))")
     }
     // Stop monitoring device activity.
