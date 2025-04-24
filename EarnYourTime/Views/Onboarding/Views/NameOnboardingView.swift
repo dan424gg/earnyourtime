@@ -16,7 +16,7 @@ struct NameOnboardingView: View {
     
     var body: some View {
         VStack {
-            Text("Firstly, what's your name?")
+            Text("First, what's your name?")
                 .font(.title)
                 .fontWeight(.medium)
                 .multilineTextAlignment(.center)

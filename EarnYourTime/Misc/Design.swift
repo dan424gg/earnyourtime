@@ -299,25 +299,6 @@ struct ActivityCardBackground: ViewModifier {
     }
 }
 
-#Preview {
-    Button {
-        //
-    } label: {
-        HStack {
-            Text("Notifications")
-                .font(.title3)
-                .fontWeight(.medium)
-
-            Spacer()
-            Image(systemName: "arrow.right")
-        }
-        .contentShape(Rectangle())
-    }
-    .buttonStyle(.plain)
-    .activityBackground(color: .gray)
-    .frame(width: getWidthOfScreen() * 0.75)
-}
-
 extension View {
     func activityBackground(color: Color) -> some View {
         self.modifier(ActivityCardBackground(color: color))
