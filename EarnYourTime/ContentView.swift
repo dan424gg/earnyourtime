@@ -36,11 +36,12 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             AppBackground()
-            if seenIntroSequence {
-                Home()
-            } else {
-                OnboardingView()
-            }
+            Testing()
+//            if seenIntroSequence {
+//                Home()
+//            } else {
+//                OnboardingView()
+//            }
         }
         .animation(.default, value: seenIntroSequence)
         .onAppear {
